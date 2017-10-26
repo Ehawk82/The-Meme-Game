@@ -569,8 +569,6 @@ define('WinJS/Core/_WinRT',[
         "Windows.Storage.Search.IndexerOption",
         "Windows.Storage.Streams.RandomAccessStreamReference",
         "Windows.UI.ApplicationSettings.SettingsEdgeLocation",
-        "Windows.UI.ApplicationSettings.SettingsCommand",
-        "Windows.UI.ApplicationSettings.SettingsPane",
         "Windows.UI.Core.AnimationMetrics",
         "Windows.UI.Input.EdgeGesture",
         "Windows.UI.Input.EdgeGestureKind",
