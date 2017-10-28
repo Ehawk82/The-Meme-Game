@@ -60,31 +60,181 @@
         // You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
         // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
     };
-    var UI;
+    var UI, uData;
+
+    uData = {
+        siteName: "",
+        userName: "",
+        lvl: 1,
+        gndr: "",
+        hum: 0,
+        int: 0,
+        cre: 0,
+        luck: 0,
+        chr: 0,
+        spd: 0
+    };
 
     UI = {
         createEle: (x) => { return document.createElement(x) },
+        bySelAll: (x) => { return document.querySelectorAll(x) },
+        bySel: (x) => { return document.querySelector(x) },
         init: () => {
+            var ud = localStorage.getItem("uData");
+            if (!ud || ud === null) {
+                localStorage.setItem("uData", JSON.stringify(uData))
+            }
+
             UI.myLoad();
         },
         myLoad: () => {
             var myFrame = UI.createEle("div"),
-                startBtn = UI.createEle("button");
+                startBtn = UI.createEle("button"),
+                delBtn = UI.createEle("button");
+
+            delBtn.innerHTML = "Delete All Storage";
+            delBtn.className = "startPageBtn";
+            delBtn.onclick = UI.deleteAllStorage;
 
             startBtn.innerHTML = "Start New";
             startBtn.className = "startPageBtn";
-            startBtn.onclick = UI.startProgram(startBtn);
+            startBtn.onclick = UI.startProgram(myFrame, startBtn, delBtn);
 
             myFrame.className = "myFrame";
 
             myFrame.appendChild(startBtn);
+            myFrame.appendChild(delBtn);
 
             dvContain.appendChild(myFrame);
         },
-        startProgram: (startBtn) => {
+        startProgram: (myFrame, startBtn, delBtn) => {
             return () => {
+                var playerSetupPage = UI.createEle("div"), elems;
+
+                elems = "<span id='setupX' class='xBtns'>X</span>";
+                elems += "<h2>Setup Your Company</h2>";
+                elems += "<p><input type='text' placeholder='Site Name' class='setupItems' /></p>";
+                elems += "<p><input type='text' placeholder='Owner Name' class='setupItems' /></p>";
+                elems += "<p><input id='rd1' type='radio' checked class='setupItems' name='rds' /><label for='rd1'>♂</label>";
+                elems += "<input id='rd2' type='radio' unchecked class='setupItems' name='rds' /><label for='rd2'>♀</label>";
+                elems += "<span id='genderSpn'>Male</span></p>";
+                elems += "<p><div id='playerBox'>BOX</div></p>";
+                elems += "<p><input type='button' value='⭕' class='setupConfirm' /></p>";
+
+                playerSetupPage.className = "playerSetupPage";
+                playerSetupPage.innerHTML = elems;
+
                 startBtn.remove();
+                delBtn.remove();
+                myFrame.appendChild(playerSetupPage);
+
+                setTimeout(() => {
+                    playerSetupPage.className = "playerSetupPage_full";
+                    var setupItems = UI.bySelAll(".setupItems");
+                    var setupConfirm = UI.bySel(".setupConfirm");
+                    var genderSpn = UI.bySel("#genderSpn");
+                    var setupX = UI.bySel("#setupX");
+
+
+                    setupX.onclick = UI.goHome(playerSetupPage, myFrame);
+
+                    for (var i = 0; i < setupItems.length; i++) {
+                        setupItems[i].onkeyup = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
+                        setupItems[i].onblur = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
+                        setupItems[2].onclick = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
+                        setupItems[3].onclick = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
+                    }
+
+                }, 50);
+                
             }
+        },
+        checkSetupData: (setupItems, i, setupConfirm, genderSpn) => {
+            return () => {
+                var ud = localStorage.getItem("uData");
+
+                uData.siteName = setupItems[0].value;
+                uData.userName = setupItems[1].value;
+                
+                if (setupItems[3].checked) {
+                    genderSpn.innerHTML = "Female";
+                    uData.gndr = genderSpn.innerHTML;
+                } else {
+                    genderSpn.innerHTML = "Male";
+                    uData.gndr = genderSpn.innerHTML;
+                }
+                localStorage.setItem("uData", JSON.stringify(uData));
+                
+                if (setupItems[0].value != "" && setupItems[1].value != "") {
+                    setupConfirm.value = "✔";
+                    setupConfirm.onclick = UI.proceedGame;
+                } else {
+                    setupConfirm.value = "⭕";
+
+                }
+            }
+        },
+        proceedGame: () => {
+            var ud = localStorage.getItem("uData"),
+                playerSetupPage = UI.bySel(".playerSetupPage_full"),
+                myFrame = playerSetupPage.parentNode;
+
+            setTimeout(() => {
+                playerSetupPage.className = "playerSetupPage";
+                setTimeout(() => {
+                    playerSetupPage.remove();
+                    UI.beginGameSession(myFrame, ud);
+                }, 1000);
+            }, 50);
+            
+        },
+        beginGameSession: (myFrame, ud) => {
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+            var table = UI.createEle("div");
+
+            table.className = "theTable";
+            for (var i = 1; i < 10; i++) {
+                var elems = UI.createEle("div");
+
+                elems.id = "elem_" + i + "";
+                elems.className = "playerItems";
+                //elems.innerHTML = "" + i + "";
+                //do css
+                table.appendChild(elems);
+            }
+            
+            myFrame.appendChild(table);
+            
+            setTimeout(() => {
+                var playerItems = UI.bySelAll(".playerItems");
+                playerItems[0].innerHTML = uuu.siteName;
+                playerItems[1].innerHTML = uuu.userName;
+                playerItems[2].innerHTML = "<span>Level</span> <span>" + uuu.lvl + "</span>";
+                playerItems[3].innerHTML = "<span>Humor</span> <span>" + uuu.hum + "</span>";
+                playerItems[4].innerHTML = "<span>Inteligence</span> <span>" + uuu.int + "</span>";
+                playerItems[5].innerHTML = "<span>Creativity</span> <span>" + uuu.cre + "</span>";
+                playerItems[6].innerHTML = "<span>Luck</span> <span>" + uuu.luck + "</span>";
+                playerItems[7].innerHTML = "<span>Charisma</span> <span>" + uuu.chr + "</span>";
+                playerItems[8].innerHTML = "<span>Speed</span> <span>" + uuu.spd + "</span>";
+                table.className = "theTable_full";
+            }, 1000);
+        },
+        goHome: (playerSetupPage, myFrame) => {
+            return () => {
+                playerSetupPage.className = "playerSetupPage";
+                
+                setTimeout(() => {
+                    myFrame.remove();
+                    UI.myLoad();
+                }, 1000);
+            }
+        },
+        deleteAllStorage: () => {
+            localStorage.clear();
+            location.reload();
         }
 	}
 
