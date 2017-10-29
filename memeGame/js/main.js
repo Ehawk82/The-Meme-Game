@@ -90,24 +90,44 @@
         myLoad: () => {
             var myFrame = UI.createEle("div"),
                 startBtn = UI.createEle("button"),
+                contBtn = UI.createEle("button"),
                 delBtn = UI.createEle("button");
+            var uD = localStorage.getItem("uData");
+            if (uD) {
+                var uuu = JSON.parse(uD);
+            }
 
             delBtn.innerHTML = "Delete All Storage";
             delBtn.className = "startPageBtn";
             delBtn.onclick = UI.deleteAllStorage;
-
+            
+            if (uuu.siteName != "") {
+                contBtn.innerHTML = "Continue";
+                contBtn.className = "startPageBtn";
+                contBtn.onclick = UI.contProgram(myFrame, startBtn, delBtn, contBtn);
+                myFrame.appendChild(contBtn);
+            }
             startBtn.innerHTML = "Start New";
             startBtn.className = "startPageBtn";
-            startBtn.onclick = UI.startProgram(myFrame, startBtn, delBtn);
+            startBtn.onclick = UI.startProgram(myFrame, startBtn, delBtn, contBtn);
 
             myFrame.className = "myFrame";
 
             myFrame.appendChild(startBtn);
+            
             myFrame.appendChild(delBtn);
 
             dvContain.appendChild(myFrame);
         },
-        startProgram: (myFrame, startBtn, delBtn) => {
+        contProgram: (myFrame, startBtn, delBtn, contBtn) => {
+            return () => {
+                startBtn.remove();
+                contBtn.remove();
+                delBtn.remove();
+                UI.proceedGame();
+            }
+        },
+        startProgram: (myFrame, startBtn, delBtn, contBtn) => {
             return () => {
                 var playerSetupPage = UI.createEle("div"), elems;
 
@@ -126,6 +146,9 @@
 
                 startBtn.remove();
                 delBtn.remove();
+                if (contBtn) {
+                    contBtn.remove();
+                }
                 myFrame.appendChild(playerSetupPage);
 
                 setTimeout(() => {
@@ -176,17 +199,21 @@
         },
         proceedGame: () => {
             var ud = localStorage.getItem("uData"),
-                playerSetupPage = UI.bySel(".playerSetupPage_full"),
-                myFrame = playerSetupPage.parentNode;
+                playerSetupPage = UI.bySel(".playerSetupPage_full");
+            if (playerSetupPage) {
+                var myFrame = playerSetupPage.parentNode;
 
-            setTimeout(() => {
-                playerSetupPage.className = "playerSetupPage";
                 setTimeout(() => {
-                    playerSetupPage.remove();
-                    UI.beginGameSession(myFrame, ud);
-                }, 1000);
-            }, 50);
-            
+                    playerSetupPage.className = "playerSetupPage";
+                    setTimeout(() => {
+                        playerSetupPage.remove();
+                        UI.beginGameSession(myFrame, ud);
+                    }, 1000);
+                }, 50);
+            } else {
+                var myFrame = UI.bySel(".myFrame");
+                UI.beginGameSession(myFrame, ud);
+            }
         },
         beginGameSession: (myFrame, ud) => {
 
@@ -219,7 +246,9 @@
                 playerItems[6].innerHTML = "<span>Luck</span> <span>" + uuu.luck + "</span>";
                 playerItems[7].innerHTML = "<span>Charisma</span> <span>" + uuu.chr + "</span>";
                 playerItems[8].innerHTML = "<span>Speed</span> <span>" + uuu.spd + "</span>";
-                table.className = "theTable_full";
+                setTimeout(() => {
+                    table.className = "theTable_full";
+                }, 50);
             }, 1000);
         },
         goHome: (playerSetupPage, myFrame) => {

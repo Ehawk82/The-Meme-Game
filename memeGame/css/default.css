@@ -98,7 +98,7 @@ input[type="radio"] {
 
 .playerItems {
     color:#000;
-    text-shadow: 1px 1px silver, 1px 1px #fff, 1px 1px silver;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
 
 }
     .playerItems span:nth-child(1) {
