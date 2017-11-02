@@ -9,7 +9,6 @@ html, body {
 
 button {
    border-radius: 1px ;
-   box-shadow: 0 0 12px red;
    padding: 5px 0;
 }
 
@@ -100,12 +99,14 @@ input[type="radio"] {
     color:#000;
     text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
 
+
 }
     .playerItems span:nth-child(1) {
         float:left;
         margin-left:5px;
         padding:5px 0;
         width:100px;
+
         background:#808080;
         text-align:left;
 
@@ -116,27 +117,216 @@ input[type="radio"] {
         padding:5px 0;
         width:50px;
         background:#808080;
+
     }
 .theTable {
-    transition:all 500ms;
+    transition: all 500ms;
     box-shadow: 0 0 2px silver;
-    width:160px;
-    position:absolute;
+    width: 160px;
+    position: absolute;
     background:#808080;
-    left:-190px;
+    left: -190px;
 }
 .theTable_full {
     transition:all 500ms;
     box-shadow: 0 0 2px silver;
+
     width:160px;
     position:absolute;
     background:#808080;
     left:5px;
 }
 
+.memePanel {
+    transition: all 500ms;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+    display:inline-block;
+    position: relative;
+    float:left;
+    left:0;
+    top:150%;
+    bottom:0;
+    width:100%;
+    opacity:0;
+}
+.memePanel_full {
+    transition: all 500ms;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+    display:inline-block;
+    position: relative;
+    float:left;
+    left:0;
+    top:90%;
+    bottom:0;
+    opacity:1;
+    width:100%;
+}
+
+.memePanelBtns {
+    width:50px;
+    position:static;
+    line-height:50px;
+    border: 2px outset silver ;
+    background:#808080;
+    margin:0 2px;
+    display:inline-block;
+}
+    .memePanelBtns:active {
+        border: 2px inset silver ;
+    }
+
+.myTimer, .timeCtrlCell {
+    transition: all 500ms;
+    box-shadow: 0 0 2px silver;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+    display:inline-block;
+    position: relative;
+    background:#808080;
+    left:0;
+    top:-100px;
+    padding:5px 0;
+    opacity:0;
+}
+.myTimer_full, .timeCtrlCell_full {
+    transition:all 500ms;
+    box-shadow: 0 0 2px silver;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+    display:inline-block;
+    position:relative;
+    background:#808080;
+    left:0;
+    top:0;
+    padding:0;
+    opacity:1;
+}
+
+.timerItems {
+    color:#000;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+    margin:0 5px;
+    display:inline-block;
+    border: 2px inset silver ;
+
+    width:100px;
+}
+
+.timeCtrlItems {
+    transition:all 300ms;
+    color:silver;
+    text-align:center;
+    margin:0 1px;
+    display:inline-block;
+    padding:0 5px;
+    width:30px;
+    border: 2px outset silver ;
+}
+.timeCtrlItems_active {
+    transition:all 300ms;
+    color:rgba(0,0,0,.3);
+    background:rgba(0,0,0,.1);
+    text-align:center;
+    margin:0 1px;
+    display:inline-block;
+    padding:0 5px;
+    width:30px;
+    border: 2px inset silver ;
+}
+
+.statusDiv {
+    transition:all 1s;
+    width:1%;
+    line-height:50px;
+    border: 2px outset silver ;
+    background:#808080;
+    margin:0 2px;
+    display:inline-block;
+    color:rgba(0, 0, 0, 0.61);
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+}
+
+.statusDiv_full {
+    transition:all 1s;
+    width:40%;
+    line-height:50px;
+    border: 2px outset silver ;
+    background:#808080;
+    margin:0 2px;
+    display:inline-block;
+    color:rgba(0, 0, 0, 0.61);
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+}
+
+.menuPages {
+    transition:all 500ms;
+    position:absolute;
+    top:100%;
+    left:0;
+    width:99%;
+    height:100%;
+    border: 2px outset silver ;
+    background:#808080;
+    margin:0 2px;
+    display:inline-block;
+}
+.menuPages_full {
+    transition:all 500ms;
+    position:absolute;
+    top:0;
+    left:0;
+    width:99%;
+    height:100%;
+    border: 2px outset silver ;
+    background:#808080;
+    margin:0 2px;
+    display:inline-block;
+    color:rgba(0, 0, 0, 0.61);
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
+}
+    .menuPages h2 span:nth-child(1), .menuPages_full h2 span:nth-child(1) {
+        float:left;
+        margin-left:10%;
+        margin-top:10px;
+    }
+    .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2) {
+        float:right;
+        margin-right:10%;
+        margin-top:10px;
+        border: 2px outset silver ;
+        display:inline-block;
+        padding:0 10px;
+        line-height:30px;
+    }
+        .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
+            border: 2px inset silver ;
+        }
+.climate {
+    transition:all 700ms;
+    position:relative;
+    box-shadow:0 0 10px pink;
+    background-position:center;
+    background-size:640px 640px;
+    background-repeat:no-repeat;
+    margin: 100vh auto 0 auto;
+    width:640px;
+    height:640px;
+    border-radius:4px;
+}
+.climate_full {
+    transition:all 500ms;
+    position:relative;
+    box-shadow:0 0 10px rgba(255, 255, 255, 0.56);
+    background-position:center;
+    background-size:640px 640px;
+    background-repeat:no-repeat;
+    margin: 10px auto;
+    width:640px;
+    height:640px;
+    border-radius:4px;
+}
 /* id's */
 #setupX {
-    color:#860019;
+    color:#000;
+    text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
 }
 
 #genderSpn {
@@ -163,8 +353,6 @@ input[type="radio"] {
     width:235px;
     height:235px;
     background:lightgrey;
-    box-shadow:0 0 2px red;
-
 }
 /* misc */
 
