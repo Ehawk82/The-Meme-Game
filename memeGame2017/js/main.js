@@ -409,10 +409,13 @@
                     var ddd = JSON.parse(dta);
                 }
 
-                var page = UI.createEle("div");
+                var page = UI.createEle("div"), elems;
+
+                elems = "<h2><span>⚙ Settings</span><span id='xMeme'>X</span></h2>";
+                elems += "<button id='homeBtn'>Home</button>";
 
                 page.className = "menuPages";
-                page.innerHTML = "<h2><span>⚙ Settings</span><span id='xMeme'>X</span></h2>";
+                page.innerHTML = elems;
 
                 myFrame.appendChild(page);
 
@@ -423,9 +426,10 @@
 
                 setTimeout(() => {
                     page.className = "menuPages_full";
-                    var xMeme = UI.bySel("#xMeme");
+                    var xMeme = UI.bySel("#xMeme"),
+                        homeBtn = UI.bySel("#homeBtn");
                     xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
-
+                    homeBtn.onclick = UI.globalHome;
                 }, 300);
             }
         },
@@ -455,7 +459,6 @@
                 budgetMeme = UI.createEle("span"),
                 statusDiv = UI.createEle("div"),
                 settings = UI.createEle("span");
-
 
             newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
             researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
@@ -674,10 +677,14 @@
                 }, 50);
             }, 1000);
         },
+        globalHome: () => {
+            location.reload();
+        },
         goHome: (playerSetupPage, myFrame) => {
             return () => {
-                playerSetupPage.className = "playerSetupPage";
-
+                if (playerSetupPage) {
+                    playerSetupPage.className = "playerSetupPage";
+                }
                 setTimeout(() => {
                     myFrame.remove();
                     UI.myLoad();
