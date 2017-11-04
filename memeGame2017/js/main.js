@@ -412,7 +412,7 @@
                 var page = UI.createEle("div"), elems;
 
                 elems = "<h2><span>⚙ Settings</span><span id='xMeme'>X</span></h2>";
-                elems += "<button id='homeBtn'>Home</button>";
+                elems += "<p><button id='homeBtn'>Home</button></p>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
@@ -429,6 +429,7 @@
                     var xMeme = UI.bySel("#xMeme"),
                         homeBtn = UI.bySel("#homeBtn");
                     xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                    
                     homeBtn.onclick = UI.globalHome;
                 }, 300);
             }

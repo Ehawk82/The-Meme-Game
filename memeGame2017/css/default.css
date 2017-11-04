@@ -338,6 +338,15 @@ input[type="radio"] {
     border-radius: 4px;
 }
 /* id's */
+#homeBtn {
+    display:inline-block;
+    position:relative;
+    clear:both;
+    margin-top:100px;
+    margin:50px;
+    float:left;
+}
+
 #setupX {
     color: #000;
     text-shadow: 1px 1px silver, 1px 1px #808080, 1px 1px silver;
