@@ -8,7 +8,9 @@ html, body {
 
 button {
     border-radius: 1px;
-    padding: 5px 0;
+    padding: 5px 10px;
+    text-shadow: 1px 1px #fff, 1px 1px #fff, 1px 1px #fff;
+    background: silver;
 }
 
 input[type=button] {
@@ -60,9 +62,10 @@ input[type="radio"] {
 /* classes */
 .myFrame {
     height: 80%;
-    margin-top: 10%;
+    margin-top: 1%;
+
     text-align: center;
-    box-shadow: 0 0 12px #808080;
+
 }
 
 .startPageBtn {
@@ -159,7 +162,7 @@ input[type="radio"] {
     position: relative;
     float: left;
     left: 0;
-    top: 90%;
+    top: 99%;
     bottom: 0;
     opacity: 1;
     width: 100%;
