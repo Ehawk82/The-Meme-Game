@@ -9,15 +9,16 @@ html, body {
 button {
     transition: all 400ms;
     border-radius: 1px;
+    color: #8f4d4d;
     padding: 5px 10px;
-    text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
+    text-shadow: .5px .5px #000, .5px .5px #808080, .5px .5px #000;
     background: #781212;
     border: 2px outset #ca4c4c;
 }
     button:active {
         transition:all 400ms;
         border: 2px inset #ca4c4c;
-        ext-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
+        text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
     }
 
 input[type=button] {
@@ -224,7 +225,7 @@ input[type="radio"] {
 }
 
 .timeCtrlItems {
-    transition: all 300ms;
+    transition: all 900ms;
     color: rgba(225, 8, 8, 0.62);
     text-align: center;
     margin: 0 1px;
@@ -235,7 +236,7 @@ input[type="radio"] {
 }
 
 .timeCtrlItems_active {
-    transition: all 300ms;
+    transition: all 900ms;
     color: rgba(0,0,0,.3);
     background: rgba(0,0,0,.1);
     text-align: center;
@@ -244,7 +245,7 @@ input[type="radio"] {
     padding: 0 5px;
     width: 30px;
     border: 2px inset rgba(225, 8, 8, 0.62);
-    ext-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
+    text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
 }
 
 .statusDiv {
@@ -317,7 +318,7 @@ input[type="radio"] {
 
         .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
             border: 2px inset rgba(225, 8, 8, 0.62);
-            ext-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
+            text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
         }
 
 .climate {
@@ -361,7 +362,7 @@ input[type="radio"] {
     text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
 }
     #setupX:active {
-        ext-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
+        text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
     }
 
 #genderSpn {
