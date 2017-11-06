@@ -80,6 +80,7 @@
     uData = {
         siteName: "",
         userName: "",
+        money: 10000,
         lvl: 1,
         gndr: "",
         hum: 0,
@@ -280,13 +281,28 @@
         beginGameSession: (myFrame, ud) => {
             /* 
               -loading the game ()'s from here.  Note: Some functions depend on scope.
-              -Scope order determined here  
+              -Scope order determined here
             */
             UI.doTable(myFrame, ud);
             UI.doTimer(myFrame, ud);
             UI.doTimerControls(myFrame, ud);
+            UI.doMoneyTab(myFrame, ud);
             UI.memesFunc(myFrame, ud);
             UI.homeClimate(myFrame, ud);
+        },
+        doMoneyTab: (myFrame, ud) => {
+                var moneyTab = UI.createEle("div");
+                if (ud) {
+                    var uuu = JSON.parse(ud);
+                }
+                moneyTab.className = "moneyTab";
+                moneyTab.innerHTML = "💰 &nbsp; <span id='moneySlot'>" + uuu.money + "</span>";
+
+                myFrame.appendChild(moneyTab);
+
+                setTimeout(() => {
+                    moneyTab.className = "moneyTab_full";
+                }, 600);
         },
         makeMoney: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
