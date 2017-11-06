@@ -7,37 +7,34 @@ html, body {
 }
 
 button {
-    transition: all 400ms;
-    border-radius: 1px;
-    color: #8f4d4d;
     padding: 5px 10px;
-    text-shadow: .5px .5px #000, .5px .5px #808080, .5px .5px #000;
-    background: #781212;
-    border: 2px outset #ca4c4c;
 }
-    button:active {
-        transition: all 400ms;
-        border: 2px inset #781212;
-        text-shadow: none;
-    }
 
 input[type=button] {
     background: none;
     border: thick;
     padding: 6px 8px;
-}
 
-input[type=text] {
-    background: #8f4d4d;
-    text-indent: 5px;
-    border: 2px inset #781212;
-    color: #fff;
+    text-shadow: .5px .5px #000, .5px .5px #c38c8c, .5px .5px #000;
+    background: #764747;
+    border: 2px outset #c38c8c;
 }
+    input[type=button]:active {
+        background: rgba(83, 0, 0, 0.41);
+        border: 2px outset #c38c8c;
+    }
+    
+    input[type=text] {
+        background: #8f4d4d;
+        text-indent: 5px;
+        border: 2px inset #c38c8c;
+        color: #fff;
+    }
 
     input[type=text]:focus {
         background: rgba(255, 255, 255, 0.60);
         color: rgba(0,0,0,.7);
-        border: 2px inset #781212;
+        border: 2px inset #c38c8c;
     }
 
 input[type="radio"] {
@@ -48,8 +45,8 @@ input[type="radio"] {
         transition: all 200ms;
         font-size: 20px;
         text-shadow: 1px 1px #fff, 1px 1px #fff, 1px 1px #fff;
-        background: #781212;
-        border: 2px outset #ca4c4c;
+        background: #764747;
+        border: 2px outset #c38c8c;
         color: #000;
         display: inline-block;
         padding: 2px;
@@ -62,7 +59,7 @@ input[type="radio"] {
         font-size: 20px;
         text-shadow: 1px 1px #000, 1px 1px #000, 1px 1px #000;
         background: #4f1010;
-        border: 2px inset #781212;
+        border: 2px inset #c38c8c;
         color: #808080;
         display: inline-block;
         padding: 2px;
@@ -92,8 +89,8 @@ input::selection {
 .playerSetupPage {
     transition: all 500ms;
     position: relative;
-    top: 120%;
-    background: #781212;
+    top: 200%;
+    background: #764747;
     width: 100%;
     height: 100%;
 }
@@ -102,7 +99,7 @@ input::selection {
     transition: all 500ms;
     position: relative;
     top: 0;
-    background: #781212;
+    background: #764747;
     width: 100%;
     height: 100%;
 }
@@ -146,7 +143,7 @@ input::selection {
     transition: all 500ms;
     width: 160px;
     position: absolute;
-    background: #781212;
+    background: #764747;
     left: -190px;
 }
 
@@ -154,7 +151,7 @@ input::selection {
     transition: all 500ms;
     width: 160px;
     position: absolute;
-    background: #781212;
+    background: #764747;
     left: 5px;
 }
 .infoLabels {
@@ -192,24 +189,24 @@ input::selection {
     width: 50px;
     position: static;
     line-height: 50px;
-    border: 2px outset rgba(225, 8, 8, 0.62);
-    background: #781212;
+    border: 2px outset #8b4b4b;
+    background: #764747;
     margin: 0 2px;
     display: inline-block;
 }
 
     .memePanelBtns:active {
-        border: 2px inset rgba(225, 8, 8, 0.62);
+        border: 2px inset rgba(25, 8, 8, 0.42);
         text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
     }
 
 .myTimer, .timeCtrlCell {
-    transition: all 500ms;
+    transition: all 300ms;
     box-shadow: 0 0 2px rgba(225, 8, 8, 0.62);
-    text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
+    text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
     position: relative;
-    background: #781212;
+    background: #764747;
     left: 0;
     top: -100px;
     padding: 5px 0;
@@ -217,12 +214,12 @@ input::selection {
 }
 
 .myTimer_full, .timeCtrlCell_full {
-    transition: all 500ms;
+    transition: all 300ms;
     box-shadow: 0 0 2px rgba(225, 8, 8, 0.62);
-    text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
+    text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
     position: relative;
-    background: #781212;
+    background: #764747;
     left: 0;
     top: 0;
     padding: 0;
@@ -234,23 +231,24 @@ input::selection {
     text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
     margin: 0 5px;
     display: inline-block;
-    border: 2px inset rgba(225, 8, 8, 0.62);
+    border: 2px inset #764747;
     width: 100px;
 }
 
 .timeCtrlItems {
-    transition: all 900ms;
+    transition: all 500ms;
     color: rgba(225, 8, 8, 0.62);
     text-align: center;
     margin: 0 1px;
     display: inline-block;
     padding: 0 5px;
     width: 30px;
-    border: 2px outset rgba(225, 8, 8, 0.62);
+    border: 2px outset #a06060;
+    text-shadow: .5px 0 rgba(83, 0, 0, 0.31), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.31);
 }
 
 .timeCtrlItems_active {
-    transition: all 900ms;
+    transition: all 500ms;
     color: rgba(0,0,0,.3);
     background: rgba(0,0,0,.1);
     text-align: center;
@@ -258,16 +256,16 @@ input::selection {
     display: inline-block;
     padding: 0 5px;
     width: 30px;
-    border: 2px inset rgba(225, 8, 8, 0.62);
-    text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
+    border: 2px inset #764747;
+    text-shadow: .5px 0 rgba(83, 0, 0, 0.81), .5px .5px rgba(83, 0, 0, 0.81), .5px 0 rgba(83, 0, 0, 0.81);
 }
 
 .statusDiv {
     transition: all 1s;
     width: 1%;
     line-height: 50px;
-    border: 2px outset rgba(225, 8, 8, 0.62);
-    background: #781212;
+    border: 2px inset #6c3b3b;
+    background: #764747;
     margin: 0 2px;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
@@ -278,8 +276,8 @@ input::selection {
     transition: all 1s;
     width: 40%;
     line-height: 50px;
-    border: 2px outset rgba(225, 8, 8, 0.62);
-    background: #781212;
+    border: 2px inset #6c3b3b;
+    background: #764747;
     margin: 0 2px;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
@@ -289,12 +287,12 @@ input::selection {
 .menuPages {
     transition: all 500ms;
     position: absolute;
-    top: 100%;
+    top: 150%;
     left: 0;
     width: 100%;
     height: 100%;
     border: 2px outset rgba(225, 8, 8, 0.62);
-    background: #781212;
+    background: #764747;
     margin: 0;
     display: inline-block;
 }
@@ -307,7 +305,7 @@ input::selection {
     width: 100%;
     height: 100%;
     border: 2px outset rgba(225, 8, 8, 0.62);
-    background: #781212;
+    background: #764747;
     margin: 0;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
@@ -324,16 +322,11 @@ input::selection {
         float: right;
         margin-right: 10%;
         margin-top: 10px;
-        border: 2px outset rgba(225, 8, 8, 0.62);
+        border: 2px outset #a06060;
         display: inline-block;
         padding: 0 10px;
         line-height: 30px;
     }
-
-        .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
-            border: 2px inset rgba(225, 8, 8, 0.62);
-            text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
-        }
 
 .climate {
     transition: all 700ms;
@@ -351,7 +344,7 @@ input::selection {
 .climate_full {
     transition: all 500ms;
     position: relative;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.56);
+    box-shadow: 0 0 5px rgba(254, 254, 254, 0.46);
     background-position: center;
     background-size: 640px 640px;
     background-repeat: no-repeat;
@@ -371,19 +364,16 @@ input::selection {
 }
 
 #setupX {
-    color: #000;
-    background:#781212;
-    text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
+    margin-top: 5%;
+    margin-right: 2%;
 }
-    #setupX:active {
-        text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
-    }
+
 
 #genderSpn {
     transition: all 300ms;
     font-size: 20px;
 
-    background: #781212;
+    background: #764747;
     border: 2px solid transparent;
     color: #FFF;
     display: inline-block;
@@ -401,9 +391,25 @@ input::selection {
     margin: 1px auto;
     width: 500px;
     height: 235px;
-    background: #781212;
+    background: #764747;
     box-shadow: 0 0 3px rgba(0,0,0,0.7);
 }
 /* misc */
+
+button, #setupX {
+    transition: all 400ms;
+    border-radius: 1px;
+    color: #c38c8c;
+    text-shadow: .5px .5px #000, .5px .5px #c38c8c, .5px .5px #000;
+    background: #764747;
+    border: 2px outset #c38c8c;
+}
+
+    button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
+        transition: all 400ms;
+        border: 2px inset #c38c8c;
+        color: #341f1f;
+        text-shadow: none;
+    }
 
 /* media queries */
