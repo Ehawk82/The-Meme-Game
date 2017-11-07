@@ -95,7 +95,7 @@ input::selection {
     height: 100%;
 }
 
-.playerSetupPage_full {
+.playerSetupPage_full{
     transition: all 500ms;
     position: relative;
     top: 0;
@@ -320,7 +320,7 @@ input::selection {
     text-shadow: .5px .5px rgba(225, 8, 8, 0.62), .5px .5px #808080, .5px .5px rgba(225, 8, 8, 0.62);
 }
 
-.menuPages {
+.menuPages, .warnPage{
     transition: all 500ms;
     position: absolute;
     top: 150%;
@@ -333,7 +333,7 @@ input::selection {
     display: inline-block;
 }
 
-.menuPages_full {
+.menuPages_full, .warnPage_full {
     transition: all 500ms;
     position: absolute;
     top: 0;

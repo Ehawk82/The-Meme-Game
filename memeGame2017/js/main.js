@@ -60,7 +60,14 @@
         // You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
         // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
     };
-    var UI, uData, tBool, dateTool, mBool, myData;
+    var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs;
+
+    moneyStuffs = {
+        mpt: 4,
+        lpt: 7,
+        tmpt: 7,
+        mpy: 5
+    }
 
     myData = {
         mAu: 0,
@@ -98,6 +105,13 @@
         bySelAll: (x) => { return document.querySelectorAll(x) },
         bySel: (x) => { return document.querySelector(x) },
         init: () => {
+
+            var mStuffs = localStorage.getItem("moneyStuffs");
+            if (!mStuffs || mStuffs === null) {
+                localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
+            }
+
+
             var dta = localStorage.getItem("myData");
 
             if (!dta || dta === null) {
@@ -127,7 +141,6 @@
                 localStorage.setItem("dateTool", JSON.stringify(dateTool));
             }
 
-
             localStorage.setItem("tBool", 0);
             localStorage.setItem("mBool", 0);
 
@@ -153,10 +166,15 @@
                 contBtn.onclick = UI.contProgram(myFrame, startBtn, delBtn, contBtn);
                 myFrame.appendChild(contBtn);
             }
-
-            startBtn.innerHTML = "Start New";
-            startBtn.className = "startPageBtn";
-            startBtn.onclick = UI.startProgram(myFrame, startBtn, delBtn, contBtn);
+            if (uuu.siteName != "") {
+                startBtn.innerHTML = "Start New";
+                startBtn.className = "startPageBtn";
+                startBtn.onclick = UI.startWarn(myFrame, startBtn, delBtn, contBtn);
+            } else {
+                startBtn.innerHTML = "Start New";
+                startBtn.className = "startPageBtn";
+                startBtn.onclick = UI.startProgram(myFrame, startBtn, delBtn, contBtn);
+            }
 
             myFrame.className = "myFrame";
 
@@ -166,17 +184,62 @@
 
             dvContain.appendChild(myFrame);
         },
+        startWarn: (myFrame, startBtn, delBtn, contBtn) => {
+            return () => {
+                var warnPage = UI.createEle("div"), elems;
+                startBtn.onclick = null;
+                elems = "<h2>Warning!</h2>";
+                elems += "<h4><strong><i>Would you like to overwrite?</i></strong></h4>";
+                elems += "<p><button id='newGameBTN_yes'>YES</button> &nbsp; <button id='newGameBTN_no'>NO</button></p>";
+
+                warnPage.innerHTML = elems;
+                warnPage.className = "warnPage";
+
+
+                myFrame.appendChild(warnPage);
+
+                setTimeout(() => {
+                    warnPage.className = "warnPage_full";
+                    var newGameBTN_no = UI.bySel("#newGameBTN_no");
+                    newGameBTN_no.onclick = UI.closeWarnPage(warnPage, myFrame, startBtn, delBtn, contBtn);
+
+                    var newGameBTN_yes = UI.bySel("#newGameBTN_yes");
+                    newGameBTN_yes.onclick = UI.closeAndStart(myFrame, startBtn, delBtn, contBtn);
+                }, 100);
+            }
+        },
+        closeAndStart: (myFrame, startBtn, delBtn, contBtn) => {
+            return UI.startProgram(myFrame, startBtn, delBtn, contBtn);
+        },
+        closeWarnPage: (warnPage, myFrame, startBtn, delBtn, contBtn) => {
+            return () => {
+                warnPage.className = "warnPage";
+                setTimeout(() => {
+                    warnPage.remove();
+                    startBtn.onclick = UI.startWarn(myFrame, startBtn, delBtn, contBtn);
+                }, 1000);
+            }
+        },
         contProgram: (myFrame, startBtn, delBtn, contBtn) => {
             return () => {
                 startBtn.remove();
                 contBtn.remove();
                 delBtn.remove();
+
+                var ud = localStorage.getItem("uData");
+                //console.log(ud);
+
                 UI.proceedGame();
             }
         },
         startProgram: (myFrame, startBtn, delBtn, contBtn) => {
             return () => {
-                var playerSetupPage = UI.createEle("div"), elems;
+                var playerSetupPage = UI.createEle("div"), elems,
+                    warnPage = UI.bySel(".warnPage_full");
+
+                if (warnPage) {
+                    warnPage.className = "warnPage";
+                }
 
                 elems = "<span id='setupX' class='xBtns'>X</span>";
                 elems += "<h2>Setup Your Company</h2>";
@@ -215,17 +278,38 @@
                         setupItems[2].onclick = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
                         setupItems[3].onclick = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
                     }
-
+                    
                 }, 50);
+                if (warnPage) {
+                    setTimeout(() => {
 
+                        warnPage.remove();
+
+                    }, 1000);
+                }
             }
         },
         checkSetupData: (setupItems, i, setupConfirm, genderSpn) => {
+            /*
+        siteName
+        userName
+        money
+        lvl
+        gndr
+        hum
+        int
+        cre
+        luck
+        chr
+        spd
+            */
             return () => {
                 var ud = localStorage.getItem("uData");
 
                 uData.siteName = setupItems[0].value;
                 uData.userName = setupItems[1].value;
+                uData.money = uData.money;
+                uData.lvl = uData.lvl;
 
                 if (setupItems[3].checked) {
                     genderSpn.innerHTML = "Female";
@@ -234,7 +318,24 @@
                     genderSpn.innerHTML = "Male";
                     uData.gndr = genderSpn.innerHTML;
                 }
+
+                uData.hum = uData.hum;
+                uData.int = uData.int;
+                uData.cre = uData.cre;
+                uData.luck = uData.luck;
+                uData.chr = uData.chr;
+                uData.spd = uData.spd;
+
+                var d = new Date();
+                var y = d.getFullYear(),
+                    m = d.getMonth();
+
+                dateTool.month = m;
+                dateTool.week = 1;
+                dateTool.year = y;
+
                 localStorage.setItem("uData", JSON.stringify(uData));
+                localStorage.setItem("dateTool", JSON.stringify(dateTool));
 
                 if (setupItems[0].value != "" && setupItems[1].value != "") {
                     setupConfirm.value = "✔";
@@ -247,7 +348,8 @@
         },
         proceedGame: () => {
             var ud = localStorage.getItem("uData"),
-                playerSetupPage = UI.bySel(".playerSetupPage_full");
+                playerSetupPage = UI.bySel(".playerSetupPage_full"),
+                moneyStuffs = localStorage.getItem("moneyStuffs");
             if (playerSetupPage) {
                 var myFrame = playerSetupPage.parentNode;
 
@@ -255,12 +357,12 @@
                     playerSetupPage.className = "playerSetupPage";
                     setTimeout(() => {
                         playerSetupPage.remove();
-                        UI.beginGameSession(myFrame, ud);
+                        UI.beginGameSession(myFrame, ud, moneyStuffs);
                     }, 1000);
                 }, 50);
             } else {
                 var myFrame = UI.bySel(".myFrame");
-                UI.beginGameSession(myFrame, ud);
+                UI.beginGameSession(myFrame, ud, moneyStuffs);
             }
         },
         homeClimate: (myFrame, ud) => {
@@ -278,7 +380,7 @@
                 climate.className = "climate_full";
             }, 700);
         },
-        beginGameSession: (myFrame, ud) => {
+        beginGameSession: (myFrame, ud, moneyStuffs) => {
             /* 
               -loading the game ()'s from here.  Note: Some functions depend on scope.
               -Scope order determined here
@@ -286,23 +388,28 @@
             UI.doTable(myFrame, ud);
             UI.doTimer(myFrame, ud);
             UI.doTimerControls(myFrame, ud);
-            UI.doMoneyTab(myFrame, ud);
+            UI.doMoneyTab(myFrame, ud, moneyStuffs);
             UI.memesFunc(myFrame, ud);
             UI.homeClimate(myFrame, ud);
         },
-        doMoneyTab: (myFrame, ud) => {
-                var moneyTab = UI.createEle("div");
-                if (ud) {
-                    var uuu = JSON.parse(ud);
-                }
-                moneyTab.className = "moneyTab";
-                moneyTab.innerHTML = "💰 &nbsp; <span id='moneySlot'>" + uuu.money + "</span>";
+        doMoneyTab: (myFrame, ud, moneyStuffs) => {
+            var moneyTab = UI.createEle("div");
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+            if (moneyStuffs) {
+                var mStfs = JSON.parse(moneyStuffs);
+            }
 
-                myFrame.appendChild(moneyTab);
+            moneyTab.className = "moneyTab";
+            moneyTab.innerHTML = "💰 &nbsp; <span id='moneySlot'>" + uuu.money + "</span>";
 
-                setTimeout(() => {
-                    moneyTab.className = "moneyTab_full";
-                }, 600);
+            myFrame.appendChild(moneyTab);
+
+            setTimeout(() => {
+                moneyTab.className = "moneyTab_full";
+                //console.log(mStfs.mpt);
+            }, 600);
         },
         makeMoney: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
@@ -447,7 +554,7 @@
                     var xMeme = UI.bySel("#xMeme"),
                         homeBtn = UI.bySel("#homeBtn");
                     xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
-                    
+
                     homeBtn.onclick = UI.globalHome;
                 }, 300);
             }
@@ -513,31 +620,76 @@
                 }, 400);
             }, 1100);
         },
-        timeCheck: (play, pause) => {
+        doCoinPerTic: (uuu) => {
+            var mx = localStorage.getItem("moneyStuffs"),
+                moneySlot = UI.bySel("#moneySlot");
+
+            if (mx) {
+                var mtsf = JSON.parse(mx);
+            }
+            var ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            uData.siteName = uuu.siteName;
+            uData.userName = uuu.userName;
+            uData.money = +uuu.money + +mtsf.mpt;
+            uData.lvl = +uuu.lvl;
+            uData.gndr = +uuu.gndr;
+            uData.hum = +uuu.hum;
+            uData.int = +uuu.int;
+            uData.cre = +uuu.cre;
+            uData.luck = +uuu.luck;
+            uData.chr = +uuu.chr;
+            uData.spd = +uuu.spd;
+
+            localStorage.setItem("uData", JSON.stringify(uData));
+
+            var lx = localStorage.getItem("uData");
+            if (lx) {
+                var lxx = JSON.parse(lx);
+            }
+
+            moneySlot.innerHTML = lxx.money;
+        },
+        timeCheck: (play, pause, ud) => {
             return () => {
-                var dt = localStorage.getItem("dateTool");
-                var tBool = localStorage.getItem("tBool");
-                var timerItems = UI.bySelAll(".timerItems");
+
+                var dt = localStorage.getItem("dateTool"),
+                    tBool = localStorage.getItem("tBool"),
+                    timerItems = UI.bySelAll(".timerItems");
 
 
                 if (tBool === "0") {
+
                     play.className = "timeCtrlItems_active";
                     pause.className = "timeCtrlItems";
                     localStorage.setItem("tBool", 1);
                     play.onclick = null;
                     pause.onclick = UI.timeCheck(play, pause);
+
                     ticker();
+
                     function ticker() {
+
                         var dt = localStorage.getItem("dateTool");
                         var tBl = localStorage.getItem("tBool");
-
                         if (dt) {
                             var dtt = JSON.parse(dt);
                         }
 
-                        setTimeout(() => {
-                            if (tBl === "1") {
+                        if (ud) {
+                            var uuu = JSON.parse(ud);
+                        }
+
+                        if (tBl === "1") {
+
+                            setTimeout(() => {
+
                                 if (+dtt.week < +4) {
+
                                     dateTool.month = +dtt.month;
                                     dateTool.week = +dtt.week + +1;
                                     dateTool.year = +dtt.year;
@@ -547,9 +699,15 @@
                                     timerItems[0].innerHTML = mnth[dtt.month];
                                     timerItems[1].innerHTML = "Week " + dtt.week;
                                     timerItems[2].innerHTML = dtt.year;
+
+                                    //console.log(uuu.money);
+                                    UI.doCoinPerTic(uuu);
                                 } else {
+
                                     dateTool.week = +dtt.week - +3;
+
                                     if (+dtt.month < +11) {
+
                                         dateTool.month = +dtt.month + +1;
                                         dateTool.week = +dtt.week - +3;
                                         dateTool.year = +dtt.year;
@@ -561,6 +719,7 @@
                                         timerItems[2].innerHTML = dtt.year;
 
                                     } else {
+
                                         dateTool.month = +dtt.month - +11;
                                         dateTool.week = +dtt.week;
                                         dateTool.year = +dtt.year + +1;
@@ -570,11 +729,13 @@
                                         timerItems[0].innerHTML = mnth[dtt.month];
                                         timerItems[1].innerHTML = "Week " + dtt.week;
                                         timerItems[2].innerHTML = dtt.year;
+
                                     }
                                 }
                                 ticker();
-                            }
-                        }, 1100);
+
+                            }, 1100);
+                        }
                     }
 
                 } else {
@@ -605,7 +766,7 @@
                 pause.className = "timeCtrlItems_active";
             } else {
                 pause.className = "timeCtrlItems";
-                pause.onclick = UI.timeCheck(play, pause);
+                pause.onclick = UI.timeCheck(play, pause, ud);
             }
 
             play.innerHTML = "&#9658;";
@@ -613,7 +774,7 @@
                 play.className = "timeCtrlItems_active";
             } else {
                 play.className = "timeCtrlItems";
-                play.onclick = UI.timeCheck(play, pause);
+                play.onclick = UI.timeCheck(play, pause, ud);
             }
 
             timeCtrlCell.className = "timeCtrlCell";
