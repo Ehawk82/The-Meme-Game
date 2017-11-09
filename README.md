@@ -38,11 +38,11 @@ Keyboard & Mouse required
 
 ## 5. Credits
 
-Primary code developer: Ehawk
-HTML: Ehawk
-JS: Ehawk
-CSS: Ehawk/Rorex
-Sounds: Ehawk, Rentis
-Design: Ehawk, Rorex, Grace
-Producer & Storefront: Microsoft Corp
++ Primary code developer: Ehawk
++ HTML: Ehawk
++ JS: Ehawk
++ CSS: Ehawk/Rorex
++ Sounds: Ehawk, Rentis
++ Design: Ehawk, Rorex, Grace
++ Producer & Storefront: Microsoft Corp
 
