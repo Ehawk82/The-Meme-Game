@@ -342,7 +342,6 @@
                     setupConfirm.onclick = UI.proceedGame;
                 } else {
                     setupConfirm.value = "⭕";
-
                 }
             }
         },
@@ -417,10 +416,19 @@
                     var ddd = JSON.parse(dta);
                 }
 
-                var page = UI.createEle("div");
+                var page = UI.createEle("div"), elems,
+                    moneyStuffs = localStorage.getItem("moneyStuffs");
+
+                if (moneyStuffs) {
+                    var mnstf = JSON.parse(moneyStuffs);
+                }
+
+                elems = "<h2><span>💰 Financial Report</span><span id='xMeme'>X</span></h2>";
+                elems += "<div id='dvHold'><span>💲 per week</span>&nbsp;<span>" + mnstf.mpt + "</span></div>";
+                elems += "<div id='dvHold'><span>💲 per year</span>&nbsp;<span>" + mnstf.mpy + "</span></div>";
 
                 page.className = "menuPages";
-                page.innerHTML = "<h2><span>💰 Financial Report</span><span id='xMeme'>X</span></h2>";
+                page.innerHTML = elems;
 
                 myFrame.appendChild(page);
 
