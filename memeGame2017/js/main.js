@@ -243,8 +243,8 @@
 
                 elems = "<span id='setupX' class='xBtns'>X</span>";
                 elems += "<h2>Setup Your Company</h2>";
-                elems += "<p><input type='text' id='inputSiteName' class='setupItems' /><label for='inputSiteName' class='infoLabels'>Site Name</label></p>";
-                elems += "<p><input type='text' id='inputUserName' class='setupItems' /><label for='inputUserName' class='infoLabels'>User Name</label></p>";
+                elems += "<p><input type='text' id='inputSiteName' class='setupItems' maxlength='18' /><label for='inputSiteName' class='infoLabels'>Site Name</label></p>";
+                elems += "<p><input type='text' id='inputUserName' class='setupItems' maxlength='18' /><label for='inputUserName' class='infoLabels'>User Name</label></p>";
                 elems += "<p><input id='rd1' type='radio' checked class='setupItems' name='rds' /><label for='rd1'>♂</label>";
                 elems += "<input id='rd2' type='radio' unchecked class='setupItems' name='rds' /><label for='rd2'>♀</label>";
                 elems += "<span id='genderSpn'>Male</span></p>";
