@@ -223,14 +223,16 @@ input::selection {
     line-height: 50px;
     border: 6px outset #E84A5F;
     background: #FECEA8;
-    margin: 0 2px;
+    margin: 0 12px;
     display: inline-block;
     font-weight: bolder;
+    box-shadow:0 0 15px rgba(0, 0, 0, 0.98);
 }
 
     .memePanelBtns:active {
         border: 6px inset #E84A5F;
         text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
+        box-shadow: 0 0 1px rgba(220, 220, 220, 0.8);
     }
 
 .myTimer, .timeCtrlCell {
@@ -335,7 +337,7 @@ input::selection {
     transition: all 1s;
     width: 1%;
     line-height: 50px;
-    border: 6px inset #6c3b3b;
+    border: 6px inset #E84A5F;
     background: #FECEA8;
     margin: 0 2px;
     display: inline-block;
@@ -347,7 +349,7 @@ input::selection {
     transition: all 1s;
     width: 40%;
     line-height: 50px;
-    border: 6px inset #6c3b3b;
+    border: 6px inset #E84A5F;
     background: #FECEA8;
     margin: 0 2px;
     display: inline-block;
@@ -484,13 +486,13 @@ button, #setupX {
     border-radius: 1px;
     color: rgba(255, 255, 255, 0.47);
     text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
-    background: #99B898;
-    border: 6px outset rgba(255, 255, 255, 0.47);
+    background: #FECEA8;
+    border: 6px outset #E84A5F;
 }
 
     button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
         transition: all 400ms;
-        border: 6px inset rgba(255, 255, 255, 0.47);
+        border: 6px inset #FECEA8;
         color: rgba(0, 0, 0, 0.47);
         text-shadow: none;
     }

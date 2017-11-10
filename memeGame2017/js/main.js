@@ -88,7 +88,7 @@
         siteName: "",
         userName: "",
         money: 10000,
-        lvl: 1,
+        lvl: 5,
         gndr: "",
         hum: 0,
         int: 0,
@@ -105,7 +105,7 @@
         bySelAll: (x) => { return document.querySelectorAll(x) },
         bySel: (x) => { return document.querySelector(x) },
         init: () => {
-
+            //console.log("test");
             var mStuffs = localStorage.getItem("moneyStuffs");
             if (!mStuffs || mStuffs === null) {
                 localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
