@@ -368,10 +368,15 @@
             if (ud) {
                 var uuu = JSON.parse(ud);
             }
-            var climate = UI.createEle("div");
+            var climate = UI.createEle("div"),
+                elemFloor = UI.createEle("div");
+
+            elemFloor.className = "elemFloor";
+            elemFloor.innerHTML = "&nbsp;";
 
             climate.className = "climate";
             climate.style.backgroundImage = "url(../images/walls/d" + uuu.lvl + ".jpg)";
+            climate.appendChild(elemFloor);
 
             myFrame.appendChild(climate);
 
