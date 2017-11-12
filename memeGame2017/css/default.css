@@ -433,7 +433,6 @@ input::selection {
     border-radius: 4px;
 }
 .elemFloor {
-    box-shadow: 0 -9px 8px 0 #000;
     height: 140px;
     position: relative;
     background: #000;

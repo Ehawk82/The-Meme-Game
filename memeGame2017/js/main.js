@@ -60,7 +60,13 @@
         // You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
         // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
     };
-    var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs;
+    var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs, myAu;
+
+    myAu = {
+        main: "0.5",
+        music: "0.5",
+        amb: "0.5"
+    }
 
     moneyStuffs = {
         mpt: 4,
@@ -105,12 +111,15 @@
         bySelAll: (x) => { return document.querySelectorAll(x) },
         bySel: (x) => { return document.querySelector(x) },
         init: () => {
+            var Au = localStorage.getItem("myAu");
+            if (!Au || Au === null) {
+                localStorage.setItem("myAu", JSON.stringify(myAu));
+            }
             //console.log("test");
             var mStuffs = localStorage.getItem("moneyStuffs");
             if (!mStuffs || mStuffs === null) {
                 localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
             }
-
 
             var dta = localStorage.getItem("myData");
 
@@ -151,6 +160,7 @@
                 startBtn = UI.createEle("button"),
                 contBtn = UI.createEle("button"),
                 delBtn = UI.createEle("button");
+
             var uD = localStorage.getItem("uData");
             if (uD) {
                 var uuu = JSON.parse(uD);
@@ -186,6 +196,7 @@
         },
         startWarn: (myFrame, startBtn, delBtn, contBtn) => {
             return () => {
+                UI.mainClick();
                 var warnPage = UI.createEle("div"), elems;
                 startBtn.onclick = null;
                 elems = "<h2>Warning!</h2>";
@@ -214,6 +225,7 @@
         closeWarnPage: (warnPage, myFrame, startBtn, delBtn, contBtn) => {
             return () => {
                 warnPage.className = "warnPage";
+                UI.mainClick();
                 setTimeout(() => {
                     warnPage.remove();
                     startBtn.onclick = UI.startWarn(myFrame, startBtn, delBtn, contBtn);
@@ -222,6 +234,8 @@
         },
         contProgram: (myFrame, startBtn, delBtn, contBtn) => {
             return () => {
+                UI.mainClick();
+
                 startBtn.remove();
                 contBtn.remove();
                 delBtn.remove();
@@ -278,7 +292,7 @@
                         setupItems[2].onclick = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
                         setupItems[3].onclick = UI.checkSetupData(setupItems, i, setupConfirm, genderSpn);
                     }
-                    
+
                 }, 50);
                 if (warnPage) {
                     setTimeout(() => {
@@ -417,6 +431,7 @@
         },
         makeMoney: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
+                UI.mainClick();
                 if (dta) {
                     var ddd = JSON.parse(dta);
                 }
@@ -452,6 +467,7 @@
         },
         xMoneyFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
             return () => {
+                UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
@@ -465,6 +481,7 @@
         },
         makeResearch: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
+                UI.mainClick();
                 if (dta) {
                     var ddd = JSON.parse(dta);
                 }
@@ -491,6 +508,7 @@
         },
         xResearchFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
             return () => {
+                UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
@@ -504,6 +522,7 @@
         },
         makeMemer: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
+                UI.mainClick();
                 if (dta) {
                     var ddd = JSON.parse(dta);
                 }
@@ -530,6 +549,7 @@
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
             return () => {
+                UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
@@ -543,6 +563,7 @@
         },
         makeSettings: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
+                UI.mainClick();
                 if (dta) {
                     var ddd = JSON.parse(dta);
                 }
@@ -574,6 +595,7 @@
         },
         xSettFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
             return () => {
+                UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
@@ -676,13 +698,13 @@
 
 
                 if (tBool === "0") {
-
+                    
                     play.className = "timeCtrlItems_active";
                     pause.className = "timeCtrlItems";
                     localStorage.setItem("tBool", 1);
                     play.onclick = null;
                     pause.onclick = UI.timeCheck(play, pause);
-
+                    UI.playClick();
                     ticker();
 
                     function ticker() {
@@ -757,7 +779,7 @@
                     localStorage.setItem("tBool", 0);
                     play.onclick = UI.timeCheck(play, pause);
                     pause.onclick = null;
-
+                    UI.stopClick();
                 }
 
                 //var x = localStorage.getItem("tBool");
@@ -872,6 +894,47 @@
         },
         globalHome: () => {
             location.reload();
+        },
+        mainClick: () => {
+            var Au = localStorage.getItem("myAu"),
+                snd = new Audio("../css/sounds/main.wav");
+            if (Au) {
+                var au = JSON.parse(Au);
+            }
+            snd.volume = au.main;
+
+            snd.play();
+        },
+        playClick: () => {
+            var Au = localStorage.getItem("myAu"),
+                snd = new Audio("../css/sounds/play.wav");
+            if (Au) {
+                var au = JSON.parse(Au);
+            }
+            snd.volume = au.main;
+
+            snd.play();
+        },
+        stopClick: () => {
+            var Au = localStorage.getItem("myAu"),
+                snd = new Audio("../css/sounds/stop.wav");
+            if (Au) {
+                var au = JSON.parse(Au);
+            }
+            snd.volume = au.main;
+
+            snd.play();
+        },
+        tokenClick: () => {
+            var Au = localStorage.getItem("myAu"),
+                snd = new Audio("../css/sounds/token.wav");
+            if (Au) {
+                var au = JSON.parse(Au);
+            }
+            snd.volume = au.main;
+
+            snd.play();
+
         },
         goHome: (playerSetupPage, myFrame) => {
             return () => {
