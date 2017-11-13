@@ -7,6 +7,13 @@ html, body {
     background: #2A363B;
 }
 
+marqee {
+    width: 200px;
+    height: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 button {
     padding: 5px 10px;
     font-weight: bolder;
@@ -21,17 +28,18 @@ input[type=button] {
     background: #FECEA8;
     border: 6px outset #c38c8c;
 }
+
     input[type=button]:active {
         background: rgba(83, 0, 0, 0.41);
         border: 6px outset #c38c8c;
     }
-    
-    input[type=text] {
-        background: #8f4d4d;
-        text-indent: 5px;
-        border: 6px inset #c38c8c;
-        color: #fff;
-    }
+
+input[type=text] {
+    background: #8f4d4d;
+    text-indent: 5px;
+    border: 6px inset #c38c8c;
+    color: #fff;
+}
 
     input[type=text]:focus {
         background: rgba(255, 255, 255, 0.60);
@@ -44,7 +52,7 @@ input[type=range] {
     background-color: #E84A5F;
     width: 200px;
     height: 8px;
-    border-radius:13px;
+    border-radius: 13px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -54,6 +62,7 @@ input[type="range"]::-webkit-slider-thumb {
     width: 10px;
     height: 10px;
 }
+
 input[type="radio"] {
     display: none;
 }
@@ -64,7 +73,7 @@ input[type="radio"] {
         text-shadow: 1px 1px #fff, 1px 1px #fff, 1px 1px #fff;
         background: #FECEA8;
         border: 6px outset #c38c8c;
-        color: #000;
+        color: rgba(0, 0, 0, 0.77);
         display: inline-block;
         padding: 2px;
         width: 35px;
@@ -89,6 +98,7 @@ input[type="radio"] {
         font-weight: bolder;
         box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     }
+
 input:-ms-input-placeholder {
     color: red;
     font-weight: bolder;
@@ -119,7 +129,7 @@ input::selection {
     width: 100%;
     height: 100%;
     font-weight: bolder;
-    color: #000;
+    color: rgba(0, 0, 0, 0.77);
 }
 
 .playerSetupPage_full {
@@ -130,7 +140,7 @@ input::selection {
     width: 100%;
     height: 100%;
     font-weight: bolder;
-    color: #000;
+    color: rgba(0, 0, 0, 0.77);
 }
 
 
@@ -148,7 +158,7 @@ input::selection {
 }
 
 .playerItems {
-    color: #000;
+    color: rgba(0, 0, 0, 0.77);
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
 }
 
@@ -157,7 +167,6 @@ input::selection {
         margin-left: 13px;
         padding: 6px 0;
         width: 100px;
-
         text-align: left;
     }
 
@@ -168,21 +177,24 @@ input::selection {
         width: 50px;
         font-weight: bolder;
     }
+
 .setupConfirm {
     border: 6px outset rgba(0, 0, 0, 1) !important;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
+
     .setupConfirm:active {
         border: 6px inset rgba(0, 0, 0, 0.62) !important;
         box-shadow: 0 0 1px rgba(220, 220,220, 1);
     }
+
 .theTable {
     transition: all 250ms;
-    width: 175px;
+    width: 250px;
     position: absolute;
     background: #FECEA8;
-    top: 100px;
-    left: -190px;
+    top: 150px;
+    left: -290px;
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
@@ -191,21 +203,22 @@ input::selection {
 
 .theTable_full {
     transition: all 250ms;
-    width: 175px;
+    width: 170px;
     position: absolute;
     background: #FECEA8;
-    top: 100px;
+    top: 150px;
     left: 15px;
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 6px 0;
 }
+
 .infoLabels {
     display: inline-block;
     width: 150px;
     font-weight: bolder;
-    color:#000;
+    color: rgba(0, 0, 0, 0.77);
 }
 
 .memePanel {
@@ -240,7 +253,7 @@ input::selection {
 
 .memePanelBtns {
     width: 50px;
-    position: static;
+    position: relative;
     line-height: 50px;
     border: 6px outset #E84A5F;
     background: #FECEA8;
@@ -248,6 +261,7 @@ input::selection {
     display: inline-block;
     font-weight: bolder;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
+    z-index:17;
 }
 
     .memePanelBtns:active {
@@ -330,10 +344,10 @@ input::selection {
     background: #FECEA8;
     right: -100px;
     width: 30px;
-    top: 100px;
+    top: 150px;
     padding: 8px 0;
     opacity: 0;
-    color: #000;
+    color: rgba(0, 0, 0, 0.77);
     border: 6px inset #E84A5F;
 }
 
@@ -347,36 +361,49 @@ input::selection {
     background: #FECEA8;
     width: auto;
     right: 15px;
-    top: 100px;
+    top: 150px;
     padding: 8px 12px;
     opacity: 1;
-    color: #000;
+    color: rgba(0, 0, 0, 0.77);
     border: 6px inset #E84A5F;
 }
 
 .statusDiv {
     transition: all 250ms;
     width: 1%;
-    line-height: 50px;
+    position: absolute;
+    height: 200px;
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     background: #FECEA8;
     margin: 0 2px;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
+    overflow-y: scroll;
+    right: 15px;
+    top: 250px;
+    text-align: center;
+    -ms-overflow-style: none;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
 }
 
 .statusDiv_full {
     transition: all 250ms;
-    width: 40%;
-    line-height: 50px;
+    width: 170px;
+    position: absolute;
+    height: 200px;
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     background: #FECEA8;
     margin: 0 2px;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
+    text-align: left;
+    top:-350px;
+    right: 15px;
+    overflow-y: scroll;
+    text-indent:8px;
+    -ms-overflow-style: none;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
 }
 
@@ -387,7 +414,6 @@ input::selection {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 6px outset rgba(225, 8, 8, 0.62);
     background: #FECEA8;
     margin: 0;
     display: inline-block;
@@ -400,12 +426,12 @@ input::selection {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 6px outset rgba(225, 8, 8, 0.62);
     background: #FECEA8;
     margin: 0;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
+    z-index:20;
 }
 
     .menuPages h2 span:nth-child(1), .menuPages_full h2 span:nth-child(1) {
@@ -423,26 +449,27 @@ input::selection {
         padding: 0 10px;
         line-height: 30px;
     }
+
     .menuPages_full p {
         position: relative;
         display: inline-block;
         clear: both;
         float: left;
-        left: 40px;
-
+        left: 140px;
     }
-    .menuPages_full p span {
-        display:inline-block;
-        line-height:10px;
-        margin:0 0 20px 0;
-       
-    }
-        .menuPages_full p span:nth-child(1) {
 
+        .menuPages_full p span {
+            display: inline-block;
+            line-height: 10px;
+            margin: 0 0 20px 0;
         }
-        .menuPages_full p span:nth-child(2) {
-        
-        }
+
+            .menuPages_full p span:nth-child(1) {
+            }
+
+            .menuPages_full p span:nth-child(2) {
+            }
+
 .climate {
     transition: all 250ms;
     position: relative;
@@ -467,7 +494,9 @@ input::selection {
     width: 640px;
     height: 640px;
     border-radius: 5px;
+    z-index:15;
 }
+
 .elemFloor {
     height: 240px;
     position: relative;
@@ -479,27 +508,33 @@ input::selection {
 }
 /* id's */
 #homeBtn {
-
 }
+
+#userLog {
+
+ 
+}
+
 #dvHold {
     display: inline-block;
     position: relative;
     clear: both;
     float: left;
-    left:40px;
-    top:50px;
+    left: 40px;
+    top: 50px;
 }
+
 #setupX {
     margin-top: 5%;
     margin-right: 2%;
-    text-align:center;
+    text-align: center;
 }
 
 
 #genderSpn {
     transition: all 250ms;
     font-size: 20px;
-    color: #000;
+    color: rgba(0, 0, 0, 0.77);
     background: #FECEA8;
     border: 6px solid transparent;
     text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
@@ -520,11 +555,9 @@ input::selection {
     height: 235px;
     background: #FECEA8;
     box-shadow: 0 0 3px rgba(0,0,0,0.7);
-    
 }
 
 #rd1, #rd2 {
-  
 }
 /* misc */
 

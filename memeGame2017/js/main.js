@@ -60,6 +60,7 @@
         // You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
         // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
     };
+    //main user interface
     var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs, myAu;
 
     myAu = {
@@ -94,7 +95,7 @@
         siteName: "",
         userName: "",
         money: 10000,
-        lvl: 6,
+        lvl: 4,
         gndr: "",
         hum: 0,
         int: 0,
@@ -577,7 +578,7 @@
                 var x = +au.main * 100,
                     y = +au.amb * 100,
                     z = +au.music * 100;
-                console.log(x);
+
                 elems = "<h2><span>⚙ Settings</span><span id='xMeme'>X</span></h2>";
                 elems += "<p><button id='homeBtn'>Home</button></p>";
                 elems += "<p><strong>Volume</Strong></p>";
@@ -647,7 +648,7 @@
             newMeme.innerHTML = "💡";
             researchMeme.innerHTML = "🔬";
             budgetMeme.innerHTML = "💰";
-            statusDiv.innerHTML = "" + uuu.userName + "";
+            statusDiv.innerHTML = "Status Log <hr />";
             settings.innerHTML = "⚙";
 
             newMeme.className = "memePanelBtns";
@@ -670,6 +671,9 @@
                 memePanel.className = "memePanel_full";
                 setTimeout(() => {
                     statusDiv.className = "statusDiv_full";
+                    setTimeout(() => {
+                        //AI.launchAI(uuu, statusDiv);
+                    }, 500);
                 }, 400);
             }, 1100);
         },
@@ -963,7 +967,7 @@
                 localStorage.setItem("myAu", JSON.stringify(myAu));
             }
         },
-        setAmbVol: (rng3, au) => {
+        setAmbVol: (rng2, au) => {
             return () => {
                 var x = +rng2.value / 100;
 
@@ -972,7 +976,7 @@
                 localStorage.setItem("myAu", JSON.stringify(myAu));
             }
         },
-        setMusicVol: (rng4, au) => {
+        setMusicVol: (rng3, au) => {
             return () => {
                 var x = +rng3.value / 100;
 
@@ -995,6 +999,21 @@
         deleteAllStorage: () => {
             localStorage.clear();
             location.reload();
+        }
+    }
+    //artificial intelligence
+    var AI;
+
+    AI = { 
+        launchAI: (uuu, statusDiv) => {
+
+            AI.aiChecker(uuu, statusDiv);
+
+        },
+        aiChecker: (uuu, statusDiv) => {
+
+            console.log(uuu.lvl);
+
         }
     }
 
