@@ -39,6 +39,21 @@ input[type=button] {
         border: 6px inset #c38c8c;
     }
 
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: #E84A5F;
+    width: 200px;
+    height: 8px;
+    border-radius:13px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: blue;
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+}
 input[type="radio"] {
     display: none;
 }
@@ -56,6 +71,7 @@ input[type="radio"] {
         line-height: 35px;
         font-weight: bolder;
         margin: 0 4px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
     }
 
     input[type="radio"]:checked + label {
@@ -71,6 +87,7 @@ input[type="radio"] {
         line-height: 35px;
         margin: 0 4px;
         font-weight: bolder;
+        box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     }
 input:-ms-input-placeholder {
     color: red;
@@ -153,7 +170,7 @@ input::selection {
     }
 .setupConfirm {
     border: 6px outset rgba(0, 0, 0, 1) !important;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.98);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
     .setupConfirm:active {
         border: 6px inset rgba(0, 0, 0, 0.62) !important;
@@ -230,7 +247,7 @@ input::selection {
     margin: 0 12px;
     display: inline-block;
     font-weight: bolder;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.98);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
 
     .memePanelBtns:active {
@@ -406,47 +423,63 @@ input::selection {
         padding: 0 10px;
         line-height: 30px;
     }
+    .menuPages_full p {
+        position: relative;
+        display: inline-block;
+        clear: both;
+        float: left;
+        left: 40px;
 
+    }
+    .menuPages_full p span {
+        display:inline-block;
+        line-height:10px;
+        margin:0 0 20px 0;
+       
+    }
+        .menuPages_full p span:nth-child(1) {
+
+        }
+        .menuPages_full p span:nth-child(2) {
+        
+        }
 .climate {
     transition: all 250ms;
     position: relative;
-    box-shadow: 0 0 10px #E84A5F;
+    box-shadow: 0 0 2px #FFF;
     background-position: center;
     background-size: 640px 640px;
     background-repeat: no-repeat;
     margin: 100vh auto 0 auto;
     width: 640px;
     height: 640px;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .climate_full {
     transition: all 250ms;
     position: relative;
-    box-shadow: 0 0 5px #E84A5F;
+    box-shadow: 0 0 2px #FFF;
     background-position: center;
     background-size: 640px 640px;
     background-repeat: no-repeat;
     margin: 45px auto 0 auto;
     width: 640px;
     height: 640px;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 .elemFloor {
-    height: 140px;
+    height: 240px;
     position: relative;
     background: #000;
     bottom: 0;
-    top: 500px;
+    top: 400px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 /* id's */
 #homeBtn {
-    display: inline-block;
-    position: relative;
-    clear: both;
-    margin-top: 100px;
-    left: 40px;
-    float: left;
+
 }
 #dvHold {
     display: inline-block;
@@ -502,14 +535,14 @@ button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-ch
     text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
     background: #FECEA8;
     border: 6px outset #E84A5F;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.98);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
 
     button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
         transition: all 250ms;
         border: 6px inset #E84A5F;
         color: rgba(0, 0, 0, 0.47);
-        text-shadow: none;
+        text-shadow: .5px .5px #000, .5px .5px rgba(25, 25, 25, 0.27), .5px .5px #000;
         box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     }
 

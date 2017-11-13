@@ -63,9 +63,9 @@
     var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs, myAu;
 
     myAu = {
-        main: "0.5",
-        music: "0.5",
-        amb: "0.5"
+        main: 0.5,
+        music: 0.5,
+        amb: 0.5
     }
 
     moneyStuffs = {
@@ -94,7 +94,7 @@
         siteName: "",
         userName: "",
         money: 10000,
-        lvl: 5,
+        lvl: 6,
         gndr: "",
         hum: 0,
         int: 0,
@@ -225,6 +225,7 @@
         closeWarnPage: (warnPage, myFrame, startBtn, delBtn, contBtn) => {
             return () => {
                 warnPage.className = "warnPage";
+
                 UI.mainClick();
                 setTimeout(() => {
                     warnPage.remove();
@@ -250,7 +251,7 @@
             return () => {
                 var playerSetupPage = UI.createEle("div"), elems,
                     warnPage = UI.bySel(".warnPage_full");
-
+                UI.mainClick();
                 if (warnPage) {
                     warnPage.className = "warnPage";
                 }
@@ -567,11 +568,22 @@
                 if (dta) {
                     var ddd = JSON.parse(dta);
                 }
+                var Au = localStorage.getItem("myAu");
+                if (Au) {
+                    var au = JSON.parse(Au);
+                }
 
                 var page = UI.createEle("div"), elems;
-
+                var x = +au.main * 100,
+                    y = +au.amb * 100,
+                    z = +au.music * 100;
+                console.log(x);
                 elems = "<h2><span>⚙ Settings</span><span id='xMeme'>X</span></h2>";
                 elems += "<p><button id='homeBtn'>Home</button></p>";
+                elems += "<p><strong>Volume</Strong></p>";
+                elems += "<p><span>🔊</span> &nbsp; <span><input type='range' id='rng1' value='" + x + "' /></span></p>";
+                elems += "<p><span>📣</span> &nbsp; <span><input type='range' id='rng2' value='" + y + "' /></span></p>";
+                elems += "<p><span>🎶</span> &nbsp; <span><input type='range' id='rng3' value='" + z + "' /></span></p>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
@@ -586,10 +598,16 @@
                 setTimeout(() => {
                     page.className = "menuPages_full";
                     var xMeme = UI.bySel("#xMeme"),
-                        homeBtn = UI.bySel("#homeBtn");
-                    xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                        homeBtn = UI.bySel("#homeBtn"),
+                        rng1 = UI.bySel("#rng1");
 
+                    xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                  
                     homeBtn.onclick = UI.globalHome;
+
+                    rng1.onmouseup = UI.setMainVol(rng1, au);
+                    rng2.onmouseup = UI.setAmbVol(rng2, au);
+                    rng3.onmouseup = UI.setMusicVol(rng3, au);
                 }, 300);
             }
         },
@@ -935,6 +953,33 @@
 
             snd.play();
 
+        },
+        setMainVol: (rng1, au) => {
+            return () => {
+                var x = +rng1.value / 100;
+
+                myAu.main = x;
+
+                localStorage.setItem("myAu", JSON.stringify(myAu));
+            }
+        },
+        setAmbVol: (rng3, au) => {
+            return () => {
+                var x = +rng2.value / 100;
+
+                myAu.amb = x;
+
+                localStorage.setItem("myAu", JSON.stringify(myAu));
+            }
+        },
+        setMusicVol: (rng4, au) => {
+            return () => {
+                var x = +rng3.value / 100;
+
+                myAu.music = x;
+
+                localStorage.setItem("myAu", JSON.stringify(myAu));
+            }
         },
         goHome: (playerSetupPage, myFrame) => {
             return () => {
