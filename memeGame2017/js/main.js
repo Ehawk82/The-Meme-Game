@@ -61,7 +61,14 @@
         // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
     };
     //main user interface
-    var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs, myAu;
+    var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs, myAu, pData;
+
+    pData = {
+        weekstamp: 0,
+        name: "",
+        power: 0,
+        invest: 0
+    }
 
     myAu = {
         main: 0.5,
@@ -95,14 +102,15 @@
         siteName: "",
         userName: "",
         money: 10000,
-        lvl: 4,
+        lvl: 9,
         gndr: "",
         hum: 0,
         int: 0,
         cre: 0,
         luck: 0,
         chr: 0,
-        spd: 0
+        spd: 0,
+        clvl: 1
     };
 
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -341,6 +349,7 @@
                 uData.luck = uData.luck;
                 uData.chr = uData.chr;
                 uData.spd = uData.spd;
+                uData.clvl = uData.clvl;
 
                 var d = new Date();
                 var y = d.getFullYear(),
@@ -389,9 +398,10 @@
 
             elemFloor.className = "elemFloor";
             elemFloor.innerHTML = "&nbsp;";
+            elemFloor.style.backgroundImage = "url(../images/floors/f" + uuu.clvl + ".jpg)";
 
             climate.className = "climate";
-            climate.style.backgroundImage = "url(../images/walls/d" + uuu.lvl + ".jpg)";
+            climate.style.backgroundImage = "url(../images/walls/d" + uuu.clvl + ".jpg)";
             climate.appendChild(elemFloor);
 
             myFrame.appendChild(climate);

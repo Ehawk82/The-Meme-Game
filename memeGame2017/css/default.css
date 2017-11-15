@@ -490,19 +490,24 @@ input::selection {
     background-position: center;
     background-size: 640px 640px;
     background-repeat: no-repeat;
+    background-color: #FFF;
     margin: 45px auto 0 auto;
     width: 640px;
     height: 640px;
     border-radius: 5px;
-    z-index:15;
+    z-index: 15;
+    box-shadow: 0 -500px 300px -100px rgba(0,0,0,0.8) inset, 0 60px 60px 0 rgba(242, 241, 241, 0.10) inset;
 }
 
 .elemFloor {
     height: 240px;
     position: relative;
-    background: #000;
-    bottom: 0;
+    background-color: #FFF;
+    background-position: center;
+    background-size: 640px 640px;
+    background-repeat: no-repeat bottom: 0;
     top: 400px;
+    box-shadow: 0 80px 70px 0 rgba(0,0,0,0.8) inset;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
