@@ -67,7 +67,9 @@
         weekstamp: 0,
         name: "",
         power: 0,
-        invest: 0
+        invest: 0,
+        p_Type: "000",
+        p_Bool: false
     }
 
     myAu = {
@@ -141,6 +143,11 @@
                 localStorage.setItem("myData", JSON.stringify(myData));
             }
 
+            var pd = localStorage.getItem("pData");
+            if (!pd || pd === null) {
+                localStorage.setItem("pData", JSON.stringify(pData));
+            }
+
             var ud = localStorage.getItem("uData");
             if (!ud || ud === null) {
                 localStorage.setItem("uData", JSON.stringify(uData));
@@ -169,6 +176,11 @@
                 startBtn = UI.createEle("button"),
                 contBtn = UI.createEle("button"),
                 delBtn = UI.createEle("button");
+
+            var pD = localStorage.getItem("pData");
+            if (pD) {
+                var ppp = JSON.parse(pD);
+            }
 
             var uD = localStorage.getItem("uData");
             if (uD) {
@@ -326,10 +338,15 @@
         luck
         chr
         spd
+
+        weekstamp
+        name
+        power
+        invest
+        p_Type
+        p_Bool
             */
             return () => {
-                var ud = localStorage.getItem("uData");
-
                 uData.siteName = setupItems[0].value;
                 uData.userName = setupItems[1].value;
                 uData.money = uData.money;
@@ -360,6 +377,7 @@
                 dateTool.year = y;
 
                 localStorage.setItem("uData", JSON.stringify(uData));
+                localStorage.setItem("pData", JSON.stringify(pData));
                 localStorage.setItem("dateTool", JSON.stringify(dateTool));
 
                 if (setupItems[0].value != "" && setupItems[1].value != "") {
@@ -372,6 +390,7 @@
         },
         proceedGame: () => {
             var ud = localStorage.getItem("uData"),
+                pd = localStorage.getItem("pData"),
                 playerSetupPage = UI.bySel(".playerSetupPage_full"),
                 moneyStuffs = localStorage.getItem("moneyStuffs");
             if (playerSetupPage) {
@@ -381,12 +400,12 @@
                     playerSetupPage.className = "playerSetupPage";
                     setTimeout(() => {
                         playerSetupPage.remove();
-                        UI.beginGameSession(myFrame, ud, moneyStuffs);
+                        UI.beginGameSession(myFrame, ud, moneyStuffs, pd);
                     }, 1000);
                 }, 50);
             } else {
                 var myFrame = UI.bySel(".myFrame");
-                UI.beginGameSession(myFrame, ud, moneyStuffs);
+                UI.beginGameSession(myFrame, ud, moneyStuffs, pd);
             }
         },
         homeClimate: (myFrame, ud) => {
@@ -410,7 +429,7 @@
                 climate.className = "climate_full";
             }, 700);
         },
-        beginGameSession: (myFrame, ud, moneyStuffs) => {
+        beginGameSession: (myFrame, ud, moneyStuffs, pd) => {
             /* 
               -loading the game ()'s from here.  Note: Some functions depend on scope.
               -Scope order determined here
@@ -421,6 +440,29 @@
             UI.doMoneyTab(myFrame, ud, moneyStuffs);
             UI.memesFunc(myFrame, ud);
             UI.homeClimate(myFrame, ud);
+            UI.projBool(myFrame, ud, pd);
+        },
+        projBool: (myFrame, ud, pd) => {
+            var projectPanel = UI.createEle("div");
+
+            if (pd) {
+                var ppp = JSON.parse(pd);
+            }
+
+
+            projectPanel.innerHTML = "Project Info";
+            projectPanel.className = "projectPanel";
+
+            myFrame.appendChild(projectPanel);
+
+            setTimeout(() => {
+                if (ppp.p_Bool == false) {
+                    projectPanel.className = "projectPanel";
+                } else {
+                    projectPanel.className = "projectPanel_full";
+                }
+                //console.log(ppp.p_Bool);
+            }, 1400);
         },
         doMoneyTab: (myFrame, ud, moneyStuffs) => {
             var moneyTab = UI.createEle("div");
@@ -539,10 +581,14 @@
                     var ddd = JSON.parse(dta);
                 }
 
-                var page = UI.createEle("div");
+                var page = UI.createEle("div"), elems;
+
+                elems = "<h2><span>💡 Create a New Project</span><span id='xMeme'>X</span></h2>";
+                elems += "<p>Project Name: <input type='text' /><p>";
+                elems += "<p>Type: <input type='text' /><p>";
 
                 page.className = "menuPages";
-                page.innerHTML = "<h2><span>💡 Create a New Project</span><span id='xMeme'>X</span></h2>";
+                page.innerHTML = elems;
 
                 myFrame.appendChild(page);
 

@@ -496,7 +496,7 @@ input::selection {
     height: 640px;
     border-radius: 5px;
     z-index: 15;
-    box-shadow: 0 -500px 300px -100px rgba(0,0,0,0.8) inset, 0 60px 60px 0 rgba(242, 241, 241, 0.10) inset;
+    box-shadow: 0 -500px 300px -100px rgba(0,0,0,0.8) inset, 0 60px 60px 0 rgba(242, 241, 241, 0.10) inset, 0 0 2px #fff;
 }
 
 .elemFloor {
@@ -505,11 +505,45 @@ input::selection {
     background-color: #FFF;
     background-position: center;
     background-size: 640px 640px;
-    background-repeat: no-repeat bottom: 0;
+    background-repeat: no-repeat;
+    bottom: 0;
     top: 400px;
     box-shadow: 0 80px 70px 0 rgba(0,0,0,0.8) inset;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.projectPanel {
+    position: absolute;
+    left: -350px;
+    bottom: 160px;
+    transition: all 250ms;
+    width: 250px;
+    position: absolute;
+    background: #FECEA8;
+    border: 6px inset #E84A5F;
+    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    font-weight: bolder;
+    padding: 6px 0;
+
+}
+.projectPanel_full {
+    transition: all 250ms;
+    width: 170px;
+    position: absolute;
+    background: #FECEA8;
+    bottom: 160px;
+    left: 15px;
+    border: 6px inset #E84A5F;
+    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    font-weight: bolder;
+    padding: 6px 0;
+}
+
+.projectPanel, .projectPanel_full {
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.77);
+    text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
 }
 /* id's */
 #homeBtn {
