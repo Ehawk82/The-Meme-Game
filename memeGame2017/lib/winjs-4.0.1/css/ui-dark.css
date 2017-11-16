@@ -2683,7 +2683,7 @@ button.win-navigation-backbutton:enabled:hover:active {
     background-clip: border-box;
     background-color: ButtonText;
     border-color: transparent;
-    color: ButtonFace;
+    color: red;
   }
   .win-semanticzoom-button:-ms-keyboard-active {
     background-clip: border-box;

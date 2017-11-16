@@ -7,17 +7,17 @@ html, body {
     background: #2A363B;
 }
 
-marqee {
-    width: 200px;
-    height: 50px;
-    white-space: nowrap;
-    overflow: hidden;
+select {
+    border: none;
+    width: 300px;
+    background: #FECEA8;
+    outline: none;
 }
 
 button {
-    padding: 5px 10px;
-    font-weight: bolder;
-}
+        padding: 5px 10px;
+        font-weight: bolder;
+    }
 
 input[type=button] {
     background: none;
@@ -109,12 +109,17 @@ input::selection {
     color: #ffffff;
 }
 /* classes */
-.myFrame {
-    height: 80%;
-    margin-top: 1%;
-    text-align: center;
-    font-weight: bolder;
+.opts {
+    background: #FECEA8;
+    border:none;
 }
+
+.myFrame {
+        height: 80%;
+        margin-top: 1%;
+        text-align: center;
+        font-weight: bolder;
+    }
 
 .startPageBtn {
     width: 20%;

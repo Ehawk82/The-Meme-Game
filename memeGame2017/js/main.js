@@ -69,7 +69,8 @@
         power: 0,
         invest: 0,
         p_Type: "000",
-        p_Bool: false
+        p_Bool: false,
+        t_level: 8
     }
 
     myAu = {
@@ -103,7 +104,7 @@
     uData = {
         siteName: "",
         userName: "",
-        money: 10000,
+        money: 4,
         lvl: 9,
         gndr: "",
         hum: 0,
@@ -577,15 +578,32 @@
         makeMemer: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
                 UI.mainClick();
+                var pd = localStorage.getItem("pData");
+
+                if (pd) {
+                    var ppp = JSON.parse(pd);
+                }
+
                 if (dta) {
                     var ddd = JSON.parse(dta);
                 }
 
-                var page = UI.createEle("div"), elems;
+                var page = UI.createEle("div"), elems, opts;
+
+                opts = ppp.t_level;
 
                 elems = "<h2><span>💡 Create a New Project</span><span id='xMeme'>X</span></h2>";
-                elems += "<p>Project Name: <input type='text' /><p>";
-                elems += "<p>Type: <input type='text' /><p>";
+                elems += "<p>Upper Text <input type='text' /><p>";
+                elems += "<p>Lower Text <input type='text' /><p>";
+                elems += "<p><select><option class='opts'>Select a Meme</option>";
+
+                for (var i = 0; i < ppp.t_level; i++) {
+                    elems += "<option class='opts'>" + i + "</option>";
+                }
+                
+                elems += "</select><p>";
+                elems += "<p><i>How far is our reach: </i></p>";
+                elems += "<p><i>How long should we spam this: </i></p>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
