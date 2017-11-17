@@ -107,12 +107,12 @@
         money: 4,
         lvl: 9,
         gndr: "",
-        hum: 0,
-        int: 10,
-        cre: 0,
-        luck: 0,
-        chr: 0,
-        spd: 0,
+        hum: 4,
+        int: 5,
+        cre: 4,
+        luck: 1,
+        chr: 3,
+        spd: 2,
         clvl: 1
     };
 
@@ -601,8 +601,7 @@
 
                 elems += "<p>&nbsp;</p>";
   
-
-                elems += "<p>Upper Text <input maxLength='" + uuu.int + "' type='text' /></p>";
+                elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
                 elems += "<p><select><option class='opts'>Select a Meme</option>";
                 for (var i = 0; i < ppp.t_level; i++) {
@@ -610,9 +609,9 @@
                 }
                 elems += "</select></p>";
 
-                elems += "<p>Lower Text <input maxLength='" + uuu.int + "' type='text' /></p>";
+                elems += "<p>Lower Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
-                elems += "<p><i>How far will be our reach?</i><br />";
+                elems += "<p><i>How far is our reach?</i><br />";
                 elems += "<select>";
                 elems += "<option value='tier1' class='opts'>Friends Only(free)</option>";
                 elems += "<option value='tier2' class='opts'>Local($40)</option>";
@@ -628,12 +627,16 @@
                 elems += "<option value='time3' class='opts'>12 months</option>";
                 elems += "</select>";
                 elems += "</p>";
+
+                elems += "<p>Total Cost: $<span>0</span></p>";
+
                 elems += "<p><button>⭕</button></p>";
+
                 elems += "<div class='dvMemeHolder'>";
 
-                elems += "<span id='spnMeme1Holder'>&nbsp;</span>";
+                elems += "<span id='spnMeme1Holder' class='spnHolder'>&nbsp;</span>";
                 elems += "<span id='spnMemeImgHolder'>&nbsp</span>";
-                elems += "<span id='spnMeme2Holder'>&nbsp;</span>";
+                elems += "<span id='spnMeme2Holder' class='spnHolder'>&nbsp;</span>";
 
                 elems += "</div>";
 
@@ -649,10 +652,22 @@
 
                 setTimeout(() => {
                     page.className = "menuPages_full";
+                    var cls = UI.bySelAll(".cls"),
+                        spnHolder = UI.bySelAll(".spnHolder");
+
+                    for (var c = 0; c < cls.length; c++) {
+                        cls[c].onkeyup = UI.doTyping(cls, c, spnHolder);
+                    }
+
                     var xMeme = UI.bySel("#xMeme");
                     xMeme.onclick = UI.xMemeFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
 
                 }, 300);
+            }
+        },
+        doTyping: (cls, c, spnHolder) => {
+            return () => {
+                spnHolder[c].innerHTML = cls[c].value;
             }
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
@@ -897,7 +912,7 @@
                                 }
                                 ticker();
 
-                            }, 1100);
+                            }, 3100);
                         }
                     }
 
