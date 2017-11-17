@@ -454,6 +454,9 @@ input::selection {
         padding: 0 10px;
         line-height: 30px;
     }
+    .menuPages_full div {
+        box-shadow: 0 0 6px red;
+    }
 
     .menuPages_full p {
         position: relative;
@@ -461,6 +464,7 @@ input::selection {
         clear: both;
         float: left;
         left: 140px;
+        
     }
 
         .menuPages_full p span {
@@ -513,9 +517,10 @@ input::selection {
     background-repeat: no-repeat;
     bottom: 0;
     top: 400px;
-    box-shadow: 0 80px 70px 0 rgba(0,0,0,0.8) inset;
+    box-shadow: 0 80px 70px 0 rgba(0,0,0,0.9) inset;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-top:3px solid black;
 }
 
 .projectPanel {
@@ -540,7 +545,7 @@ input::selection {
     bottom: 160px;
     left: 15px;
     border: 6px inset #E84A5F;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 10px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 6px 0;
 }
@@ -549,6 +554,16 @@ input::selection {
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.77);
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
+}
+
+.dvMemeHolder {
+    position: relative;
+    float: right;
+    width: 460px;
+    height: 340px;
+    right: 150px;
+    top:-190px;
+    display: inline-block;
 }
 /* id's */
 #homeBtn {
@@ -603,8 +618,12 @@ input::selection {
 
 #rd1, #rd2 {
 }
-/* misc */
 
+#projForm {
+    position:relative;
+    box-shadow:0 0 2px red;
+}
+/* misc */
 button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2) {
     transition: all 250ms;
     border-radius: 1px;

@@ -108,7 +108,7 @@
         lvl: 9,
         gndr: "",
         hum: 0,
-        int: 0,
+        int: 10,
         cre: 0,
         luck: 0,
         chr: 0,
@@ -578,7 +578,12 @@
         makeMemer: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
                 UI.mainClick();
-                var pd = localStorage.getItem("pData");
+                var ud = localStorage.getItem("uData"),
+                    pd = localStorage.getItem("pData");
+
+                if (ud) {
+                    var uuu = JSON.parse(ud);
+                }
 
                 if (pd) {
                     var ppp = JSON.parse(pd);
@@ -593,17 +598,44 @@
                 opts = ppp.t_level;
 
                 elems = "<h2><span>💡 Create a New Project</span><span id='xMeme'>X</span></h2>";
-                elems += "<p>Upper Text <input type='text' /><p>";
-                elems += "<p>Lower Text <input type='text' /><p>";
-                elems += "<p><select><option class='opts'>Select a Meme</option>";
 
+                elems += "<p>&nbsp;</p>";
+  
+
+                elems += "<p>Upper Text <input maxLength='" + uuu.int + "' type='text' /></p>";
+
+                elems += "<p><select><option class='opts'>Select a Meme</option>";
                 for (var i = 0; i < ppp.t_level; i++) {
                     elems += "<option class='opts'>" + i + "</option>";
                 }
-                
-                elems += "</select><p>";
-                elems += "<p><i>How far is our reach: </i></p>";
-                elems += "<p><i>How long should we spam this: </i></p>";
+                elems += "</select></p>";
+
+                elems += "<p>Lower Text <input maxLength='" + uuu.int + "' type='text' /></p>";
+
+                elems += "<p><i>How far will be our reach?</i><br />";
+                elems += "<select>";
+                elems += "<option value='tier1' class='opts'>Friends Only(free)</option>";
+                elems += "<option value='tier2' class='opts'>Local($40)</option>";
+                elems += "<option value='tier3' class='opts'>Global($120)</option>";
+                elems += "</select>";
+                elems += "</p>";
+
+                elems += "<p><i>How long are we going to spam this item?</i><br />";
+                elems += "<select>";
+                elems += "<option value='time1' class='opts'>1 month</option>";
+                elems += "<option value='time2' class='opts'>3 months</option>";
+                elems += "<option value='time2' class='opts'>6 months</option>";
+                elems += "<option value='time3' class='opts'>12 months</option>";
+                elems += "</select>";
+                elems += "</p>";
+                elems += "<p><button>⭕</button></p>";
+                elems += "<div class='dvMemeHolder'>";
+
+                elems += "<span id='spnMeme1Holder'>&nbsp;</span>";
+                elems += "<span id='spnMemeImgHolder'>&nbsp</span>";
+                elems += "<span id='spnMeme2Holder'>&nbsp;</span>";
+
+                elems += "</div>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
