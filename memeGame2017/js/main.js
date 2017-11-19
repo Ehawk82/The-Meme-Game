@@ -61,8 +61,9 @@
         // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
     };
     //main user interface
-    var UI, uData, tBool, dateTool, mBool, myData, moneyStuffs, myAu, pData;
+    var UI, AI, uData, tBool, dateTool, myData, moneyStuffs, myAu, pData;//app gloabals
 
+    //project data
     pData = {
         weekstamp: 0,
         name: "",
@@ -70,15 +71,17 @@
         invest: 0,
         p_Type: "000",
         p_Bool: false,
-        t_level: 8
+        t_level: 6
     }
 
+    //tracking sound and music
     myAu = {
         main: 0.5,
         music: 0.5,
         amb: 0.5
     }
 
+    //for measuring and tracking money data
     moneyStuffs = {
         mpt: 4,
         lpt: 7,
@@ -86,21 +89,23 @@
         mpy: 5
     }
 
+    //don't actuall know what i did here, but i need it
     myData = {
         mAu: 0,
         aAu: 0,
         sAu: 0
     }
 
+    //for measuring and tracking date
     dateTool = {
         month: "",
         week: "",
         year: ""
     };
 
-    tBool = 0;
-    mBool = 0;
+    tBool = 0;//Boolean for the timer ticker function
 
+    //basic user data
     uData = {
         siteName: "",
         userName: "",
@@ -116,12 +121,21 @@
         clvl: 1
     };
 
-    var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    //basic libraries
 
+    var memes = ["noImage", "ironyFrog", "grumpyCat", "wowDoge"];//image lookup
+    var memesFormal = ["Select a Meme", "Irony Frog", "Grumpy Cat", "Wow Doge"];//User sees this
+    var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
+
+    //User Interface object
     UI = {
+        //my basic return functions
         createEle: (x) => { return document.createElement(x) },
         bySelAll: (x) => { return document.querySelectorAll(x) },
         bySel: (x) => { return document.querySelector(x) },
+        byTag: (x) => { return document.getElementsByTagName(x) },
+
+        //initializing and startup
         init: () => {
             var Au = localStorage.getItem("myAu");
             if (!Au || Au === null) {
@@ -168,7 +182,6 @@
             }
 
             localStorage.setItem("tBool", 0);
-            localStorage.setItem("mBool", 0);
 
             UI.myLoad();
         },
@@ -389,6 +402,8 @@
                 }
             }
         },
+
+        //game stuffs
         proceedGame: () => {
             var ud = localStorage.getItem("uData"),
                 pd = localStorage.getItem("pData"),
@@ -603,15 +618,15 @@
   
                 elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
-                elems += "<p><select><option class='opts'>Select a Meme</option>";
+                elems += "<p><select>";
                 for (var i = 0; i < ppp.t_level; i++) {
-                    elems += "<option class='opts'>" + i + "</option>";
+                    elems += "<option class='opts'value='" + memes[i] + "' >" + memesFormal[i] + "</option>";
                 }
                 elems += "</select></p>";
 
                 elems += "<p>Lower Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
-                elems += "<p><i>How far is our reach?</i><br />";
+                elems += "<p><i>How far is our reach?</i>";
                 elems += "<select>";
                 elems += "<option value='tier1' class='opts'>Friends Only(free)</option>";
                 elems += "<option value='tier2' class='opts'>Local($40)</option>";
@@ -619,7 +634,7 @@
                 elems += "</select>";
                 elems += "</p>";
 
-                elems += "<p><i>How long are we going to spam this item?</i><br />";
+                elems += "<p><i>How long are we going to spam this item?</i>";
                 elems += "<select>";
                 elems += "<option value='time1' class='opts'>1 month</option>";
                 elems += "<option value='time2' class='opts'>3 months</option>";
@@ -632,12 +647,10 @@
 
                 elems += "<p><button>⭕</button></p>";
 
-                elems += "<div class='dvMemeHolder'>";
-
+                elems += "<div class='dvMemeHolder' style='background-image:url(../images/memes/noImage.jpg);'>";
                 elems += "<span id='spnMeme1Holder' class='spnHolder'>&nbsp;</span>";
-                elems += "<span id='spnMemeImgHolder'>&nbsp</span>";
-                elems += "<span id='spnMeme2Holder' class='spnHolder'>&nbsp;</span>";
 
+                elems += "<span id='spnMeme2Holder' class='spnHolder'>&nbsp;</span>";
                 elems += "</div>";
 
                 page.className = "menuPages";
@@ -653,16 +666,44 @@
                 setTimeout(() => {
                     page.className = "menuPages_full";
                     var cls = UI.bySelAll(".cls"),
-                        spnHolder = UI.bySelAll(".spnHolder");
+                        spnHolder = UI.bySelAll(".spnHolder"),
+                        selects = UI.byTag("select"),
+                        dvMemeHolder = UI.bySel(".dvMemeHolder");
 
                     for (var c = 0; c < cls.length; c++) {
                         cls[c].onkeyup = UI.doTyping(cls, c, spnHolder);
+                        cls[c].onblur = UI.doTyping(cls, c, spnHolder);
+                    }
+
+                    for (var s = 0; s < selects.length; s++) {
+                        selects[s].onblur = UI.selectionMade(selects, s, dvMemeHolder);
+                        selects[s].onclick = UI.selectionMade(selects, s, dvMemeHolder);
                     }
 
                     var xMeme = UI.bySel("#xMeme");
                     xMeme.onclick = UI.xMemeFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
 
                 }, 300);
+            }
+        },
+        selectionMade: (selects, s, dvMemeHolder) => {
+            return () => {
+                if (s == 0) {
+                    dvMemeHolder.style.backgroundImage = "url(../images/memes/" + selects[s].value + ".jpg)"
+                
+                    //console.log(selects[s].value);
+                }
+                if (s == 1) {
+                    console.log(selects[s].value);
+                }
+                if (s == 2) {
+                    console.log(selects[s].value);
+                }
+
+                if (selects[s].value == "undefined") {
+                    dvMemeHolder.style.backgroundImage = "url(../images/memes/noImage.jpg)"
+                }
+                //selects[s].blur();
             }
         },
         doTyping: (cls, c, spnHolder) => {
@@ -1106,6 +1147,8 @@
                 localStorage.setItem("myAu", JSON.stringify(myAu));
             }
         },
+
+        //global interacts
         goHome: (playerSetupPage, myFrame) => {
             return () => {
                 if (playerSetupPage) {
@@ -1122,9 +1165,7 @@
             location.reload();
         }
     }
-    //artificial intelligence
-    var AI;
-
+    //Artificial Intelligence object
     AI = { 
         launchAI: (uuu, statusDiv) => {
 

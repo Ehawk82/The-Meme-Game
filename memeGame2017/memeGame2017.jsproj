@@ -64,6 +64,10 @@
     <Content Include="css\sounds\token.wav" />
     <Content Include="images\floors\f8.jpg" />
     <Content Include="images\floors\f9.jpg" />
+    <Content Include="images\memes\grumpyCat.jpg" />
+    <Content Include="images\memes\ironyFrog.jpg" />
+    <Content Include="images\memes\noImage.jpg" />
+    <Content Include="images\memes\wowDoge.jpg" />
     <Content Include="images\walls\d7.jpg" />
     <Content Include="images\floors\f2.jpg" />
     <Content Include="images\floors\f3.jpg" />
