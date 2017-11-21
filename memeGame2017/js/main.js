@@ -123,8 +123,8 @@
 
     //basic libraries
 
-    var memes = ["noImage", "ironyFrog", "grumpyCat", "wowDoge"];//image lookup
-    var memesFormal = ["Select a Meme", "Irony Frog", "Grumpy Cat", "Wow Doge"];//User sees this
+    var memes = ["ironyFrog", "grumpyCat", "wowDoge"];//image lookup
+    var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge"];//User sees this
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
 
     //User Interface object
@@ -645,13 +645,14 @@
 
                 elems += "<p>Total Cost: $<span>0</span></p>";
 
-                elems += "<p><button>⭕</button></p>";
+                elems += "<p><button class='button_off'>⭕</button></p>";
 
-                elems += "<div class='dvMemeHolder' style='background-image:url(../images/memes/noImage.jpg);'>";
-                elems += "<span id='spnMeme1Holder' class='spnHolder'>&nbsp;</span>";
+                elems += "<div class='dvMemeHolder' style='background-image:url(../images/memes/ironyFrog.jpg);'>";
+                elems += "<span id='spnMeme1Holder' class='spnHolder'></span>";
 
-                elems += "<span id='spnMeme2Holder' class='spnHolder'>&nbsp;</span>";
+                elems += "<span id='spnMeme2Holder' class='spnHolder'></span>";
                 elems += "</div>";
+                elems += "<div id='dvFill'><span id='spnDoc'>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
@@ -709,7 +710,19 @@
         doTyping: (cls, c, spnHolder) => {
             return () => {
                 spnHolder[c].innerHTML = cls[c].value;
+                UI.listenForData();
             }
+        },
+        listenForData: () => {
+            var spnHolder = UI.bySelAll(".spnHolder");
+
+            if (spnHolder[0].innerHTML != "" && spnHolder[1].innerHTML != "") {
+                var spnDoc = UI.bySel("#spnDoc");
+
+                spnDoc.style.opacity = "0.5";
+                spnDoc.innerHTML = "✔";
+            }
+            
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
             return () => {

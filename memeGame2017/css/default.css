@@ -665,8 +665,38 @@ input::selection {
     height: 50px;
     align-self:stretch;
 }
+
+#dvFill {
+    position: absolute;
+    float: left;
+    width: 520px;
+    left: 680px;
+    top: 540px;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    padding: 0 4px;
+}
+
+    #dvFill span:nth-child(1) {
+        background-image: url('../images/game-icons/docIcon.png');
+    }
+    #dvFill span:nth-child(2) {
+        margin:0 50px;
+        background-image: url('../images/game-icons/friendsIcon.png');
+    }
+    #dvFill span:nth-child(3) {
+        background-image: url('../images/game-icons/timeIcon.png');
+    }
+    #dvFill span:nth-child(1), #dvFill span:nth-child(2), #dvFill span:nth-child(3) {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-size: 100px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 /* misc */
-button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2) {
+button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
     transition: all 250ms;
     border-radius: 1px;
     color: rgba(255, 255, 255, 0.47);
@@ -676,7 +706,7 @@ button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-ch
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
 
-    button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active {
+    button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active, .button_off, button_on {
         transition: all 250ms;
         border: 6px inset #E84A5F;
         color: rgba(0, 0, 0, 0.47);
