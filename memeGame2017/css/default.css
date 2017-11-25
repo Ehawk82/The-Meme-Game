@@ -581,7 +581,7 @@ input::selection {
     bottom: 160px;
     left: 15px;
     border: 6px inset #E84A5F;
-    box-shadow: 0 0 10px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 6px 0;
 }

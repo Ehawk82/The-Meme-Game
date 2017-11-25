@@ -65,8 +65,9 @@
 
     //project data
     pData = {
-        weekstamp: 0,
-        name: "",
+        monthstamp: 0,
+        text_upper: "",
+        text_lower: "",
         power: 0,
         invest: 0,
         p_Type: "000",
@@ -499,7 +500,7 @@
                 //console.log(mStfs.mpt);
             }, 600);
         },
-        makeMoney: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
+        makeMoney: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp) => {
             return () => {
                 UI.mainClick();
                 if (dta) {
@@ -530,26 +531,30 @@
                 setTimeout(() => {
                     page.className = "menuPages_full";
                     var xMeme = UI.bySel("#xMeme");
-                    xMeme.onclick = UI.xMoneyFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                    xMeme.onclick = UI.xMoneyFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
 
                 }, 300);
             }
         },
-        xMoneyFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
+        xMoneyFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
-                    newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    if (ppp.p_Bool != true) {
+                        newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    } else {
+                        newMeme.onclick = null;
+                    }
+                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     page.remove();
-                }, 1200);
+                }, 1000);
             }
         },
-        makeResearch: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
+        makeResearch: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp) => {
             return () => {
                 UI.mainClick();
                 if (dta) {
@@ -571,23 +576,27 @@
                 setTimeout(() => {
                     page.className = "menuPages_full";
                     var xMeme = UI.bySel("#xMeme");
-                    xMeme.onclick = UI.xResearchFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                    xMeme.onclick = UI.xResearchFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
 
                 }, 300);
             }
         },
-        xResearchFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
+        xResearchFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
-                    newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    if (ppp.p_Bool != true) {
+                        newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    } else {
+                        newMeme.onclick = null;
+                    }
+                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     page.remove();
-                }, 1200);
+                }, 1000);
             }
         },
         makeMemer: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
@@ -619,7 +628,7 @@
                 elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
                 elems += "<p><select>";
-                for (var i = 0; i < ppp.t_level; i++) {
+                for (var i = 0; i < uuu.cre; i++) {
                     elems += "<option class='opts'value='" + memes[i] + "' >" + memesFormal[i] + "</option>";
                 }
                 elems += "</select></p>";
@@ -627,7 +636,8 @@
                 elems += "<p>Lower Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
                 elems += "<p><i>How far is our reach?</i>";
-                elems += "<select>";
+                elems += "<select id='select1'>";
+                elems += "<option value='tier0' selected class='opts'>CHOOSE</option>";
                 elems += "<option value='tier1' class='opts'>Friends Only(free)</option>";
                 elems += "<option value='tier2' class='opts'>Local($40)</option>";
                 elems += "<option value='tier3' class='opts'>Global($120)</option>";
@@ -635,11 +645,12 @@
                 elems += "</p>";
 
                 elems += "<p><i>How long are we going to spam this item?</i>";
-                elems += "<select>";
-                elems += "<option value='time1' class='opts'>1 month</option>";
-                elems += "<option value='time2' class='opts'>3 months</option>";
-                elems += "<option value='time2' class='opts'>6 months</option>";
-                elems += "<option value='time3' class='opts'>12 months</option>";
+                elems += "<select id='select2'>";
+                elems += "<option value='time0' selected class='opts'>CHOOSE</option>";
+                elems += "<option value='1' class='opts'>1 month</option>";
+                elems += "<option value='3' class='opts'>3 months</option>";
+                elems += "<option value='6' class='opts'>6 months</option>";
+                elems += "<option value='12' class='opts'>12 months</option>";
                 elems += "</select>";
                 elems += "</p>";
 
@@ -652,7 +663,7 @@
 
                 elems += "<span id='spnMeme2Holder' class='spnHolder'></span>";
                 elems += "</div>";
-                elems += "<div id='dvFill'><span id='spnDoc'>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>";
+                elems += "<div id='dvFill'><span id='spnDoc'>&nbsp;</span><span id='spnFrd'>&nbsp;</span><span id='spnT'>&nbsp;</span></div>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
@@ -672,13 +683,14 @@
                         dvMemeHolder = UI.bySel(".dvMemeHolder");
 
                     for (var c = 0; c < cls.length; c++) {
-                        cls[c].onkeyup = UI.doTyping(cls, c, spnHolder);
-                        cls[c].onblur = UI.doTyping(cls, c, spnHolder);
+                        cls[c].onkeyup = UI.doTyping(cls, c, spnHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                        cls[c].onblur = UI.doTyping(cls, c, spnHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
                     }
 
                     for (var s = 0; s < selects.length; s++) {
-                        selects[s].onblur = UI.selectionMade(selects, s, dvMemeHolder);
-                        selects[s].onclick = UI.selectionMade(selects, s, dvMemeHolder);
+
+                        selects[s].onblur = UI.selectionMade(selects, s, dvMemeHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                        selects[s].onclick = UI.selectionMade(selects, s, dvMemeHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
                     }
 
                     var xMeme = UI.bySel("#xMeme");
@@ -687,7 +699,7 @@
                 }, 300);
             }
         },
-        selectionMade: (selects, s, dvMemeHolder) => {
+        selectionMade: (selects, s, dvMemeHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 if (s == 0) {
                     dvMemeHolder.style.backgroundImage = "url(../images/memes/" + selects[s].value + ".jpg)"
@@ -695,50 +707,157 @@
                     //console.log(selects[s].value);
                 }
                 if (s == 1) {
-                    console.log(selects[s].value);
+                    var spnFrd = UI.bySel("#spnFrd");
+
+                    if (selects[s].value != "tier0") {
+                        spnFrd.style.opacity = "0.5";
+                        spnFrd.innerHTML = "✔";
+
+                    } else {
+                        spnFrd.style.opacity = "1";
+                        spnFrd.innerHTML = "&nbsp;";
+
+                    }
                 }
                 if (s == 2) {
-                    console.log(selects[s].value);
+                    var spnT = UI.bySel("#spnT");
+
+                    if (selects[s].value != "time0") {
+                        spnT.style.opacity = "0.5";
+                        spnT.innerHTML = "✔";
+
+                    } else {
+                        spnT.style.opacity = "1";
+                        spnT.innerHTML = "&nbsp;";
+
+                    }
                 }
 
                 if (selects[s].value == "undefined") {
                     dvMemeHolder.style.backgroundImage = "url(../images/memes/noImage.jpg)"
                 }
+                UI.listenForData(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
                 //selects[s].blur();
             }
         },
-        doTyping: (cls, c, spnHolder) => {
+        doTyping: (cls, c, spnHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 spnHolder[c].innerHTML = cls[c].value;
-                UI.listenForData();
+                UI.listenForData(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
             }
         },
-        listenForData: () => {
-            var spnHolder = UI.bySelAll(".spnHolder");
+        listenForData: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
+            var spnHolder = UI.bySelAll(".spnHolder"),
+                spnT = UI.bySel("#spnT"),
+                spnFrd = UI.bySel("#spnFrd"),
+                spnDoc = UI.bySel("#spnDoc"),
+                buttonTg = UI.bySel(".button_off") || UI.bySel(".button_on");
 
             if (spnHolder[0].innerHTML != "" && spnHolder[1].innerHTML != "") {
-                var spnDoc = UI.bySel("#spnDoc");
-
                 spnDoc.style.opacity = "0.5";
                 spnDoc.innerHTML = "✔";
+            } else {
+                spnDoc.style.opacity = "1";
+                spnDoc.innerHTML = "&nbsp;";
             }
-            
+
+            if (spnDoc.innerHTML === "✔" && spnFrd.innerHTML === "✔" && spnT.innerHTML === "✔") {
+                buttonTg.innerHTML = "✔";
+                buttonTg.className = "button_on";
+                buttonTg.onclick = UI.saveProject(spnHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+            } else {
+                buttonTg.innerHTML = "⭕";
+                buttonTg.className = "button_off";
+                buttonTg.onclick = null;
+            }
         },
-        xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
+        saveProject: (spnHolder, myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
+            return () => {
+                var timerItems = UI.bySelAll(".timerItems"),
+                    menuPages = UI.bySel(".menuPages_full") || UI.bySel(".menuPages_full"),
+                    projectPanel = UI.bySel(".projectPanel"),
+                    selects = UI.byTag("select"),
+                    uD = localStorage.getItem("uData");
+
+                if (uD) {
+                    var uuu = JSON.parse(uD);
+                }
+                /*
+                pData = {
+                    monthstamp: 0,
+                    name: "",
+                    power: 0,
+                    invest: 0,
+                    p_Type: "000",
+                    p_Bool: false,
+                    t_level: 6
+                }
+                */
+
+                pData.monthstamp = selects[2].value;
+                pData.text_upper = spnHolder[0].innerHTML;
+                pData.text_lower = spnHolder[1].innerHTML;
+                pData.power = "$";
+                pData.invest = selects[1].value;
+                pData.p_Type = selects[0].value;
+                pData.p_Bool = true;
+                pData.t_level = uuu.cre;
+
+                localStorage.setItem("pData", JSON.stringify(pData));
+
+                menuPages.className = "menuPages";
+
+                setTimeout(() => {
+                    menuPages.remove();
+                    setTimeout(() => {
+                        projectPanel.className = "projectPanel_full";
+
+                        var pd = localStorage.getItem("pData");
+                        if (pd) {
+                            var ppp = JSON.parse(pd);
+                        }
+                        if (ppp.p_Bool != true) {
+                            newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                        } else {
+                            newMeme.onclick = null;
+                        }
+
+                        researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                        budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                        settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                        
+                    }, 10);
+                }, 1000);
+                /*
+                var p2 = localStorage.getItem("pData");
+
+                if (p2) {
+                    var pp2 = JSON.parse(p2);
+                }
+                console.log(pp2.monthstamp);
+                */
+            }
+        },
+        xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
-                    newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    if (ppp.p_Bool != true) {
+                        newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    } else {
+                        newMeme.onclick = null;
+                    }
+                    
+                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     page.remove();
-                }, 1200);
+                }, 1000);
             }
         },
-        makeSettings: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
+        makeSettings: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp) => {
             return () => {
                 UI.mainClick();
                 if (dta) {
@@ -777,7 +896,7 @@
                         homeBtn = UI.bySel("#homeBtn"),
                         rng1 = UI.bySel("#rng1");
 
-                    xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                    xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
                   
                     homeBtn.onclick = UI.globalHome;
 
@@ -787,22 +906,31 @@
                 }, 300);
             }
         },
-        xSettFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page) => {
+        xSettFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 UI.mainClick();
                 page.className = "menuPages";
 
                 setTimeout(() => {
-                    newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    if (ppp.p_Bool != true) {
+                        newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+                    } else {
+                        newMeme.onclick = null;
+                    }
+                    researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+                    settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     page.remove();
-                }, 1200);
+                }, 1000);
             }
         },
         memesFunc: (myFrame, ud) => {
-            var dta = localStorage.getItem("myData");
+            var dta = localStorage.getItem("myData"),
+                pD = localStorage.getItem("pData");
+
+            if (pD) {
+                var ppp = JSON.parse(pD);
+            }
 
             if (ud) {
                 var uuu = JSON.parse(ud);
@@ -815,10 +943,16 @@
                 statusDiv = UI.createEle("div"),
                 settings = UI.createEle("span");
 
-            newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-            researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-            budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
-            settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
+
+            if (ppp.p_Bool != true) {
+                newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+            } else {
+                newMeme.onclick = null;
+            }
+
+            researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+            budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
+            settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
 
             newMeme.innerHTML = "💡";
             researchMeme.innerHTML = "🔬";
@@ -1194,6 +1328,7 @@
 
     window.onload = () => {
         UI.init();
+        //console.log(localStorage);
     };
     app.start();
 
