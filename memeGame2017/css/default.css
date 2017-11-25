@@ -575,7 +575,8 @@ input::selection {
 
 .projectPanel_full {
     transition: all 250ms;
-    width: 170px;
+    width:250px;
+    
     position: absolute;
     background: #FECEA8;
     bottom: 160px;
@@ -695,6 +696,11 @@ input::selection {
         background-position: center;
         background-repeat: no-repeat;
     }
+#dvProjMeme {
+    width: 250px;
+    height:250px;
+    background-size:250px;
+}
 /* misc */
 button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
     transition: all 250ms;

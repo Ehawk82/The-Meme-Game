@@ -460,14 +460,17 @@
             UI.projBool(myFrame, ud, pd);
         },
         projBool: (myFrame, ud, pd) => {
-            var projectPanel = UI.createEle("div");
+            var projectPanel = UI.createEle("div"), elems;
 
             if (pd) {
                 var ppp = JSON.parse(pd);
             }
+            console.log(ppp.p_Type);
+            elems = "Current Meme <hr />";
+            elems += "Time left: " + ppp.monthstamp + "<br/>";
+            elems += "<div id='dvProjMeme' style='background-image:url(../images/memes/" + ppp.p_Type + ".jpg);'>&nbsp;</div>";
 
-
-            projectPanel.innerHTML = "Project Info";
+            projectPanel.innerHTML = elems;
             projectPanel.className = "projectPanel";
 
             myFrame.appendChild(projectPanel);
@@ -546,6 +549,7 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
+                
                     }
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -694,7 +698,7 @@
                     }
 
                     var xMeme = UI.bySel("#xMeme");
-                    xMeme.onclick = UI.xMemeFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page);
+                    xMeme.onclick = UI.xMemeFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
 
                 }, 300);
             }
@@ -820,6 +824,9 @@
                             newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                         } else {
                             newMeme.onclick = null;
+                            newMeme.style.opacity = "0.5";
+                            newMeme.style.border = "6px inset #E84A5F";
+                            newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
                         }
 
                         researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -916,6 +923,7 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
+                        newMeme.style.opacity = "0.5";
                     }
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -948,6 +956,10 @@
                 newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
             } else {
                 newMeme.onclick = null;
+                newMeme.style.opacity = "0.5";
+                newMeme.style.border = "6px inset #E84A5F";
+                newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
+
             }
 
             researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
