@@ -72,7 +72,7 @@
         invest: 0,
         p_Type: "000",
         p_Bool: false,
-        t_level: 6
+        t_level: 0
     }
 
     //tracking sound and music
@@ -465,10 +465,16 @@
             if (pd) {
                 var ppp = JSON.parse(pd);
             }
-            console.log(ppp.p_Type);
+            //console.log(ppp.p_Type);
             elems = "Current Meme <hr />";
             elems += "Time left: " + ppp.monthstamp + "<br/>";
-            elems += "<div id='dvProjMeme' style='background-image:url(../images/memes/" + ppp.p_Type + ".jpg);'>&nbsp;</div>";
+            elems += "<div id='dvProjMeme' style='background-image:url(../images/memes/" + ppp.p_Type + ".jpg);'>";
+            elems += "<span id='spn1Display'>" + ppp.text_upper + "</span>";
+            elems += "<span id='spn2Display'>" + ppp.text_lower + "</span>";
+            elems += "</div>";
+            elems += "💲 <span>" + ppp.power + "</span><br/>";
+            elems += "Reach <span>" + ppp.invest + "</span><br/>";
+            elems += "Level <span>" + ppp.t_level + "</span><br/>";
 
             projectPanel.innerHTML = elems;
             projectPanel.className = "projectPanel";
@@ -642,19 +648,19 @@
                 elems += "<p><i>How far is our reach?</i>";
                 elems += "<select id='select1'>";
                 elems += "<option value='tier0' selected class='opts'>CHOOSE</option>";
-                elems += "<option value='tier1' class='opts'>Friends Only(free)</option>";
-                elems += "<option value='tier2' class='opts'>Local($40)</option>";
-                elems += "<option value='tier3' class='opts'>Global($120)</option>";
+                elems += "<option value='Friends' class='opts'>Friends Only(free)</option>";
+                elems += "<option value='Local' class='opts'>Local($40)</option>";
+                elems += "<option value='Global' class='opts'>Global($120)</option>";
                 elems += "</select>";
                 elems += "</p>";
 
                 elems += "<p><i>How long are we going to spam this item?</i>";
                 elems += "<select id='select2'>";
                 elems += "<option value='time0' selected class='opts'>CHOOSE</option>";
-                elems += "<option value='1' class='opts'>1 month</option>";
-                elems += "<option value='3' class='opts'>3 months</option>";
-                elems += "<option value='6' class='opts'>6 months</option>";
-                elems += "<option value='12' class='opts'>12 months</option>";
+                elems += "<option value='4' class='opts'>1 month</option>";
+                elems += "<option value='13' class='opts'>3 months</option>";
+                elems += "<option value='26' class='opts'>6 months</option>";
+                elems += "<option value='52' class='opts'>12 months</option>";
                 elems += "</select>";
                 elems += "</p>";
 
@@ -781,7 +787,8 @@
                     menuPages = UI.bySel(".menuPages_full") || UI.bySel(".menuPages_full"),
                     projectPanel = UI.bySel(".projectPanel"),
                     selects = UI.byTag("select"),
-                    uD = localStorage.getItem("uData");
+                    uD = localStorage.getItem("uData"),
+                    ud = localStorage.getItem("uData");
 
                 if (uD) {
                     var uuu = JSON.parse(uD);
@@ -801,7 +808,7 @@
                 pData.monthstamp = selects[2].value;
                 pData.text_upper = spnHolder[0].innerHTML;
                 pData.text_lower = spnHolder[1].innerHTML;
-                pData.power = "$";
+                pData.power = 0;
                 pData.invest = selects[1].value;
                 pData.p_Type = selects[0].value;
                 pData.p_Bool = true;
@@ -813,10 +820,11 @@
 
                 setTimeout(() => {
                     menuPages.remove();
+                    var pd = localStorage.getItem("pData");
                     setTimeout(() => {
                         projectPanel.className = "projectPanel_full";
 
-                        var pd = localStorage.getItem("pData");
+                        
                         if (pd) {
                             var ppp = JSON.parse(pd);
                         }
@@ -827,6 +835,7 @@
                             newMeme.style.opacity = "0.5";
                             newMeme.style.border = "6px inset #E84A5F";
                             newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
+                            UI.updatePanel(projectPanel, myFrame, ud, pd);
                         }
 
                         researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -844,6 +853,27 @@
                 console.log(pp2.monthstamp);
                 */
             }
+        },
+        updatePanel: (projectPanel, myFrame, ud, pd) => {
+            var elems;
+
+            if (pd) {
+                var ppp = JSON.parse(pd);
+            }
+            if (ppp.p_Bool != false && projectPanel) {
+                //console.log(ppp.p_Type);💲
+                elems = "Current Meme <hr />";
+                elems += "Time left: " + ppp.monthstamp + "<br/>";
+                elems += "<div id='dvProjMeme' style='background-image:url(../images/memes/" + ppp.p_Type + ".jpg);'>";
+                elems += "<span id='spn1Display'>" + ppp.text_upper + "</span>";
+                elems += "<span id='spn2Display'>" + ppp.text_lower + "</span>";
+                elems += "</div>";
+                elems += "💲 <span>" + ppp.power + "</span><br/>";
+                elems += "Reach <span>" + ppp.invest + "</span><br/>";
+                elems += "Level <span>" + ppp.t_level + "</span><br/>";
+
+                projectPanel.innerHTML = elems;
+            } 
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
@@ -1077,7 +1107,7 @@
                                     timerItems[0].innerHTML = mnth[dtt.month];
                                     timerItems[1].innerHTML = "Week " + dtt.week;
                                     timerItems[2].innerHTML = dtt.year;
-
+                                    UI.doTickRender();
                                     //console.log(uuu.money);
                                     UI.doCoinPerTic(uuu);
                                 } else {
@@ -1129,6 +1159,29 @@
 
                 //console.log(x);
             }
+        },
+        doTickRender: () => {
+            var myFrame = UI.bySel(".myFrame"),
+                projectPanel = UI.bySel(".projectPanel_full"),
+                ud = localStorage.getItem("uData"),
+                pd = localStorage.getItem("pData");
+
+            if (pd) {
+                var ppp = JSON.parse(pd);
+            }
+
+            pData.monthstamp = +ppp.monthstamp - +1;
+            pData.text_upper = ppp.text_upper;
+            pData.text_lower = ppp.text_lower;
+            pData.power = ppp.power;
+            pData.invest = ppp.invest;
+            pData.p_Type = ppp.p_Type;
+            pData.p_Bool = true;
+            pData.t_level = ppp.t_level;
+
+            localStorage.setItem("pData", JSON.stringify(pData));
+            UI.updatePanel(projectPanel, myFrame, ud, pd);
+            console.log(ppp.monthstamp);
         },
         doTimerControls: (myFrame, ud) => {
             if (ud) {

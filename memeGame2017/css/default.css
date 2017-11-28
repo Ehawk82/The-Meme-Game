@@ -6,17 +6,19 @@ html, body {
     padding: 0;
     background: #20282c;
 }
-i {
 
+i {
 }
+
 select {
     border: none;
     background: #FECEA8;
     outline: none;
-    cursor:pointer;
+    cursor: pointer;
 }
+
     select::-ms-expand {
-        background:#FECEA8;
+        background: #FECEA8;
     }
 
 button {
@@ -117,7 +119,7 @@ input::selection {
 .opts {
     background: #FECEA8;
     border: none;
-    font-size:22px;
+    font-size: 22px;
 }
 
 .myFrame {
@@ -482,37 +484,32 @@ input::selection {
             display: inline-block;
             line-height: 10px;
             margin: 0 0 20px 0;
-
         }
 
             .menuPages_full p span:nth-child(1) {
-
             }
 
             .menuPages_full p span:nth-child(2) {
-
             }
 
 .dvMemeHolder {
     position: absolute;
     background-color: #000;
-    background-size:100% auto;
-    background-repeat:no-repeat;
-    background-position:center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
     float: left;
     width: 520px;
     height: 340px;
     left: 680px;
     top: 140px;
-    
     box-shadow: 0 0 6px rgba(10, 10, 10, 0.95);
     color: #fff;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    letter-spacing:2px;
+    letter-spacing: 2px;
     font-size: 24px;
     font-weight: bold;
-    padding:0 4px;
-
+    padding: 0 4px;
 }
 
 .climate {
@@ -575,8 +572,7 @@ input::selection {
 
 .projectPanel_full {
     transition: all 250ms;
-    width:250px;
-    
+    width: 250px;
     position: absolute;
     background: #FECEA8;
     bottom: 160px;
@@ -593,7 +589,14 @@ input::selection {
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
 }
 
-
+    .projectPanel_full span {
+        color: #fff;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        letter-spacing: 2px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 0 4px;
+    }
 /* id's */
 #homeBtn {
 }
@@ -651,6 +654,20 @@ input::selection {
     box-shadow: 0 0 2px red;
 }
 
+#spn1Display {
+    position: relative;
+    display: block;
+    bottom: 165px;
+    word-wrap: break-word;
+}
+
+#spn1Display {
+    position: relative;
+    display: block;
+    top: 135px;
+    word-wrap: break-word;
+}
+
 #spnMeme1Holder {
     position: relative;
     display: block;
@@ -664,7 +681,7 @@ input::selection {
     top: 205px;
     word-wrap: break-word;
     height: 50px;
-    align-self:stretch;
+    align-self: stretch;
 }
 
 #dvFill {
@@ -681,13 +698,16 @@ input::selection {
     #dvFill span:nth-child(1) {
         background-image: url('../images/game-icons/docIcon.png');
     }
+
     #dvFill span:nth-child(2) {
-        margin:0 50px;
+        margin: 0 50px;
         background-image: url('../images/game-icons/friendsIcon.png');
     }
+
     #dvFill span:nth-child(3) {
         background-image: url('../images/game-icons/timeIcon.png');
     }
+
     #dvFill span:nth-child(1), #dvFill span:nth-child(2), #dvFill span:nth-child(3) {
         display: inline-block;
         width: 100px;
@@ -696,10 +716,13 @@ input::selection {
         background-position: center;
         background-repeat: no-repeat;
     }
+
 #dvProjMeme {
-    width: 250px;
-    height:250px;
-    background-size:250px;
+    width: 240px;
+    height: 200px;
+    margin: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 /* misc */
 button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
