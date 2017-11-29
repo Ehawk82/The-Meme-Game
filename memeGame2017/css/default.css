@@ -206,12 +206,12 @@ input::selection {
     width: 250px;
     position: absolute;
     background: #FECEA8;
-    top: 150px;
+    top: 10px;
     left: -290px;
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
-    padding: 6px 0;
+    padding: 3px 0;
 }
 
 .theTable_full {
@@ -219,12 +219,12 @@ input::selection {
     width: 170px;
     position: absolute;
     background: #FECEA8;
-    top: 150px;
+    top: 10px;
     left: 15px;
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
-    padding: 6px 0;
+    padding: 3px 0;
 }
 
 .infoLabels {
@@ -253,10 +253,10 @@ input::selection {
     transition: all 250ms;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
-    position: relative;
+    position: absolute;
     float: left;
     left: 0;
-    top: 99%;
+    top: 90%;
     bottom: 0;
     opacity: 1;
     width: 100%;
@@ -557,35 +557,25 @@ input::selection {
 }
 
 .projectPanel {
-    position: absolute;
     left: -350px;
-    bottom: 160px;
-    transition: all 250ms;
-    width: 250px;
-    position: absolute;
-    background: #FECEA8;
-    border: 6px inset #E84A5F;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
-    font-weight: bolder;
-    padding: 6px 0;
 }
 
 .projectPanel_full {
+    left: 15px;
+}
+
+.projectPanel, .projectPanel_full {
     transition: all 250ms;
-    width: 250px;
     position: absolute;
     background: #FECEA8;
-    bottom: 160px;
-    left: 15px;
+    width: 250px;
+    bottom: 10px;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.77);
     border: 6px inset #E84A5F;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 6px 0;
-}
-
-.projectPanel, .projectPanel_full {
-    font-weight: bolder;
-    color: rgba(0, 0, 0, 0.77);
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
 }
 
@@ -657,14 +647,14 @@ input::selection {
 #spn1Display {
     position: relative;
     display: block;
-    bottom: 165px;
+    top: 10px;
     word-wrap: break-word;
 }
 
-#spn1Display {
+#spn2Display {
     position: relative;
     display: block;
-    top: 135px;
+    top: 140px;
     word-wrap: break-word;
 }
 

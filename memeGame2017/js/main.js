@@ -84,10 +84,10 @@
 
     //for measuring and tracking money data
     moneyStuffs = {
-        mpt: 4,
-        lpt: 7,
-        tmpt: 7,
-        mpy: 5
+        mpt: 0,//money per tic
+        lpt: 0,// i don't know'
+        tmpt: 0,
+        mpy: 0
     }
 
     //don't actuall know what i did here, but i need it
@@ -472,7 +472,7 @@
             elems += "<span id='spn1Display'>" + ppp.text_upper + "</span>";
             elems += "<span id='spn2Display'>" + ppp.text_lower + "</span>";
             elems += "</div>";
-            elems += "💲 <span>" + ppp.power + "</span><br/>";
+            elems += "💲<span>" + ppp.power + "</span>/week<br/>";
             elems += "Reach <span>" + ppp.invest + "</span><br/>";
             elems += "Level <span>" + ppp.t_level + "</span><br/>";
 
@@ -555,7 +555,7 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
-                
+
                     }
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -634,7 +634,7 @@
                 elems = "<h2><span>💡 Create a New Project</span><span id='xMeme'>X</span></h2>";
 
                 elems += "<p>&nbsp;</p>";
-  
+
                 elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
 
                 elems += "<p><select>";
@@ -713,7 +713,7 @@
             return () => {
                 if (s == 0) {
                     dvMemeHolder.style.backgroundImage = "url(../images/memes/" + selects[s].value + ".jpg)"
-                
+
                     //console.log(selects[s].value);
                 }
                 if (s == 1) {
@@ -824,7 +824,7 @@
                     setTimeout(() => {
                         projectPanel.className = "projectPanel_full";
 
-                        
+
                         if (pd) {
                             var ppp = JSON.parse(pd);
                         }
@@ -841,7 +841,7 @@
                         researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                         budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                         settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
-                        
+
                     }, 10);
                 }, 1000);
                 /*
@@ -855,12 +855,16 @@
             }
         },
         updatePanel: (projectPanel, myFrame, ud, pd) => {
-            var elems;
+            var elems,
+                mx = localStorage.getItem("moneyStuffs");
 
+            if (mx) {
+                var mtsf = JSON.parse(mx);
+            }
             if (pd) {
                 var ppp = JSON.parse(pd);
             }
-            if (ppp.p_Bool != false && projectPanel) {
+            if (ppp.p_Bool != false && projectPanel && ppp.monthstamp > 0) {
                 //console.log(ppp.p_Type);💲
                 elems = "Current Meme <hr />";
                 elems += "Time left: " + ppp.monthstamp + "<br/>";
@@ -868,12 +872,35 @@
                 elems += "<span id='spn1Display'>" + ppp.text_upper + "</span>";
                 elems += "<span id='spn2Display'>" + ppp.text_lower + "</span>";
                 elems += "</div>";
-                elems += "💲 <span>" + ppp.power + "</span><br/>";
+                elems += "💲<span>" + ppp.power + "</span>/week<br/>";
                 elems += "Reach <span>" + ppp.invest + "</span><br/>";
                 elems += "Level <span>" + ppp.t_level + "</span><br/>";
 
                 projectPanel.innerHTML = elems;
-            } 
+            } else {
+                if (projectPanel) {
+                    moneyStuffs.mpt = +mtsf.mpt + +ppp.t_level;
+                    projectPanel.className = "projectPanel";
+                    UI.fixMemeBtn(myFrame, ud);
+                    localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
+                }
+            }
+        },
+        fixMemeBtn: (myFrame, ud) => {
+            var memePanel = UI.bySel(".memePanel_full") || UI.bySel(".memePanel");
+
+            if (memePanel) {
+                setTimeout(() => {
+                    memePanel.className = "memePanel";
+                    setTimeout(() => {
+                        if (memePanel) {
+                            memePanel.remove();
+                        } 
+                        return UI.memesFunc(myFrame, ud); 
+                    }, 500);
+                }, 500);
+            }
+            console.log("fixing...");
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
@@ -1129,7 +1156,7 @@
                                     } else {
 
                                         dateTool.month = +dtt.month - +11;
-                                        dateTool.week = +dtt.week;
+                                        dateTool.week = +dtt.week - +3;
                                         dateTool.year = +dtt.year + +1;
 
                                         localStorage.setItem("dateTool", JSON.stringify(dateTool));
@@ -1169,19 +1196,30 @@
             if (pd) {
                 var ppp = JSON.parse(pd);
             }
-
-            pData.monthstamp = +ppp.monthstamp - +1;
-            pData.text_upper = ppp.text_upper;
-            pData.text_lower = ppp.text_lower;
-            pData.power = ppp.power;
-            pData.invest = ppp.invest;
-            pData.p_Type = ppp.p_Type;
-            pData.p_Bool = true;
-            pData.t_level = ppp.t_level;
+            if (ppp.monthstamp > 0) {
+                pData.monthstamp = +ppp.monthstamp - +1;
+                pData.text_upper = ppp.text_upper;
+                pData.text_lower = ppp.text_lower;
+                pData.power = ppp.power;
+                pData.invest = ppp.invest;
+                pData.p_Type = ppp.p_Type;
+                pData.p_Bool = true;
+                pData.t_level = ppp.t_level;
+            } else {
+                pData.monthstamp = 0;
+                pData.text_upper = pData.text_upper;
+                pData.text_lower = pData.text_lower;
+                pData.power = pData.power;
+                pData.invest = pData.invest;
+                pData.p_Type = pData.p_Type;
+                pData.p_Bool = false;
+                pData.t_level = pData.t_level;
+            }
 
             localStorage.setItem("pData", JSON.stringify(pData));
+
             UI.updatePanel(projectPanel, myFrame, ud, pd);
-            console.log(ppp.monthstamp);
+            //console.log(ppp.monthstamp);
         },
         doTimerControls: (myFrame, ud) => {
             if (ud) {
