@@ -823,8 +823,6 @@
                     var pd = localStorage.getItem("pData");
                     setTimeout(() => {
                         projectPanel.className = "projectPanel_full";
-
-
                         if (pd) {
                             var ppp = JSON.parse(pd);
                         }
@@ -837,11 +835,9 @@
                             newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
                             UI.updatePanel(projectPanel, myFrame, ud, pd);
                         }
-
                         researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                         budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                         settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
-
                     }, 10);
                 }, 1000);
                 /*
@@ -879,7 +875,12 @@
                 projectPanel.innerHTML = elems;
             } else {
                 if (projectPanel) {
+
                     moneyStuffs.mpt = +mtsf.mpt + +ppp.t_level;
+                    moneyStuffs.lpt = 0;
+                    moneyStuffs.tmpt = 0;
+                    moneyStuffs.mpy = mtsf.mpy + +moneyStuffs.mpt;
+
                     projectPanel.className = "projectPanel";
                     UI.fixMemeBtn(myFrame, ud);
                     localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
@@ -895,8 +896,8 @@
                     setTimeout(() => {
                         if (memePanel) {
                             memePanel.remove();
-                        } 
-                        return UI.memesFunc(myFrame, ud); 
+                        }
+                        return UI.memesFunc(myFrame, ud);
                     }, 500);
                 }, 500);
             }
@@ -913,7 +914,7 @@
                     } else {
                         newMeme.onclick = null;
                     }
-                    
+
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -961,7 +962,7 @@
                         rng1 = UI.bySel("#rng1");
 
                     xMeme.onclick = UI.xSettFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
-                  
+
                     homeBtn.onclick = UI.globalHome;
 
                     rng1.onmouseup = UI.setMainVol(rng1, au);
@@ -1098,7 +1099,7 @@
 
 
                 if (tBool === "0") {
-                    
+
                     play.className = "timeCtrlItems_active";
                     pause.className = "timeCtrlItems";
                     localStorage.setItem("tBool", 1);
@@ -1416,7 +1417,7 @@
         }
     }
     //Artificial Intelligence object
-    AI = { 
+    AI = {
         launchAI: (uuu, statusDiv) => {
 
             AI.aiChecker(uuu, statusDiv);
