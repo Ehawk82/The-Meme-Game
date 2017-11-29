@@ -119,7 +119,7 @@
         luck: 1,
         chr: 3,
         spd: 2,
-        clvl: 1
+        clvl: 2
     };
 
     //basic libraries

@@ -4,7 +4,13 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
+    /*
     background: #20282c;
+        */
+    background-image: url('../images/walls/d9.jpg');
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    background-position:center;
 }
 
 i {
@@ -22,7 +28,7 @@ select {
     }
 
 button {
-    padding: 5px 10px;
+    padding: 12px 15px;
     font-weight: bolder;
 }
 
@@ -56,7 +62,7 @@ input[type=text] {
 
 input[type=range] {
     -webkit-appearance: none;
-    background-color: #E84A5F;
+    background-color: #760e00;
     width: 200px;
     height: 8px;
     border-radius: 13px;
@@ -208,7 +214,7 @@ input::selection {
     background: #FECEA8;
     top: 10px;
     left: -290px;
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 3px 0;
@@ -221,7 +227,7 @@ input::selection {
     background: #FECEA8;
     top: 10px;
     left: 15px;
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 3px 0;
@@ -268,7 +274,7 @@ input::selection {
     width: 50px;
     position: relative;
     line-height: 50px;
-    border: 6px outset #E84A5F;
+    border: 6px outset #760e00;
     background: #FECEA8;
     margin: 0 12px;
     display: inline-block;
@@ -278,7 +284,7 @@ input::selection {
 }
 
     .memePanelBtns:active {
-        border: 6px inset #E84A5F;
+        border: 6px inset #760e00;
         text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
         box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     }
@@ -295,7 +301,7 @@ input::selection {
     padding: 12px 10px;
     opacity: 0;
     font-weight: bolder;
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
 }
 
 .myTimer_full, .timeCtrlCell_full {
@@ -310,7 +316,7 @@ input::selection {
     padding: 12px 10px;
     opacity: 1;
     font-weight: bolder;
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
 }
 
 .timerItems {
@@ -361,7 +367,7 @@ input::selection {
     padding: 8px 0;
     opacity: 0;
     color: rgba(0, 0, 0, 0.77);
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
 }
 
 .moneyTab_full {
@@ -378,7 +384,7 @@ input::selection {
     padding: 8px 12px;
     opacity: 1;
     color: rgba(0, 0, 0, 0.77);
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
 }
 
 .statusDiv {
@@ -386,7 +392,7 @@ input::selection {
     width: 1%;
     position: absolute;
     height: 200px;
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     background: #FECEA8;
     margin: 0 2px;
@@ -405,7 +411,7 @@ input::selection {
     width: 170px;
     position: absolute;
     height: 200px;
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     background: #FECEA8;
     margin: 0 2px;
@@ -572,7 +578,7 @@ input::selection {
     bottom: 10px;
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.77);
-    border: 6px inset #E84A5F;
+    border: 6px inset #760e00;
     box-shadow: 0 0 1px rgba(220, 220, 220, 1);
     font-weight: bolder;
     padding: 6px 0;
@@ -721,13 +727,13 @@ button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-ch
     color: rgba(255, 255, 255, 0.47);
     text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
     background: #FECEA8;
-    border: 6px outset #E84A5F;
+    border: 6px outset #760e00;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
 
     button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active, .button_off, button_on {
         transition: all 250ms;
-        border: 6px inset #E84A5F;
+        border: 6px inset #760e00;
         color: rgba(0, 0, 0, 0.47);
         text-shadow: .5px .5px #000, .5px .5px rgba(25, 25, 25, 0.27), .5px .5px #000;
         box-shadow: 0 0 1px rgba(220, 220, 220, 1);
