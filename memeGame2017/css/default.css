@@ -8,7 +8,7 @@ html, body {
     background: #20282c;
         */
     background-image: url('../images/walls/d9.jpg');
-    background-size:100% auto;
+    background-size:auto 100%;
     background-repeat:no-repeat;
     background-position:center;
 }
@@ -62,7 +62,7 @@ input[type=text] {
 
 input[type=range] {
     -webkit-appearance: none;
-    background-color: #760e00;
+    background-color: #685c00;
     width: 200px;
     height: 8px;
     border-radius: 13px;
@@ -109,7 +109,7 @@ input[type="radio"] {
         line-height: 35px;
         margin: 0 4px;
         font-weight: bolder;
-        box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+        box-shadow: 0 0 1px #685c00;
     }
 
 input:-ms-input-placeholder {
@@ -214,8 +214,8 @@ input::selection {
     background: #FECEA8;
     top: 10px;
     left: -290px;
-    border: 6px inset #760e00;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    border: 6px inset #685c00;
+    box-shadow: 0 0 1px #685c00;
     font-weight: bolder;
     padding: 3px 0;
 }
@@ -227,8 +227,8 @@ input::selection {
     background: #FECEA8;
     top: 10px;
     left: 15px;
-    border: 6px inset #760e00;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    border: 6px inset #685c00;
+    box-shadow: 0 0 1px #685c00;
     font-weight: bolder;
     padding: 3px 0;
 }
@@ -274,7 +274,7 @@ input::selection {
     width: 50px;
     position: relative;
     line-height: 50px;
-    border: 6px outset #760e00;
+    border: 6px outset #685c00;
     background: #FECEA8;
     margin: 0 12px;
     display: inline-block;
@@ -284,14 +284,14 @@ input::selection {
 }
 
     .memePanelBtns:active {
-        border: 6px inset #760e00;
+        border: 6px inset #685c00;
         text-shadow: .5px 0 rgba(83, 0, 0, 0.41), .5px .5px rgba(83, 0, 0, 0.41), .5px 0 rgba(83, 0, 0, 0.41);
-        box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+        box-shadow: 0 0 1px #685c00;
     }
 
 .myTimer, .timeCtrlCell {
     transition: all 250ms;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 1px #685c00;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
     position: relative;
@@ -301,12 +301,12 @@ input::selection {
     padding: 12px 10px;
     opacity: 0;
     font-weight: bolder;
-    border: 6px inset #760e00;
+    border: 6px inset #685c00;
 }
 
 .myTimer_full, .timeCtrlCell_full {
     transition: all 250ms;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 1px #685c00;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
     position: relative;
@@ -316,7 +316,7 @@ input::selection {
     padding: 12px 10px;
     opacity: 1;
     font-weight: bolder;
-    border: 6px inset #760e00;
+    border: 6px inset #685c00;
 }
 
 .timerItems {
@@ -356,51 +356,51 @@ input::selection {
 
 .moneyTab {
     transition: all 250ms;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 1px #685c00;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
     position: absolute;
     background: #FECEA8;
     right: -100px;
     width: 30px;
-    top: 150px;
+    top: 10px;
     padding: 8px 0;
     opacity: 0;
     color: rgba(0, 0, 0, 0.77);
-    border: 6px inset #760e00;
+    border: 6px inset #685c00;
 }
 
 .moneyTab_full {
     transition: all 250ms;
     border: 6px inset #764747;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 1px #685c00;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
     display: inline-block;
     position: absolute;
     background: #FECEA8;
     width: auto;
     right: 15px;
-    top: 150px;
+    top: 10px;
     padding: 8px 12px;
     opacity: 1;
     color: rgba(0, 0, 0, 0.77);
-    border: 6px inset #760e00;
+    border: 6px inset #685c00;
 }
 
 .statusDiv {
     transition: all 250ms;
     width: 1%;
-    position: absolute;
-    height: 200px;
-    border: 6px inset #760e00;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    position: fixed;
+    height: 400px;
+    border: 6px inset #685c00;
+    box-shadow: 0 0 1px #685c00;
     background: #FECEA8;
     margin: 0 2px;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
     overflow-y: scroll;
+    bottom: 10px;
     right: 15px;
-    top: 250px;
     text-align: center;
     -ms-overflow-style: none;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
@@ -409,16 +409,16 @@ input::selection {
 .statusDiv_full {
     transition: all 250ms;
     width: 170px;
-    position: absolute;
-    height: 200px;
-    border: 6px inset #760e00;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    position: fixed;
+    height: 400px;
+    border: 6px inset #685c00;
+    box-shadow: 0 0 1px #685c00;
     background: #FECEA8;
     margin: 0 2px;
     display: inline-block;
     color: rgba(0, 0, 0, 0.61);
     text-align: left;
-    top: -350px;
+    bottom:10px;
     right: 15px;
     overflow-y: scroll;
     text-indent: 8px;
@@ -559,15 +559,17 @@ input::selection {
     box-shadow: 0 80px 70px 0 rgba(0,0,0,0.9) inset;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-top: 3px solid black;
+    border-top: 9px solid black;
 }
 
 .projectPanel {
     left: -350px;
+    bottom: 10px;
 }
 
 .projectPanel_full {
     left: 15px;
+    bottom: 10px;
 }
 
 .projectPanel, .projectPanel_full {
@@ -575,11 +577,11 @@ input::selection {
     position: absolute;
     background: #FECEA8;
     width: 250px;
-    bottom: 10px;
+    
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.77);
-    border: 6px inset #760e00;
-    box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+    border: 6px inset #685c00;
+    box-shadow: 0 0 1px #685c00;
     font-weight: bolder;
     padding: 6px 0;
     text-shadow: .5px .5px rgba(225, 182, 182, 0.62), .5px .5px #764747, .5px .5px rgba(225, 182, 182, 0.62);
@@ -727,16 +729,16 @@ button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-ch
     color: rgba(255, 255, 255, 0.47);
     text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
     background: #FECEA8;
-    border: 6px outset #760e00;
+    border: 6px outset #685c00;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
 }
 
-    button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active, .button_off, button_on {
+    button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active, .button_off, .button_on {
         transition: all 250ms;
-        border: 6px inset #760e00;
+        border: 6px inset #685c00;
         color: rgba(0, 0, 0, 0.47);
         text-shadow: .5px .5px #000, .5px .5px rgba(25, 25, 25, 0.27), .5px .5px #000;
-        box-shadow: 0 0 1px rgba(220, 220, 220, 1);
+        box-shadow: 0 0 1px #685c00;
     }
 
 /* media queries */

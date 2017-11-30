@@ -72,7 +72,7 @@
         invest: 0,
         p_Type: "000",
         p_Bool: false,
-        t_level: 0
+        t_level: 5
     }
 
     //tracking sound and music
@@ -85,7 +85,7 @@
     //for measuring and tracking money data
     moneyStuffs = {
         mpt: 0,//money per tic
-        lpt: 0,// i don't know'
+        lpt: 0,
         tmpt: 0,
         mpy: 0
     }
@@ -110,16 +110,16 @@
     uData = {
         siteName: "",
         userName: "",
-        money: 4,
-        lvl: 9,
+        money: 0,
+        lvl: 1,
         gndr: "",
-        hum: 4,
-        int: 5,
-        cre: 4,
+        hum: 1,
+        int: 1,
+        cre: 1,
         luck: 1,
-        chr: 3,
-        spd: 2,
-        clvl: 2
+        chr: 1,
+        spd: 1,
+        clvl: 1
     };
 
     //basic libraries
@@ -391,9 +391,15 @@
                 dateTool.week = 1;
                 dateTool.year = y;
 
+                moneyStuffs.mpt = 0;
+                moneyStuffs.lpt = 0;
+                moneyStuffs.tmpt = 0;
+                moneyStuffs.mpy = 0;
+
                 localStorage.setItem("uData", JSON.stringify(uData));
                 localStorage.setItem("pData", JSON.stringify(pData));
                 localStorage.setItem("dateTool", JSON.stringify(dateTool));
+                localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
 
                 if (setupItems[0].value != "" && setupItems[1].value != "") {
                     setupConfirm.value = "✔";
@@ -830,8 +836,8 @@
                             newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                         } else {
                             newMeme.onclick = null;
-                            newMeme.style.opacity = "0.5";
-                            newMeme.style.border = "6px inset #E84A5F";
+                            newMeme.style.background = "#cea88a";
+                            newMeme.style.border = "6px inset #685000";
                             newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
                             UI.updatePanel(projectPanel, myFrame, ud, pd);
                         }
@@ -901,7 +907,7 @@
                     }, 500);
                 }, 500);
             }
-            console.log("fixing...");
+
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
@@ -1014,8 +1020,8 @@
                 newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
             } else {
                 newMeme.onclick = null;
-                newMeme.style.opacity = "0.5";
-                newMeme.style.border = "6px inset #E84A5F";
+                newMeme.style.background = "#cea88a";
+                newMeme.style.border = "6px inset #685000";
                 newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
 
             }
