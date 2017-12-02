@@ -124,8 +124,8 @@
 
     //basic libraries
 
-    var memes = ["ironyFrog", "grumpyCat", "wowDoge"];//image lookup
-    var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge"];//User sees this
+    var memes = ["ironyFrog", "grumpyCat", "wowDoge", "allTheThings"];//image lookup
+    var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge", "All The Things"];//User sees this
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
 
     //User Interface object
