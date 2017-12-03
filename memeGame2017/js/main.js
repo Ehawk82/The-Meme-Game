@@ -115,7 +115,7 @@
         gndr: "",
         hum: 5,
         int: 5,
-        cre: 5,
+        cre: 15,
         luck: 5,
         chr: 5,
         spd: 5,
@@ -124,8 +124,9 @@
 
     //basic libraries
 
-    var memes = ["ironyFrog", "grumpyCat", "wowDoge", "allTheThings"];//image lookup
-    var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge", "All The Things"];//User sees this
+    var memes = ["ironyFrog", "grumpyCat", "wowDoge", "insanityWolf", "tableFlip", "meGusta", "trollFace", "allTheThings"];//image lookup
+    var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge", "Insanity Wolf", "Table Flipper", "Me Gusta!", "Troll Face", "All The Things"];//User sees this
+
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
 
     //User Interface object
@@ -561,6 +562,9 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
+                        newMeme.style.background = "#cea88a";
+                        newMeme.style.border = "6px inset #685000";
+                        newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
 
                     }
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -607,6 +611,9 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
+                        newMeme.style.background = "#cea88a";
+                        newMeme.style.border = "6px inset #685000";
+                        newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
                     }
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -866,6 +873,9 @@
             if (pd) {
                 var ppp = JSON.parse(pd);
             }
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
             if (ppp.p_Bool != false && projectPanel && ppp.monthstamp > 0) {
                 //console.log(ppp.p_Type);💲
                 elems = "Current Meme <hr />";
@@ -883,9 +893,9 @@
                 if (projectPanel) {
 
                     moneyStuffs.mpt = +mtsf.mpt + +ppp.t_level;
-                    moneyStuffs.lpt = 0;
-                    moneyStuffs.tmpt = 0;
-                    moneyStuffs.mpy = mtsf.mpy + +moneyStuffs.mpt;
+                    moneyStuffs.lpt = moneyStuffs.lpt;
+                    moneyStuffs.tmpt = moneyStuffs.tmpt;
+                    moneyStuffs.mpy = moneyStuffs.mpy;
 
                     projectPanel.className = "projectPanel";
                     UI.fixMemeBtn(myFrame, ud);
@@ -919,6 +929,9 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
+                        newMeme.style.background = "#cea88a";
+                        newMeme.style.border = "6px inset #685000";
+                        newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
                     }
 
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -987,7 +1000,10 @@
                         newMeme.onclick = UI.makeMemer(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings);
                     } else {
                         newMeme.onclick = null;
-                        newMeme.style.opacity = "0.5";
+                        newMeme.style.background = "#cea88a";
+                        newMeme.style.border = "6px inset #685000";
+                        newMeme.style.boxShadow = "0 0 1px rgba(220, 220, 220, 1)";
+
                     }
                     researchMeme.onclick = UI.makeResearch(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     budgetMeme.onclick = UI.makeMoney(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
@@ -1198,11 +1214,17 @@
             var myFrame = UI.bySel(".myFrame"),
                 projectPanel = UI.bySel(".projectPanel_full"),
                 ud = localStorage.getItem("uData"),
+                mx = localStorage.getItem("moneyStuffs"),
                 pd = localStorage.getItem("pData");
+
+            if (mx) {
+                var mtsf = JSON.parse(mx);
+            }
 
             if (pd) {
                 var ppp = JSON.parse(pd);
             }
+
             if (ppp.monthstamp > 0) {
                 pData.monthstamp = +ppp.monthstamp - +1;
                 pData.text_upper = ppp.text_upper;
@@ -1223,7 +1245,13 @@
                 pData.t_level = pData.t_level;
             }
 
+            moneyStuffs.mpt = +mtsf.mpt;
+            moneyStuffs.lpt = moneyStuffs.lpt;
+            moneyStuffs.tmpt = moneyStuffs.tmpt;
+            moneyStuffs.mpy = +mtsf.mpy + +mtsf.mpt;
+
             localStorage.setItem("pData", JSON.stringify(pData));
+            localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
 
             UI.updatePanel(projectPanel, myFrame, ud, pd);
             //console.log(ppp.monthstamp);

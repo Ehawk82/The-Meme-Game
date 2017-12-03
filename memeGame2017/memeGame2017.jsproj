@@ -80,8 +80,12 @@
     <Content Include="images\memes\000.jpg" />
     <Content Include="images\memes\allTheThings.jpg" />
     <Content Include="images\memes\grumpyCat.jpg" />
+    <Content Include="images\memes\insanityWolf.jpg" />
     <Content Include="images\memes\ironyFrog.jpg" />
+    <Content Include="images\memes\meGusta.jpeg" />
     <Content Include="images\memes\noImage.jpg" />
+    <Content Include="images\memes\tableFlip.jpg" />
+    <Content Include="images\memes\trollFace.jpg" />
     <Content Include="images\memes\wowDoge.jpg" />
     <Content Include="images\walls\d7.jpg" />
     <Content Include="images\floors\f2.jpg" />

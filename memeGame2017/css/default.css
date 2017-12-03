@@ -67,7 +67,7 @@ input[type=text] {
 
 input[type=range] {
     -webkit-appearance: none;
-    background-color: #FECEA8;
+    background-color: rgba(83, 0, 0, 0.81);
     width: 200px;
     height: 8px;
     border-radius: 13px;
