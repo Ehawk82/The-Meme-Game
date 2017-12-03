@@ -113,13 +113,13 @@
         money: 0,
         lvl: 1,
         gndr: "",
-        hum: 5,
-        int: 5,
-        cre: 15,
-        luck: 5,
-        chr: 5,
-        spd: 5,
-        clvl: 2
+        hum: 1,
+        int: 1,
+        cre: 1,
+        luck: 1,
+        chr: 1,
+        spd: 1,
+        clvl: 7
     };
 
     //basic libraries
