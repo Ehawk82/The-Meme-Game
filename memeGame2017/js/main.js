@@ -110,16 +110,16 @@
     uData = {
         siteName: "",
         userName: "",
-        money: 0,
-        lvl: 1,
-        gndr: "",
-        hum: 5,
-        int: 5,
-        cre: 15,
-        luck: 5,
-        chr: 5,
-        spd: 5,
-        clvl: 2
+        money: 0,// ammount of in-game currency
+        lvl: 1,// the users' level
+        gndr: "",// gender doesn't really do much, color differences maybe?
+        hum: 1,// humor is a multiplier that for fanbase.
+        int: 1,// intelligence will allow more letters on memes
+        cre: 1,// creativity increases the amount of memes
+        luck: 1,// random multiplier
+        chr: 1,// charisma 
+        spd: 1,// speed for for spamming multiplier
+        clvl: 1// climate level
     };
 
     //basic libraries
@@ -334,9 +334,7 @@
                 }, 50);
                 if (warnPage) {
                     setTimeout(() => {
-
                         warnPage.remove();
-
                     }, 1000);
                 }
             }
@@ -853,14 +851,6 @@
                         settings.onclick = UI.makeSettings(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp);
                     }, 10);
                 }, 1000);
-                /*
-                var p2 = localStorage.getItem("pData");
-
-                if (p2) {
-                    var pp2 = JSON.parse(p2);
-                }
-                console.log(pp2.monthstamp);
-                */
             }
         },
         updatePanel: (projectPanel, myFrame, ud, pd) => {
@@ -1349,13 +1339,13 @@
             setTimeout(() => {
                 var playerItems = UI.bySelAll(".playerItems");
                 playerItems[0].innerHTML = uuu.siteName;
-                playerItems[1].innerHTML = "<span>Level</span> <span>" + uuu.lvl + "</span>";
-                playerItems[2].innerHTML = "<span>Humor</span> <span>" + uuu.hum + "</span>";
-                playerItems[3].innerHTML = "<span>Intelligence</span> <span>" + uuu.int + "</span>";
-                playerItems[4].innerHTML = "<span>Creativity</span> <span>" + uuu.cre + "</span>";
-                playerItems[5].innerHTML = "<span>Luck</span> <span>" + uuu.luck + "</span>";
-                playerItems[6].innerHTML = "<span>Charisma</span> <span>" + uuu.chr + "</span>";
-                playerItems[7].innerHTML = "<span>Speed</span> <span>" + uuu.spd + "</span>";
+                playerItems[1].innerHTML = "<div id='dvEX_1'><span class='spnBar'>Level</span></div> <span class='spnBubble'>" + uuu.lvl + "</span>";
+                playerItems[2].innerHTML = "<div id='dvEX_2'><span class='spnBar'>Humor</span></div> <span class='spnBubble'>" + uuu.hum + "</span>";
+                playerItems[3].innerHTML = "<div id='dvEX_3'><span class='spnBar'>Intelligence</span></div> <span class='spnBubble'>" + uuu.int + "</span>";
+                playerItems[4].innerHTML = "<div id='dvEX_4'><span class='spnBar'>Creativity</span></div> <span class='spnBubble'>" + uuu.cre + "</span>";
+                playerItems[5].innerHTML = "<div id='dvEX_5'><span class='spnBar'>Luck</span></div> <span class='spnBubble'>" + uuu.luck + "</span>";
+                playerItems[6].innerHTML = "<div id='dvEX_6'><span class='spnBar'>Charisma</span></div> <span class='spnBubble'>" + uuu.chr + "</span>";
+                playerItems[7].innerHTML = "<div id='dvEX_7'><span class='spnBar'>Speed</span></div> <span class='spnBubble'>" + uuu.spd + "</span>";
                 setTimeout(() => {
                     table.className = "theTable_full";
                 }, 50);

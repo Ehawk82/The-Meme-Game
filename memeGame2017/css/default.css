@@ -6,8 +6,7 @@ html, body {
     padding: 0;
     /*
     background: #20282c;
-        */
-    
+    */
 }
 html {
     background-image: url('../images/bgnd/texture7.jpg');
@@ -169,8 +168,6 @@ input::selection {
     color: rgba(0, 0, 0, 0.77);
 }
 
-
-
 .xBtns {
     position: relative;
     float: right;
@@ -190,7 +187,6 @@ input::selection {
 
     .playerItems span:nth-child(1) {
         float: left;
-        margin-left: 13px;
         padding: 6px 0;
         width: 100px;
         text-align: left;
@@ -198,9 +194,10 @@ input::selection {
 
     .playerItems span:nth-child(2) {
         float: right;
-        margin-left: 5px;
+        margin-right:10px;
         padding: 6px 0;
-        width: 50px;
+        width: 40px;
+        box-shadow:0 0 2px #fff;
         font-weight: bolder;
     }
 
@@ -246,6 +243,18 @@ input::selection {
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.77);
 }
+.spnBubble {
+    background-image: url('../images/assets/bubble.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:auto 100%;
+}
+.spnBar {
+    box-shadow:0 0 1px #fff;
+    background:rgba(0, 0, 0, 0.54);
+    text-indent:4%;
+}
+
 
 .memePanel {
     transition: all 250ms;
@@ -729,16 +738,48 @@ input::selection {
     background-position: center;
     background-repeat: no-repeat;
 }
-/* misc */
-button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
-    transition: all 250ms;
-    border-radius: 1px;
-    color: rgba(255, 255, 255, 0.47);
-    text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
-    background: #FECEA8;
-    border: 6px outset #805f46;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
+
+#dvEX_1 {
+    width: 10px;
 }
+#dvEX_2 {
+    width: 15px;
+}
+#dvEX_3 {
+    width: 19px;
+}
+#dvEX_4 {
+    width: 30px;
+}
+#dvEX_5 {
+    width: 100px;
+}
+#dvEX_6 {
+    width: 60px;
+}
+#dvEX_7 {
+    width: 55px;
+}
+/* misc */
+#dvEX_1, #dvEX_2, #dvEX_3, #dvEX_4, #dvEX_5, #dvEX_6, #dvEX_7 {
+    height: auto;
+    background: rgba(27, 196, 20, 0.59);
+    display: inline-block;
+    clear: left;
+    float: left;
+    box-shadow:0 0 1px #31fd3a;
+    margin-left:10px;
+}
+    
+button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
+        transition: all 250ms;
+        border-radius: 1px;
+        color: rgba(255, 255, 255, 0.47);
+        text-shadow: .5px .5px #000, .5px .5px rgba(255, 255, 255, 0.47), .5px .5px #000;
+        background: #FECEA8;
+        border: 6px outset #805f46;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.98);
+    }
 
     button:active, #setupX:active, .menuPages h2 span:nth-child(2):active, .menuPages_full h2 span:nth-child(2):active, .button_off, .button_on {
         transition: all 250ms;
@@ -747,5 +788,8 @@ button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-ch
         text-shadow: .5px .5px #000, .5px .5px rgba(25, 25, 25, 0.27), .5px .5px #000;
         box-shadow: 0 0 1px #fff;
     }
+.spnBubble, .spnBar {
+    margin: 0;
 
-/* media queries */
+}
+    /* media queries */

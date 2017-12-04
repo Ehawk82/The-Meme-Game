@@ -62,6 +62,7 @@
     <Content Include="css\sounds\play.wav" />
     <Content Include="css\sounds\stop.wav" />
     <Content Include="css\sounds\token.wav" />
+    <Content Include="images\assets\bubble.png" />
     <Content Include="images\bgnd\texture1.jpg" />
     <Content Include="images\bgnd\texture10.jpg" />
     <Content Include="images\bgnd\texture2.jpg" />
