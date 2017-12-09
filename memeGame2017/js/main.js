@@ -119,7 +119,7 @@
         luck: 1,// random multiplier
         chr: 1,// charisma 
         spd: 1,// speed for for spamming multiplier
-        clvl: 1// climate level
+        clvl: 3// climate level
     };
 
     //basic libraries
@@ -1102,20 +1102,88 @@
 
             moneySlot.innerHTML = lxx.money;
         },
+        doTable: (myFrame, ud) => {
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+            var table = UI.createEle("div");
+
+            table.className = "theTable";
+            for (var i = 1; i < 9; i++) {
+                var elems = UI.createEle("div");
+
+                elems.id = "elem_" + i + "";
+                elems.className = "playerItems";
+
+                table.appendChild(elems);
+            }
+
+            myFrame.appendChild(table);
+
+            setTimeout(() => {
+                var playerItems = UI.bySelAll(".playerItems");
+                playerItems[0].innerHTML = uuu.siteName;
+                playerItems[1].innerHTML = "<div id='dvEX_1'><span class='spnBar'>Level</span></div> <span class='spnBubble'>" + uuu.lvl + "</span>";
+                playerItems[2].innerHTML = "<div id='dvEX_2'><span class='spnBar'>Humor</span></div> <span class='spnBubble'>" + uuu.hum + "</span>";
+                playerItems[3].innerHTML = "<div id='dvEX_3'><span class='spnBar'>Intelligence</span></div> <span class='spnBubble'>" + uuu.int + "</span>";
+                playerItems[4].innerHTML = "<div id='dvEX_4'><span class='spnBar'>Creativity</span></div> <span class='spnBubble'>" + uuu.cre + "</span>";
+                playerItems[5].innerHTML = "<div id='dvEX_5'><span class='spnBar'>Luck</span></div> <span class='spnBubble'>" + uuu.luck + "</span>";
+                playerItems[6].innerHTML = "<div id='dvEX_6'><span class='spnBar'>Charisma</span></div> <span class='spnBubble'>" + uuu.chr + "</span>";
+                playerItems[7].innerHTML = "<div id='dvEX_7'><span class='spnBar'>Speed</span></div> <span class='spnBubble'>" + uuu.spd + "</span>";
+                setTimeout(() => {
+                    table.className = "theTable_full";
+                }, 50);
+            }, 1000);
+        },
+
+        //timer stuffs
+        doTime2: (play, pause) => {
+            return () => {
+                UI.playClick();
+                play.innerHTML = "x2";
+                play.onclick = UI.doTime3(play, pause);
+                localStorage.setItem("tBool", 2);
+                //do next event
+            }
+        },
+        doTime3: (play, pause) => {
+            return () => {
+                UI.playClick();
+                play.innerHTML = "x5";
+                play.onclick = UI.doTime4(play, pause);
+                localStorage.setItem("tBool", 3);
+            }
+        },
+        doTime4: (play, pause) => {
+            return () => {
+                UI.playClick();
+                play.innerHTML = "x10";
+                play.onclick = UI.doTime5(play, pause);
+                localStorage.setItem("tBool", 4);
+            }
+        },
+        doTime5: (play, pause) => {
+            return () => {
+                UI.playClick();
+                play.innerHTML = "&#9658;";
+                play.onclick = UI.doTime2(play, pause);
+                localStorage.setItem("tBool", 1);
+            }
+        },
         timeCheck: (play, pause, ud) => {
             return () => {
 
                 var dt = localStorage.getItem("dateTool"),
                     tBool = localStorage.getItem("tBool"),
                     timerItems = UI.bySelAll(".timerItems");
-
+    
 
                 if (tBool === "0") {
-
+                    
                     play.className = "timeCtrlItems_active";
                     pause.className = "timeCtrlItems";
                     localStorage.setItem("tBool", 1);
-                    play.onclick = null;
+
                     pause.onclick = UI.timeCheck(play, pause);
                     UI.playClick();
                     ticker();
@@ -1131,8 +1199,10 @@
                         if (ud) {
                             var uuu = JSON.parse(ud);
                         }
-
+                 
                         if (tBl === "1") {
+                            
+                            play.onclick = UI.doTime2(play, pause);
 
                             setTimeout(() => {
 
@@ -1147,6 +1217,8 @@
                                     timerItems[0].innerHTML = mnth[dtt.month];
                                     timerItems[1].innerHTML = "Week " + dtt.week;
                                     timerItems[2].innerHTML = dtt.year;
+
+
                                     UI.doTickRender();
                                     //console.log(uuu.money);
                                     UI.doCoinPerTic(uuu);
@@ -1182,7 +1254,175 @@
                                 }
                                 ticker();
 
-                            }, 3100);
+                            }, 3200);
+                        }
+                        if (tBl === "2") {
+                
+                            play.onclick = UI.doTime3(play, pause);
+
+                            setTimeout(() => {
+
+                                if (+dtt.week < +4) {
+
+                                    dateTool.month = +dtt.month;
+                                    dateTool.week = +dtt.week + +1;
+                                    dateTool.year = +dtt.year;
+
+                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                    timerItems[0].innerHTML = mnth[dtt.month];
+                                    timerItems[1].innerHTML = "Week " + dtt.week;
+                                    timerItems[2].innerHTML = dtt.year;
+
+
+                                    UI.doTickRender();
+                                    //console.log(uuu.money);
+                                    UI.doCoinPerTic(uuu);
+                                } else {
+
+                                    dateTool.week = +dtt.week - +3;
+
+                                    if (+dtt.month < +11) {
+
+                                        dateTool.month = +dtt.month + +1;
+                                        dateTool.week = +dtt.week - +3;
+                                        dateTool.year = +dtt.year;
+
+                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                        timerItems[0].innerHTML = mnth[dtt.month];
+                                        timerItems[1].innerHTML = "Week " + dtt.week;
+                                        timerItems[2].innerHTML = dtt.year;
+
+                                    } else {
+
+                                        dateTool.month = +dtt.month - +11;
+                                        dateTool.week = +dtt.week - +3;
+                                        dateTool.year = +dtt.year + +1;
+
+                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                        timerItems[0].innerHTML = mnth[dtt.month];
+                                        timerItems[1].innerHTML = "Week " + dtt.week;
+                                        timerItems[2].innerHTML = dtt.year;
+
+                                    }
+                                }
+                                ticker();
+
+                            }, 1600);
+                        }
+                        if (tBl === "3") {
+               
+                            play.onclick = UI.doTime4(play, pause);
+
+                            setTimeout(() => {
+
+                                if (+dtt.week < +4) {
+
+                                    dateTool.month = +dtt.month;
+                                    dateTool.week = +dtt.week + +1;
+                                    dateTool.year = +dtt.year;
+
+                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                    timerItems[0].innerHTML = mnth[dtt.month];
+                                    timerItems[1].innerHTML = "Week " + dtt.week;
+                                    timerItems[2].innerHTML = dtt.year;
+
+
+                                    UI.doTickRender();
+                                    //console.log(uuu.money);
+                                    UI.doCoinPerTic(uuu);
+                                } else {
+
+                                    dateTool.week = +dtt.week - +3;
+
+                                    if (+dtt.month < +11) {
+
+                                        dateTool.month = +dtt.month + +1;
+                                        dateTool.week = +dtt.week - +3;
+                                        dateTool.year = +dtt.year;
+
+                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                        timerItems[0].innerHTML = mnth[dtt.month];
+                                        timerItems[1].innerHTML = "Week " + dtt.week;
+                                        timerItems[2].innerHTML = dtt.year;
+
+                                    } else {
+
+                                        dateTool.month = +dtt.month - +11;
+                                        dateTool.week = +dtt.week - +3;
+                                        dateTool.year = +dtt.year + +1;
+
+                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                        timerItems[0].innerHTML = mnth[dtt.month];
+                                        timerItems[1].innerHTML = "Week " + dtt.week;
+                                        timerItems[2].innerHTML = dtt.year;
+
+                                    }
+                                }
+                                ticker();
+
+                            }, 1000);
+                        }
+                        if (tBl === "4") {
+             
+                            play.onclick = UI.doTime5(play, pause);
+
+                            setTimeout(() => {
+
+                                if (+dtt.week < +4) {
+
+                                    dateTool.month = +dtt.month;
+                                    dateTool.week = +dtt.week + +1;
+                                    dateTool.year = +dtt.year;
+
+                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                    timerItems[0].innerHTML = mnth[dtt.month];
+                                    timerItems[1].innerHTML = "Week " + dtt.week;
+                                    timerItems[2].innerHTML = dtt.year;
+
+
+                                    UI.doTickRender();
+                                    //console.log(uuu.money);
+                                    UI.doCoinPerTic(uuu);
+                                } else {
+
+                                    dateTool.week = +dtt.week - +3;
+
+                                    if (+dtt.month < +11) {
+
+                                        dateTool.month = +dtt.month + +1;
+                                        dateTool.week = +dtt.week - +3;
+                                        dateTool.year = +dtt.year;
+
+                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                        timerItems[0].innerHTML = mnth[dtt.month];
+                                        timerItems[1].innerHTML = "Week " + dtt.week;
+                                        timerItems[2].innerHTML = dtt.year;
+
+                                    } else {
+
+                                        dateTool.month = +dtt.month - +11;
+                                        dateTool.week = +dtt.week - +3;
+                                        dateTool.year = +dtt.year + +1;
+
+                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                                        timerItems[0].innerHTML = mnth[dtt.month];
+                                        timerItems[1].innerHTML = "Week " + dtt.week;
+                                        timerItems[2].innerHTML = dtt.year;
+
+                                    }
+                                }
+                                ticker();
+
+                            }, 500);
                         }
                     }
 
@@ -1190,6 +1430,7 @@
                     pause.className = "timeCtrlItems_active";
                     play.className = "timeCtrlItems";
                     localStorage.setItem("tBool", 0);
+                    play.innerHTML = "&#9658;";
                     play.onclick = UI.timeCheck(play, pause);
                     pause.onclick = null;
                     UI.stopClick();
@@ -1318,39 +1559,8 @@
                 timer.className = "myTimer_full";
             }, 900);
         },
-        doTable: (myFrame, ud) => {
-            if (ud) {
-                var uuu = JSON.parse(ud);
-            }
-            var table = UI.createEle("div");
 
-            table.className = "theTable";
-            for (var i = 1; i < 9; i++) {
-                var elems = UI.createEle("div");
-
-                elems.id = "elem_" + i + "";
-                elems.className = "playerItems";
-
-                table.appendChild(elems);
-            }
-
-            myFrame.appendChild(table);
-
-            setTimeout(() => {
-                var playerItems = UI.bySelAll(".playerItems");
-                playerItems[0].innerHTML = uuu.siteName;
-                playerItems[1].innerHTML = "<div id='dvEX_1'><span class='spnBar'>Level</span></div> <span class='spnBubble'>" + uuu.lvl + "</span>";
-                playerItems[2].innerHTML = "<div id='dvEX_2'><span class='spnBar'>Humor</span></div> <span class='spnBubble'>" + uuu.hum + "</span>";
-                playerItems[3].innerHTML = "<div id='dvEX_3'><span class='spnBar'>Intelligence</span></div> <span class='spnBubble'>" + uuu.int + "</span>";
-                playerItems[4].innerHTML = "<div id='dvEX_4'><span class='spnBar'>Creativity</span></div> <span class='spnBubble'>" + uuu.cre + "</span>";
-                playerItems[5].innerHTML = "<div id='dvEX_5'><span class='spnBar'>Luck</span></div> <span class='spnBubble'>" + uuu.luck + "</span>";
-                playerItems[6].innerHTML = "<div id='dvEX_6'><span class='spnBar'>Charisma</span></div> <span class='spnBubble'>" + uuu.chr + "</span>";
-                playerItems[7].innerHTML = "<div id='dvEX_7'><span class='spnBar'>Speed</span></div> <span class='spnBubble'>" + uuu.spd + "</span>";
-                setTimeout(() => {
-                    table.className = "theTable_full";
-                }, 50);
-            }, 1000);
-        },
+        //settings, options, & other crap  
         globalHome: () => {
             location.reload();
         },

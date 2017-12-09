@@ -243,11 +243,11 @@ input::selection {
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.77);
 }
-.spnBubble {
+.spnBubble_wrap {
     background-image: url('../images/assets/bubble.png');
     background-position:center;
     background-repeat:no-repeat;
-    background-size:auto 100%;
+    background-size:auto 60%;
 }
 .spnBar {
     box-shadow:0 0 1px #fff;
