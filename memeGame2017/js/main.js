@@ -579,10 +579,15 @@
                     var ddd = JSON.parse(dta);
                 }
 
-                var page = UI.createEle("div");
+                var page = UI.createEle("div"), elems;
+
+                elems = "<h2><span>🔬 Science and Research</span><span id='xMeme'>X</span></h2>";
+                elems += "<p>";
+                elems += "More Stuffs";
+                elems += "</p>";
 
                 page.className = "menuPages";
-                page.innerHTML = "<h2><span>🔬 Science and Research</span><span id='xMeme'>X</span></h2>";
+                page.innerHTML = elems;
 
                 myFrame.appendChild(page);
 
@@ -595,7 +600,6 @@
                     page.className = "menuPages_full";
                     var xMeme = UI.bySel("#xMeme");
                     xMeme.onclick = UI.xResearchFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
-
                 }, 300);
             }
         },
@@ -1122,7 +1126,7 @@
 
             setTimeout(() => {
                 var playerItems = UI.bySelAll(".playerItems");
-                playerItems[0].innerHTML = uuu.siteName;
+                playerItems[0].innerHTML = "<div id='dvEX_0'>" + uuu.siteName + "</div>";
                 playerItems[1].innerHTML = "<div id='dvEX_1'><span class='spnBar'>Level</span></div> <span class='spnBubble'>" + uuu.lvl + "</span>";
                 playerItems[2].innerHTML = "<div id='dvEX_2'><span class='spnBar'>Humor</span></div> <span class='spnBubble'>" + uuu.hum + "</span>";
                 playerItems[3].innerHTML = "<div id='dvEX_3'><span class='spnBar'>Intelligence</span></div> <span class='spnBubble'>" + uuu.int + "</span>";
@@ -1170,16 +1174,70 @@
                 localStorage.setItem("tBool", 1);
             }
         },
+        runTick: (play, pause, ud) => {
+            var tBl = localStorage.getItem("tBool");
+
+            var dt = localStorage.getItem("dateTool"),
+                tBool = localStorage.getItem("tBool"),
+                timerItems = UI.bySelAll(".timerItems");
+
+            if (dt) {
+                var dtt = JSON.parse(dt);
+            }
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (+dtt.week < +4) {
+                dateTool.month = +dtt.month;
+                dateTool.week = +dtt.week + +1;
+                dateTool.year = +dtt.year;
+
+                localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                timerItems[0].innerHTML = mnth[dtt.month];
+                timerItems[1].innerHTML = "Week " + dtt.week;
+                timerItems[2].innerHTML = dtt.year;
+
+                UI.doTickRender();
+
+                UI.doCoinPerTic(uuu);
+            } else {
+                dateTool.week = +dtt.week - +3;
+
+                if (+dtt.month < +11) {
+                    dateTool.month = +dtt.month + +1;
+                    dateTool.week = +dtt.week - +3;
+                    dateTool.year = +dtt.year;
+
+                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                    timerItems[0].innerHTML = mnth[dtt.month];
+                    timerItems[1].innerHTML = "Week " + dtt.week;
+                    timerItems[2].innerHTML = dtt.year;
+                } else {
+                    dateTool.month = +dtt.month - +11;
+                    dateTool.week = +dtt.week - +3;
+                    dateTool.year = +dtt.year + +1;
+
+                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
+
+                    timerItems[0].innerHTML = mnth[dtt.month];
+                    timerItems[1].innerHTML = "Week " + dtt.week;
+                    timerItems[2].innerHTML = dtt.year;
+
+                }
+            }
+        },
         timeCheck: (play, pause, ud) => {
             return () => {
-
                 var dt = localStorage.getItem("dateTool"),
                     tBool = localStorage.getItem("tBool"),
                     timerItems = UI.bySelAll(".timerItems");
-    
 
                 if (tBool === "0") {
-                    
+
                     play.className = "timeCtrlItems_active";
                     pause.className = "timeCtrlItems";
                     localStorage.setItem("tBool", 1);
@@ -1199,227 +1257,36 @@
                         if (ud) {
                             var uuu = JSON.parse(ud);
                         }
-                 
+
                         if (tBl === "1") {
-                            
                             play.onclick = UI.doTime2(play, pause);
 
                             setTimeout(() => {
-
-                                if (+dtt.week < +4) {
-
-                                    dateTool.month = +dtt.month;
-                                    dateTool.week = +dtt.week + +1;
-                                    dateTool.year = +dtt.year;
-
-                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                    timerItems[0].innerHTML = mnth[dtt.month];
-                                    timerItems[1].innerHTML = "Week " + dtt.week;
-                                    timerItems[2].innerHTML = dtt.year;
-
-
-                                    UI.doTickRender();
-                                    //console.log(uuu.money);
-                                    UI.doCoinPerTic(uuu);
-                                } else {
-
-                                    dateTool.week = +dtt.week - +3;
-
-                                    if (+dtt.month < +11) {
-
-                                        dateTool.month = +dtt.month + +1;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    } else {
-
-                                        dateTool.month = +dtt.month - +11;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year + +1;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    }
-                                }
+                                UI.runTick(play, pause, ud);
                                 ticker();
-
                             }, 3200);
                         }
                         if (tBl === "2") {
-                
                             play.onclick = UI.doTime3(play, pause);
 
                             setTimeout(() => {
-
-                                if (+dtt.week < +4) {
-
-                                    dateTool.month = +dtt.month;
-                                    dateTool.week = +dtt.week + +1;
-                                    dateTool.year = +dtt.year;
-
-                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                    timerItems[0].innerHTML = mnth[dtt.month];
-                                    timerItems[1].innerHTML = "Week " + dtt.week;
-                                    timerItems[2].innerHTML = dtt.year;
-
-
-                                    UI.doTickRender();
-                                    //console.log(uuu.money);
-                                    UI.doCoinPerTic(uuu);
-                                } else {
-
-                                    dateTool.week = +dtt.week - +3;
-
-                                    if (+dtt.month < +11) {
-
-                                        dateTool.month = +dtt.month + +1;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    } else {
-
-                                        dateTool.month = +dtt.month - +11;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year + +1;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    }
-                                }
+                                UI.runTick(play, pause, ud);
                                 ticker();
-
                             }, 1600);
                         }
                         if (tBl === "3") {
-               
                             play.onclick = UI.doTime4(play, pause);
 
                             setTimeout(() => {
-
-                                if (+dtt.week < +4) {
-
-                                    dateTool.month = +dtt.month;
-                                    dateTool.week = +dtt.week + +1;
-                                    dateTool.year = +dtt.year;
-
-                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                    timerItems[0].innerHTML = mnth[dtt.month];
-                                    timerItems[1].innerHTML = "Week " + dtt.week;
-                                    timerItems[2].innerHTML = dtt.year;
-
-
-                                    UI.doTickRender();
-                                    //console.log(uuu.money);
-                                    UI.doCoinPerTic(uuu);
-                                } else {
-
-                                    dateTool.week = +dtt.week - +3;
-
-                                    if (+dtt.month < +11) {
-
-                                        dateTool.month = +dtt.month + +1;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    } else {
-
-                                        dateTool.month = +dtt.month - +11;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year + +1;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    }
-                                }
+                                UI.runTick(play, pause, ud);
                                 ticker();
-
                             }, 1000);
                         }
                         if (tBl === "4") {
-             
                             play.onclick = UI.doTime5(play, pause);
 
                             setTimeout(() => {
-
-                                if (+dtt.week < +4) {
-
-                                    dateTool.month = +dtt.month;
-                                    dateTool.week = +dtt.week + +1;
-                                    dateTool.year = +dtt.year;
-
-                                    localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                    timerItems[0].innerHTML = mnth[dtt.month];
-                                    timerItems[1].innerHTML = "Week " + dtt.week;
-                                    timerItems[2].innerHTML = dtt.year;
-
-
-                                    UI.doTickRender();
-                                    //console.log(uuu.money);
-                                    UI.doCoinPerTic(uuu);
-                                } else {
-
-                                    dateTool.week = +dtt.week - +3;
-
-                                    if (+dtt.month < +11) {
-
-                                        dateTool.month = +dtt.month + +1;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    } else {
-
-                                        dateTool.month = +dtt.month - +11;
-                                        dateTool.week = +dtt.week - +3;
-                                        dateTool.year = +dtt.year + +1;
-
-                                        localStorage.setItem("dateTool", JSON.stringify(dateTool));
-
-                                        timerItems[0].innerHTML = mnth[dtt.month];
-                                        timerItems[1].innerHTML = "Week " + dtt.week;
-                                        timerItems[2].innerHTML = dtt.year;
-
-                                    }
-                                }
+                                UI.runTick(play, pause, ud);
                                 ticker();
 
                             }, 500);

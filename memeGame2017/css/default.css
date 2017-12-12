@@ -9,7 +9,7 @@ html, body {
     */
 }
 html {
-    background-image: url('../images/bgnd/texture7.jpg');
+    background-image: url('../images/bgnd/texture9.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -197,7 +197,7 @@ input::selection {
         margin-right:10px;
         padding: 6px 0;
         width: 40px;
-        box-shadow:0 0 2px #fff;
+
         font-weight: bolder;
     }
 
@@ -252,7 +252,7 @@ input::selection {
 .spnBar {
     box-shadow:0 0 1px #fff;
     background:rgba(0, 0, 0, 0.54);
-    text-indent:4%;
+
 }
 
 
@@ -484,7 +484,6 @@ input::selection {
         padding: 0 10px;
         line-height: 30px;
     }
-
 
     .menuPages_full p {
         position: relative;
@@ -738,7 +737,11 @@ input::selection {
     background-position: center;
     background-repeat: no-repeat;
 }
-
+#dvEX_0 {
+    background:rgba(0,0,0,0.5);
+    width:90%;
+    margin:4px auto;
+}
 #dvEX_1 {
     width: 10px;
 }
@@ -767,11 +770,17 @@ input::selection {
     display: inline-block;
     clear: left;
     float: left;
-    box-shadow:0 0 1px #31fd3a;
-    margin-left:10px;
+    box-shadow: 0 0 1px #31fd3a;
+    margin-left: 10px;
+
 }
-    
-button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
+
+    #dvEX_1 span, #dvEX_2 span, #dvEX_3 span, #dvEX_4 span, #dvEX_5 span, #dvEX_6 span, #dvEX_7 span {
+        text-indent:7px;
+    }
+
+
+    button, #setupX, .menuPages h2 span:nth-child(2), .menuPages_full h2 span:nth-child(2), .button_off, .button_on {
         transition: all 250ms;
         border-radius: 1px;
         color: rgba(255, 255, 255, 0.47);
