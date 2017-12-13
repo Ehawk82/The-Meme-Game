@@ -126,7 +126,7 @@
 
     var memes = ["ironyFrog", "grumpyCat", "wowDoge", "insanityWolf", "tableFlip", "meGusta", "trollFace", "allTheThings"];//image lookup
     var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge", "Insanity Wolf", "Table Flipper", "Me Gusta!", "Troll Face", "All The Things"];//User sees this
-
+    var boosts = ["humorBtn", "intelBtn", "charisma", "luckBtn", "creativeBtn", "speedBtn"];//boost items lookup
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
 
     //User Interface object
@@ -582,9 +582,11 @@
                 var page = UI.createEle("div"), elems;
 
                 elems = "<h2><span>🔬 Science and Research</span><span id='xMeme'>X</span></h2>";
-                elems += "<p>";
-                elems += "More Stuffs";
-                elems += "</p>";
+                elems += "<p class='closedFolder'>Boosts <span class='spnArrows'>🔽</span></p>";
+                elems += "<p class='closedFolder'>Chairs <span class='spnArrows'>🔽</span></p>";
+                elems += "<p class='closedFolder'>Desks <span class='spnArrows'>🔽</span></p>";
+                elems += "<p class='closedFolder'>Climates <span class='spnArrows'>🔽</span></p>";
+                elems += "<p class='closedFolder'>Extras <span class='spnArrows'>🔽</span></p>";
 
                 page.className = "menuPages";
                 page.innerHTML = elems;
@@ -597,11 +599,113 @@
                 settings.onclick = null;
 
                 setTimeout(() => {
+                    var spnArrows = UI.bySelAll(".spnArrows");
+
+                    for (var s = 0; s < spnArrows.length; s++) {
+                        spnArrows[s].onclick = UI.openResearchFolder(spnArrows, s);
+                    } 
+
                     page.className = "menuPages_full";
                     var xMeme = UI.bySel("#xMeme");
                     xMeme.onclick = UI.xResearchFunc(myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp);
                 }, 300);
             }
+        },
+        openResearchFolder: (spnArrows, s) => {
+            return () => {
+                var spnArrorsParent = spnArrows[s].parentNode;
+
+                if (spnArrorsParent.className == 'closedFolder') {
+                    spnArrorsParent.className = "openFolder";
+                    spnArrows[s].innerHTML = "&nbsp;";
+                    UI.researchLookup(s, spnArrows, spnArrorsParent);
+                    
+                } else {
+                    spnArrorsParent.className = "closedFolder";
+                    spnArrows[s].innerHTML = "🔽";
+                    var x = -1;
+                    UI.researchLookup(x, spnArrows, spnArrorsParent);
+                }
+            }
+        },
+        researchLookup: (s, spnArrows, spnArrorsParent) => {
+            if (s === -1) {
+                var allHidden = UI.bySelAll(".hiddenFolder");
+
+                for (var i = 0; i < allHidden.length; i++) {
+                    allHidden[i].className = "closedFolder";
+                }
+
+            } else {
+                var allclosed = UI.bySelAll(".closedFolder"),
+                    opened = UI.bySel(".openFolder");
+
+                for (var i = 0; i < allclosed.length; i++) {
+                    allclosed[i].className = "hiddenFolder";
+                }
+
+                var elems;
+                if (s === 0) {
+                    elems = "";
+                    elems += "<div class='dvResHolder'>";
+
+                    for (var k = 0; k < 6; k++) {
+                        elems += "<div class='dvBoxes' id='boost_" + k + "' style='background-image:url(../images/boosts/" + boosts[k] + ".png);'>➕</div>";
+                    }
+
+
+                    elems += "</div>";
+                }
+                if (s === 1) {
+                    elems = "";
+                    elems += "<div class='dvResHolder'>";
+
+                    for (var k = 0; k < 20; k++) {
+                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                    }
+                    
+
+                    elems += "</div>";
+                }
+                if (s === 2) {
+                    elems = "";
+                    elems += "<div class='dvResHolder'>";
+
+                    for (var k = 0; k < 20; k++) {
+                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                    }
+
+
+                    elems += "</div>";
+                }
+                if (s === 3) {
+                    elems = "";
+                    elems += "<div class='dvResHolder'>";
+
+                    for (var k = 0; k < 20; k++) {
+                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                    }
+
+
+                    elems += "</div>";
+                }
+                if (s === 4) {
+                    elems = "";
+                    elems += "<div class='dvResHolder'>";
+
+                    for (var k = 0; k < 20; k++) {
+                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                    }
+
+
+                    elems += "</div>";
+                }
+                //put together the research items
+                opened.innerHTML += elems;
+
+                spnArrows.onclick = UI.openResearchFolder(spnArrows, s);
+            }
+
         },
         xResearchFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {

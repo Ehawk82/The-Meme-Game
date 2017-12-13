@@ -63,6 +63,7 @@
     <Content Include="css\sounds\stop.wav" />
     <Content Include="css\sounds\token.wav" />
     <Content Include="images\assets\bubble.png" />
+    <Content Include="images\assets\locked.png" />
     <Content Include="images\bgnd\texture1.jpg" />
     <Content Include="images\bgnd\texture10.jpg" />
     <Content Include="images\bgnd\texture2.jpg" />
@@ -73,6 +74,12 @@
     <Content Include="images\bgnd\texture7.jpg" />
     <Content Include="images\bgnd\texture8.jpg" />
     <Content Include="images\bgnd\texture9.jpg" />
+    <Content Include="images\boosts\charisma.png" />
+    <Content Include="images\boosts\creativeBtn.png" />
+    <Content Include="images\boosts\humorBtn.png" />
+    <Content Include="images\boosts\intelBtn.png" />
+    <Content Include="images\boosts\luckBtn.png" />
+    <Content Include="images\boosts\speedBtn.png" />
     <Content Include="images\floors\f8.jpg" />
     <Content Include="images\floors\f9.jpg" />
     <Content Include="images\game-icons\docIcon.png" />

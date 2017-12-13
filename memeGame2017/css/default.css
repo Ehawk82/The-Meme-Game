@@ -9,7 +9,7 @@ html, body {
     */
 }
 html {
-    background-image: url('../images/bgnd/texture9.jpg');
+    background-image: url('../images/bgnd/texture10.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -17,7 +17,14 @@ html {
 body {
     background:rgba(0,0,0,0);
 }
+
+hr {
+    border-color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.4);
+}
+
 i {
+
 }
 
 select {
@@ -610,6 +617,63 @@ input::selection {
         font-weight: bold;
         padding: 0 4px;
     }
+.hiddenFolder {
+    transition: 1s all;
+    width: 80% !important;
+    margin-left: -110%;
+    position: absolute;
+    border: 6px inset rgba(0,0,0,0);
+    height: 15px;
+    text-indent: 5px;
+    background: transparent;
+    color:transparent;
+}
+.closedFolder {
+    transition: 1s all;
+    width: 80% !important;
+    position: relative;
+    border: 6px inset rgba(0,0,0,0);
+    height: 15px;
+    text-indent: 5px;
+    background: transparent;
+    color: #000;
+}
+
+.openFolder {
+    transition: 1s all;
+    border: 6px inset #FECEA8;
+    width: 80% !important;
+    position: relative;
+    height: auto;
+    text-indent: 5px;
+    background: rgba(0,0,0,0.6);
+    color: #FFF;
+    overflow-x: scroll;
+    -ms-overflow-style:none;
+}
+
+.dvResHolder {
+    width: 4010px;
+    height: 210px;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    padding: 5px 5px;
+
+    
+    
+}
+.dvBoxes {
+    display:inline-block;
+    direction:ltr;
+    background-position: center;
+    background-size: 190px 190px;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    box-shadow: 0 0 22px #000 inset;
+    height: 190px ;
+    width: 190px ;
+    margin: 5px 5px;
+} 
 /* id's */
 #homeBtn {
 }
