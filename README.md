@@ -2,6 +2,9 @@
 
 # "A Game of Memes"
 
+## Instructions
+To Download: Using Visual Studio 2017, syncronize and then fetch and pull from the branch labeled "NewSide".  That is the surrent branch that is being worked on.  Run program using the VS2017 debugger or use your windows PC(note: there is no thumbnail tile yet)
+
 ## Contents
   1. System & Program Information
   2. Theme
