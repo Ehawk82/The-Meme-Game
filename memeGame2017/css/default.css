@@ -393,7 +393,7 @@ input::selection {
     border: 6px inset #FECEA8;
 }
 
-.moneyTab_full {
+.moneyTab_full, .openFolder section {
     transition: all 250ms;
     border: 6px inset #764747;
     box-shadow: 0 0 1px #fff;
@@ -402,6 +402,7 @@ input::selection {
     position: absolute;
     background: #FECEA8;
     width: auto;
+    line-height:40px;
     right: 15px;
     top: 10px;
     padding: 8px 12px;
@@ -652,15 +653,17 @@ input::selection {
     -ms-overflow-style:none;
 }
 
+    .openFolder section {
+        position:fixed;
+        right:5px;
+        top:300px;
+    }
 .dvResHolder {
-    width: 4010px;
+    width: 5000px;
     height: 210px;
     margin-left: 1%;
     margin-bottom: 1%;
     padding: 5px 5px;
-
-    
-    
 }
 .dvBoxes {
     transition: all 1s;
@@ -678,14 +681,6 @@ input::selection {
     margin: 5px 5px;
     padding:8px 5px;
 }
-    .dvBoxes:hover {
-        background-color: rgba(150,150,150,0.9);
-        color:#000;
-    }
-    .dvBoxes:active {
-        background-color: rgba(150,150,150,0.3);
-        color: #FFF;
-    }
 /* id's */
 #homeBtn {
 }

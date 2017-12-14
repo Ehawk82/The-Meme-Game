@@ -648,9 +648,14 @@
                     allclosed[i].className = "hiddenFolder";
                 }
 
-                var elems;
+                var elems, ud = localStorage.getItem("uData");
+
+                if (ud) {
+                    var uuu = JSON.parse(ud);
+                }
                 if (s === 0) {
-                    elems = "";
+                   
+                    elems = "<section>Gold: <span>" + uuu.money + "</span></section>";
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 6; k++) {
@@ -664,7 +669,7 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/chairs/" + chairs[k] + ".png);'>➕</div>";
+                        elems += "<div class='dvBoxes' id='chair_" + k + "' style='background-image:url(../images/chairs/" + chairs[k] + ".png);'>➕</div>";
                     }
 
                     elems += "</div>";
@@ -674,7 +679,7 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/desks/" + desks[k] + ".png);'>➕</div>";
+                        elems += "<div class='dvBoxes' id='desk_" + k + "' style='background-image:url(../images/desks/" + desks[k] + ".png);'>➕</div>";
                     }
 
                     elems += "</div>";
@@ -684,7 +689,7 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/climates/" + climates[k] + ".png);'>➕</div>";
+                        elems += "<div class='dvBoxes' id='climate_" + k + "' style='background-image:url(../images/climates/" + climates[k] + ".png);'>➕</div>";
                     }
 
                     elems += "</div>";
@@ -694,7 +699,7 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/extra/" + extra[k] + ".png);'>➕</div>";
+                        elems += "<div class='dvBoxes' id='extra_" + k + "' style='background-image:url(../images/extra/" + extra[k] + ".png);'>➕</div>";
                     }
 
                     elems += "</div>";
