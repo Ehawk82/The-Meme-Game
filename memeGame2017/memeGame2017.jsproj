@@ -128,6 +128,12 @@
     <Content Include="lib\winjs-4.0.1\fonts\Symbols.ttf" />
     <None Include="memeGame2017_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\chairs\" />
+    <Folder Include="images\desks\" />
+    <Folder Include="images\climates\" />
+    <Folder Include="images\extra\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment
        that target and the DisableFastUpToDateCheck PropertyGroup. 

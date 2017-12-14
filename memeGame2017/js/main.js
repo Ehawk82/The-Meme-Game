@@ -127,6 +127,10 @@
     var memes = ["ironyFrog", "grumpyCat", "wowDoge", "insanityWolf", "tableFlip", "meGusta", "trollFace", "allTheThings"];//image lookup
     var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge", "Insanity Wolf", "Table Flipper", "Me Gusta!", "Troll Face", "All The Things"];//User sees this
     var boosts = ["humorBtn", "intelBtn", "charisma", "luckBtn", "creativeBtn", "speedBtn"];//boost items lookup
+    var chairs = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//chairs items lookup
+    var desks = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//desks items lookup
+    var climates = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//climates items lookup
+    var extra = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//extra items lookup
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
 
     //User Interface object
@@ -653,7 +657,6 @@
                         elems += "<div class='dvBoxes' id='boost_" + k + "' style='background-image:url(../images/boosts/" + boosts[k] + ".png);'>➕</div>";
                     }
 
-
                     elems += "</div>";
                 }
                 if (s === 1) {
@@ -661,9 +664,8 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/chairs/" + chairs[k] + ".png);'>➕</div>";
                     }
-                    
 
                     elems += "</div>";
                 }
@@ -672,9 +674,8 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/desks/" + desks[k] + ".png);'>➕</div>";
                     }
-
 
                     elems += "</div>";
                 }
@@ -683,9 +684,8 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/climates/" + climates[k] + ".png);'>➕</div>";
                     }
-
 
                     elems += "</div>";
                 }
@@ -694,9 +694,8 @@
                     elems += "<div class='dvResHolder'>";
 
                     for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id=''>box_" + k + "</div>";
+                        elems += "<div class='dvBoxes' id='' style='background-image:url(../images/extra/" + extra[k] + ".png);'>➕</div>";
                     }
-
 
                     elems += "</div>";
                 }
@@ -705,7 +704,6 @@
 
                 spnArrows.onclick = UI.openResearchFolder(spnArrows, s);
             }
-
         },
         xResearchFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {

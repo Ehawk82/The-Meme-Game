@@ -663,17 +663,29 @@ input::selection {
     
 }
 .dvBoxes {
-    display:inline-block;
-    direction:ltr;
+    transition: all 1s;
+    display: inline-block;
+    direction: ltr;
     background-position: center;
     background-size: 190px 190px;
     background-repeat: no-repeat;
+    background-color: rgba(150,150,150,0.3);
+    color:#fff;
     border-radius: 5px;
     box-shadow: 0 0 22px #000 inset;
-    height: 190px ;
-    width: 190px ;
+    height: 190px;
+    width: 190px;
     margin: 5px 5px;
-} 
+    padding:8px 5px;
+}
+    .dvBoxes:hover {
+        background-color: rgba(150,150,150,0.9);
+        color:#000;
+    }
+    .dvBoxes:active {
+        background-color: rgba(150,150,150,0.3);
+        color: #FFF;
+    }
 /* id's */
 #homeBtn {
 }
