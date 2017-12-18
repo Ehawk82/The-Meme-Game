@@ -90,7 +90,7 @@
         mpy: 0
     }
 
-    //don't actuall know what i did here, but i need it
+    //don't actually know what i did here, but i need it... something to do with audio i think.
     myData = {
         mAu: 0,
         aAu: 0,
@@ -126,7 +126,7 @@
 
     var memes = ["ironyFrog", "grumpyCat", "wowDoge", "insanityWolf", "tableFlip", "meGusta", "trollFace", "allTheThings"];//image lookup
     var memesFormal = ["Irony Frog", "Grumpy Cat", "Wow Doge", "Insanity Wolf", "Table Flipper", "Me Gusta!", "Troll Face", "All The Things"];//User sees this
-    var boosts = ["humorBtn", "intelBtn", "charisma", "luckBtn", "creativeBtn", "speedBtn"];//boost items lookup
+    var boosts = ["humorBtn", "intelBtn", "creativeBtn", "luckBtn", "charisma", "speedBtn"];//boost items lookup
     var chairs = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//chairs items lookup
     var desks = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//desks items lookup
     var climates = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//climates items lookup
@@ -282,7 +282,7 @@
                 contBtn.remove();
                 delBtn.remove();
 
-                var ud = localStorage.getItem("uData");
+                //var ud = localStorage.getItem("uData");
                 //console.log(ud);
 
                 UI.proceedGame();
@@ -344,26 +344,6 @@
             }
         },
         checkSetupData: (setupItems, i, setupConfirm, genderSpn) => {
-            /*
-        siteName
-        userName
-        money
-        lvl
-        gndr
-        hum
-        int
-        cre
-        luck
-        chr
-        spd
-
-        weekstamp
-        name
-        power
-        invest
-        p_Type
-        p_Bool
-            */
             return () => {
                 uData.siteName = setupItems[0].value;
                 uData.userName = setupItems[1].value;
@@ -499,6 +479,39 @@
                 //console.log(ppp.p_Bool);
             }, 1400);
         },
+        secureUserData: () => {
+            var ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+
+            uData.siteName = uuu.siteName;
+            uData.userName = uuu.userName;
+            uData.money = uuu.money;
+            uData.gndr = uuu.gndr;
+            uData.lvl = uuu.lvl;
+            uData.hum = uuu.hum;
+            uData.int = uuu.int;
+            uData.cre = uuu.cre;
+            uData.luck = uuu.luck;
+            uData.chr = uuu.chr;
+            uData.spd = uuu.spd;
+            uData.clvl = uuu.clvl;
+
+            
+
+            localStorage.setItem("uData", JSON.stringify(uData));
+
+            var x = localStorage.getItem("uData");
+            if (x) {
+                var xxx = JSON.parse(x);
+            }
+            console.log(xxx.siteName);
+        },
+
+        //money page stuffs
         doMoneyTab: (myFrame, ud, moneyStuffs) => {
             var moneyTab = UI.createEle("div");
             if (ud) {
@@ -576,6 +589,8 @@
                 }, 1000);
             }
         },
+
+        //research page stuffs
         makeResearch: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp) => {
             return () => {
                 UI.mainClick();
@@ -654,19 +669,19 @@
                     var uuu = JSON.parse(ud);
                 }
                 if (s === 0) {
-                   
-                    elems = "<section>Gold: <span>" + uuu.money + "</span></section>";
-                    elems += "<div class='dvResHolder'>";
+                    elems = "<section class='moneyTab_full'>💰 <span id='moneySlot2'>" + uuu.money + "</span></section>";
+                    elems += "<div class='dvResHolder'><span id='backSpnBtn'>🔼</span>";
 
                     for (var k = 0; k < 6; k++) {
                         elems += "<div class='dvBoxes' id='boost_" + k + "' style='background-image:url(../images/boosts/" + boosts[k] + ".png);'>➕</div>";
+
                     }
 
                     elems += "</div>";
                 }
                 if (s === 1) {
-                    elems = "";
-                    elems += "<div class='dvResHolder'>";
+                    elems = "<section class='moneyTab_full'>💰 <span id='moneySlot2'>" + uuu.money + "</span></section>";
+                    elems += "<div class='dvResHolder'><span id='backSpnBtn'>🔼</span>";
 
                     for (var k = 0; k < 20; k++) {
                         elems += "<div class='dvBoxes' id='chair_" + k + "' style='background-image:url(../images/chairs/" + chairs[k] + ".png);'>➕</div>";
@@ -675,8 +690,8 @@
                     elems += "</div>";
                 }
                 if (s === 2) {
-                    elems = "";
-                    elems += "<div class='dvResHolder'>";
+                    elems = "<section class='moneyTab_full'>💰 <span id='moneySlot2'>" + uuu.money + "</span></section>";
+                    elems += "<div class='dvResHolder'><span id='backSpnBtn'>🔼</span>";
 
                     for (var k = 0; k < 20; k++) {
                         elems += "<div class='dvBoxes' id='desk_" + k + "' style='background-image:url(../images/desks/" + desks[k] + ".png);'>➕</div>";
@@ -685,8 +700,8 @@
                     elems += "</div>";
                 }
                 if (s === 3) {
-                    elems = "";
-                    elems += "<div class='dvResHolder'>";
+                    elems = "<section class='moneyTab_full'>💰 <span id='moneySlot2'>" + uuu.money + "</span></section>";
+                    elems += "<div class='dvResHolder'><span id='backSpnBtn'>🔼</span>";
 
                     for (var k = 0; k < 20; k++) {
                         elems += "<div class='dvBoxes' id='climate_" + k + "' style='background-image:url(../images/climates/" + climates[k] + ".png);'>➕</div>";
@@ -695,8 +710,8 @@
                     elems += "</div>";
                 }
                 if (s === 4) {
-                    elems = "";
-                    elems += "<div class='dvResHolder'>";
+                    elems = "<section class='moneyTab_full'>💰 <span id='moneySlot2'>" + uuu.money + "</span></section>";
+                    elems += "<div class='dvResHolder'><span id='backSpnBtn'>🔼</span>";
 
                     for (var k = 0; k < 20; k++) {
                         elems += "<div class='dvBoxes' id='extra_" + k + "' style='background-image:url(../images/extra/" + extra[k] + ".png);'>➕</div>";
@@ -704,16 +719,82 @@
 
                     elems += "</div>";
                 }
+
+                var myS = s;
                 //put together the research items
                 opened.innerHTML += elems;
+                
+                var backSpnBtn = UI.bySel("#backSpnBtn"),
+                    dvBoxes = UI.bySelAll(".dvBoxes");
 
-                spnArrows.onclick = UI.openResearchFolder(spnArrows, s);
+                var humor = UI.bySel("#boost_0");
+
+                for (var x = 0; x < dvBoxes.length; x++) {
+                    if (dvBoxes[x].style.backgroundImage === 'url("../images/boosts/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/chairs/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/desks/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/climates/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/extra/.png")') {
+                        dvBoxes[x].style.backgroundImage = 'url("../images/assets/locked.png")';
+                    }
+                    
+                }
+                if (backSpnBtn) {
+                    backSpnBtn.onclick = UI.resBackFunc(myS, opened);
+                }
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+            }
+            
+        },
+        resBackFunc: (myS, opened) => {
+            return () => {
+
+                var allHidden = UI.bySelAll(".hiddenFolder");
+
+                for (var i = 0; i < allHidden.length; i++) {
+                    allHidden[i].className = "closedFolder";
+                }
+
+                var sHold;
+
+                if (myS === 0) {
+                    sHold = "Boosts";
+                }
+                if (myS === 1) {
+                    sHold = "Chairs";
+                }
+                if (myS === 2) {
+                    sHold = "Desks";
+                }
+                if (myS === 3) {
+                    sHold = "Climates";
+
+                }
+                if (myS === 4) {
+                    sHold = "Extras";
+
+                }
+                opened.innerHTML = "" + sHold + " <span class='spnArrows'>🔽</span>";
+
+                opened.className = "closedFolder";
+
+                var spnArrows = UI.bySelAll(".spnArrows");
+
+                for (var s = 0; s < spnArrows.length; s++) {
+                    spnArrows[s].onclick = UI.openResearchFolder(spnArrows, s);
+                } 
             }
         },
         xResearchFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
             return () => {
                 UI.mainClick();
                 page.className = "menuPages";
+                var moneyTab_full = UI.bySelAll(".moneyTab_full");
+                if (moneyTab_full[1]) {
+                    moneyTab_full[1].className = "moneyTab";
+                }
 
                 setTimeout(() => {
                     if (ppp.p_Bool != true) {
@@ -731,6 +812,8 @@
                 }, 1000);
             }
         },
+
+        //project meme maker things
         makeMemer: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
                 UI.mainClick();
@@ -1003,6 +1086,7 @@
                     localStorage.setItem("moneyStuffs", JSON.stringify(moneyStuffs));
                 }
             }
+            //if () { }
         },
         fixMemeBtn: (myFrame, ud) => {
             var memePanel = UI.bySel(".memePanel_full") || UI.bySel(".memePanel");
@@ -1181,7 +1265,9 @@
         },
         doCoinPerTic: (uuu) => {
             var mx = localStorage.getItem("moneyStuffs"),
-                moneySlot = UI.bySel("#moneySlot");
+                moneySlot = UI.bySel("#moneySlot"),
+                moneySlot2 = UI.bySel("#moneySlot2");
+               
 
             if (mx) {
                 var mtsf = JSON.parse(mx);
@@ -1212,6 +1298,348 @@
             }
 
             moneySlot.innerHTML = lxx.money;
+            if (moneySlot2) {
+                moneySlot2.innerHTML = lxx.money;
+            }
+            UI.doHumorButton();
+            UI.doIntelButton();
+            UI.doCreButton();
+            UI.doLuckButton();
+            UI.doCharButton();
+            UI.doSpdButton();
+        },
+
+        //table and user data algorithms
+        doSpdButton: () => {
+            var speed = UI.bySel("#boost_5"),
+                ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (speed) {
+                if (+uuu.money >= (+uuu.spd * 100) + (+uuu.spd * 10)) {
+                    speed.className = 'dvBoxes_active';
+                    speed.onclick = UI.doSpdPurchase(speed, uuu);
+
+                } else {
+                    speed.className = 'dvBoxes';
+                    speed.onclick = null;
+
+                }
+            }
+        },
+        doSpdPurchase: (speed, uuu) => {
+            return () => {
+                uData.money = +uuu.money - +(+uuu.spd * 100) + (+uuu.spd * 10);
+                uData.spd = +uuu.spd + +1;
+                localStorage.setItem("uData", JSON.stringify(uData));
+
+                var spnBubble = UI.bySelAll(".spnBubble"),
+                    lx = localStorage.getItem("uData");
+
+                if (lx) {
+                    var lxx = JSON.parse(lx);
+                }
+
+                var moneySlot = UI.bySel("#moneySlot"),
+                    moneySlot2 = UI.bySel("#moneySlot2");
+
+                moneySlot.innerHTML = lxx.money;
+                if (moneySlot2) {
+                    moneySlot2.innerHTML = lxx.money;
+                }
+
+                spnBubble[6].innerHTML = lxx.spd;
+
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+                UI.gainClick();
+
+                UI.secureUserData();
+            }
+        },
+        doCharButton: () => {
+            var char = UI.bySel("#boost_4"),
+                ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (char) {
+                if (+uuu.money >= (+uuu.chr * 100) + (+uuu.chr * 10)) {
+                    char.className = 'dvBoxes_active';
+                    char.onclick = UI.doCharPurchase(char, uuu);
+
+                } else {
+                    char.className = 'dvBoxes';
+                    char.onclick = null;
+
+                }
+            }
+        },
+        doCharPurchase: (char, uuu) => {
+            return () => {
+                uData.money = +uuu.money - +(+uuu.chr * 100) + +(+uuu.chr * 10);
+                uData.chr = +uuu.chr + +1;
+                localStorage.setItem("uData", JSON.stringify(uData));
+
+                var spnBubble = UI.bySelAll(".spnBubble"),
+                    lx = localStorage.getItem("uData");
+
+                if (lx) {
+                    var lxx = JSON.parse(lx);
+                }
+
+                var moneySlot = UI.bySel("#moneySlot"),
+                    moneySlot2 = UI.bySel("#moneySlot2");
+
+                moneySlot.innerHTML = lxx.money;
+                if (moneySlot2) {
+                    moneySlot2.innerHTML = lxx.money;
+                }
+
+                spnBubble[5].innerHTML = lxx.chr;
+
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+                UI.gainClick();
+
+                UI.secureUserData();
+            }
+        },
+        doLuckButton: () => {
+            var luck = UI.bySel("#boost_3"),
+                ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (luck) {
+                if (+uuu.money >= (+uuu.luck * 100) + (+uuu.luck * 10)) {
+                    luck.className = 'dvBoxes_active';
+                    luck.onclick = UI.doLuckPurchase(luck, uuu);
+
+                } else {
+                    luck.className = 'dvBoxes';
+                    luck.onclick = null;
+
+                }
+            }
+        },
+        doLuckPurchase: (luck, uuu) => {
+            return () => {
+                uData.money = +uuu.money - +(+uuu.luck * 100) + +(+uuu.luck * 10);
+                uData.luck = +uuu.luck + +1;
+                localStorage.setItem("uData", JSON.stringify(uData));
+
+                var spnBubble = UI.bySelAll(".spnBubble"),
+                    lx = localStorage.getItem("uData");
+
+                if (lx) {
+                    var lxx = JSON.parse(lx);
+                }
+
+                var moneySlot = UI.bySel("#moneySlot"),
+                    moneySlot2 = UI.bySel("#moneySlot2");
+
+                moneySlot.innerHTML = lxx.money;
+                if (moneySlot2) {
+                    moneySlot2.innerHTML = lxx.money;
+                }
+
+                spnBubble[4].innerHTML = lxx.luck;
+
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+                UI.gainClick();
+
+                UI.secureUserData();
+            }
+        },
+        doCreButton: () => {
+            var creative = UI.bySel("#boost_2"),
+                ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (creative) {
+                if (+uuu.money >= (+uuu.cre * 100) + (+uuu.cre * 10)) {
+                    creative.className = 'dvBoxes_active';
+                    creative.onclick = UI.doCrePurchase(creative, uuu);
+
+                } else {
+                    creative.className = 'dvBoxes';
+                    creative.onclick = null;
+
+                }
+            }
+        },
+        doCrePurchase: (creative, uuu) => {
+            return () => {
+                uData.money = +uuu.money - +(+uuu.cre * 100) + (+uuu.cre * 10);
+                uData.cre = +uuu.cre + +1;
+                localStorage.setItem("uData", JSON.stringify(uData));
+
+                var spnBubble = UI.bySelAll(".spnBubble"),
+                    lx = localStorage.getItem("uData");
+
+                if (lx) {
+                    var lxx = JSON.parse(lx);
+                }
+
+                var moneySlot = UI.bySel("#moneySlot"),
+                    moneySlot2 = UI.bySel("#moneySlot2");
+
+                moneySlot.innerHTML = lxx.money;
+                if (moneySlot2) {
+                    moneySlot2.innerHTML = lxx.money;
+                }
+
+                spnBubble[3].innerHTML = lxx.int;
+
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+                UI.gainClick();
+
+                UI.secureUserData();
+            }
+        },
+        doIntelButton: () => {
+            var intel = UI.bySel("#boost_1"),
+                ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (intel) {
+                if (+uuu.money >= (+uuu.int * 100) + (+uuu.int * 10)) {
+                    intel.className = 'dvBoxes_active';
+                    intel.onclick = UI.doIntelPurchase(intel, uuu);
+
+                } else {
+                    intel.className = 'dvBoxes';
+                    intel.onclick = null;
+
+                }
+            }
+        },
+        doIntelPurchase: (intel, uuu) => {
+            return () => {
+                uData.money = +uuu.money - +(+uuu.int * 100) + (+uuu.int * 10);
+                uData.int = +uuu.int + +1;
+                localStorage.setItem("uData", JSON.stringify(uData));
+
+                var spnBubble = UI.bySelAll(".spnBubble"),
+                    lx = localStorage.getItem("uData");
+
+                if (lx) {
+                    var lxx = JSON.parse(lx);
+                }
+
+                var moneySlot = UI.bySel("#moneySlot"),
+                    moneySlot2 = UI.bySel("#moneySlot2");
+
+                moneySlot.innerHTML = lxx.money;
+                if (moneySlot2) {
+                    moneySlot2.innerHTML = lxx.money;
+                }
+
+                spnBubble[2].innerHTML = lxx.int;
+
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+                UI.gainClick();
+
+                UI.secureUserData();
+            }
+        },
+        doHumorButton: () => {
+            var humor = UI.bySel("#boost_0"),
+                ud = localStorage.getItem("uData");
+
+            if (ud) {
+                var uuu = JSON.parse(ud);
+            }
+
+            if (humor) {
+                if (+uuu.money >= (+uuu.hum * 100) + (+uuu.hum * 10)) {
+                    humor.className = 'dvBoxes_active';
+                    humor.onclick = UI.doHumorPurchase(humor, uuu);
+                    
+                } else {
+                    humor.className = 'dvBoxes';
+                    humor.onclick = null;
+
+                }
+            }
+            
+        },
+        doHumorPurchase: (humor, uuu) => {
+            return () => {
+                uData.money = +uuu.money - +(+uuu.hum * 100) + (+uuu.hum * 10);
+                uData.hum = +uuu.hum + +1;
+                localStorage.setItem("uData", JSON.stringify(uData));
+
+                var spnBubble = UI.bySelAll(".spnBubble"),
+                    lx = localStorage.getItem("uData");
+
+                if (lx) {
+                    var lxx = JSON.parse(lx);
+                }
+
+                var moneySlot = UI.bySel("#moneySlot"),
+                    moneySlot2 = UI.bySel("#moneySlot2");
+
+                moneySlot.innerHTML = lxx.money;
+                if (moneySlot2) {
+                    moneySlot2.innerHTML = lxx.money;
+                }
+
+                spnBubble[1].innerHTML = lxx.hum;
+
+                UI.doHumorButton();
+                UI.doIntelButton();
+                UI.doCreButton();
+                UI.doLuckButton();
+                UI.doCharButton();
+                UI.doSpdButton();
+
+                UI.gainClick();
+
+                UI.secureUserData();
+            }
         },
         doTable: (myFrame, ud) => {
             if (ud) {
@@ -1551,6 +1979,16 @@
         playClick: () => {
             var Au = localStorage.getItem("myAu"),
                 snd = new Audio("../css/sounds/play.wav");
+            if (Au) {
+                var au = JSON.parse(Au);
+            }
+            snd.volume = au.main;
+
+            snd.play();
+        },
+        gainClick: () => {
+            var Au = localStorage.getItem("myAu"),
+                snd = new Audio("../css/sounds/gain.wav");
             if (Au) {
                 var au = JSON.parse(Au);
             }

@@ -58,6 +58,7 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="css\sounds\gain.wav" />
     <Content Include="css\sounds\main.wav" />
     <Content Include="css\sounds\play.wav" />
     <Content Include="css\sounds\stop.wav" />
