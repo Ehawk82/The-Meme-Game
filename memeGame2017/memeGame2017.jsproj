@@ -65,6 +65,7 @@
     <Content Include="css\sounds\token.wav" />
     <Content Include="images\assets\bubble.png" />
     <Content Include="images\assets\locked.png" />
+    <Content Include="images\assets\memeface2.png" />
     <Content Include="images\bgnd\texture1.jpg" />
     <Content Include="images\bgnd\texture10.jpg" />
     <Content Include="images\bgnd\texture2.jpg" />

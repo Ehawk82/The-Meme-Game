@@ -3,7 +3,7 @@
   <Identity Name="3355994a-b622-4765-97d7-0b7593bf77e4" Version="1.0.0.0" Publisher="CN=Ehawk" />
   <mp:PhoneIdentity PhoneProductId="3355994a-b622-4765-97d7-0b7593bf77e4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>memeGame2017</DisplayName>
+    <DisplayName>A Meme Game</DisplayName>
     <PublisherDisplayName>Ehawk</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="index.html">
-      <uap:VisualElements DisplayName="memeGame2017" Description="memeGame2017" BackgroundColor="#000000" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
+      <uap:VisualElements DisplayName="A Meme Game" Description="You are a dumb dungeon lurking troll just tryna get by.  But that's not enough, you wanna get to the top level.  Manage your meme tycoon, get smarter, more clever, and make the big bucks. Meme your way to fame and glory." BackgroundColor="#000000" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" ShortName="Meme Game">
         </uap:DefaultTile>
         <uap:SplashScreen Image="images\splashscreen.png" BackgroundColor="#000000" />

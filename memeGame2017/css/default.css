@@ -1,4 +1,6 @@
 ﻿/* raw elements */
+
+
 html, body {
     height: 100%;
     width: 100%;
@@ -21,10 +23,6 @@ body {
 hr {
     border-color: rgba(0,0,0,0.4);
     color: rgba(0,0,0,0.4);
-}
-
-i {
-
 }
 
 select {
@@ -251,6 +249,14 @@ input::selection {
 }
 .spnBubble {
     background:rgba(0,0,0,0.4);
+}
+.nameBar {
+    position: relative;
+    display: inline-block;
+    width: 90%;
+    margin:5px 0;
+    padding: 4px 0;
+    background: rgba(0, 0, 0, 0.54);
 }
 
 .spnBubble_wrap {
@@ -518,11 +524,7 @@ input::selection {
             margin: 0 0 20px 0;
         }
 
-            .menuPages_full p span:nth-child(1) {
-            }
 
-            .menuPages_full p span:nth-child(2) {
-            }
 
 .dvMemeHolder {
     position: absolute;
@@ -622,6 +624,7 @@ input::selection {
         padding: 0 4px;
         word-wrap: break-word;
     }
+
 .hiddenFolder {
     transition: 1s all;
     width: 80% !important;
@@ -695,7 +698,7 @@ input::selection {
     background-size: 190px 190px;
     background-repeat: no-repeat;
     background-color: rgba(150,150,150,1);
-    color: #00c404;
+    color: limegreen;
     border-radius: 5px;
     box-shadow: 0 0 22px #000 inset;
     height: 190px;
@@ -704,15 +707,10 @@ input::selection {
     padding: 8px 5px;
 }
     .dvBoxes_active:active {
+        color: darkred;
         background-color: rgba(250,250,250,1);
     }
     /* id's */
-    #homeBtn {
-    }
-
-#userLog {
-}
-
 #dvHold {
     display: inline-block;
     position: relative;
@@ -866,20 +864,19 @@ input::selection {
     width: 0;
 }
 
-/* misc */
-#dvEX_1, #dvEX_2, #dvEX_3, #dvEX_4, #dvEX_5, #dvEX_6, #dvEX_7 {
-    height: auto;
-    background: rgba(27, 196, 20, 0.59);
-    display: inline-block;
-    clear: left;
-    float: left;
-    box-shadow: 0 0 1px #31fd3a;
-    margin-left: 10px;
-
-}
+    /* misc */
+    #dvEX_1, #dvEX_2, #dvEX_3, #dvEX_4, #dvEX_5, #dvEX_6, #dvEX_7 {
+        height: auto;
+        background: rgba(27, 196, 20, 0.59);
+        display: inline-block;
+        clear: left;
+        float: left;
+        box-shadow: 0 0 1px #31fd3a;
+        margin-left: 10px;
+    }
 
     #dvEX_1 span, #dvEX_2 span, #dvEX_3 span, #dvEX_4 span, #dvEX_5 span, #dvEX_6 span, #dvEX_7 span {
-        text-indent:7px;
+        text-indent: 7px;
     }
 
 

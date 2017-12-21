@@ -113,13 +113,13 @@
         money: 0,// ammount of in-game currency
         lvl: 1,// the users' level
         gndr: "",// gender doesn't really do much, color differences maybe?
-        hum: 1,// humor is a multiplier that for fanbase.
-        int: 1,// intelligence will allow more letters on memes
-        cre: 1,// creativity increases the amount of memes
-        luck: 1,// random multiplier
-        chr: 1,// charisma 
-        spd: 1,// speed for for spamming multiplier
-        clvl: 3// climate level
+        hum: 0,// humor is a multiplier that for fanbase.
+        int: 0,// intelligence will allow more letters on memes
+        cre: 0,// creativity increases the amount of memes
+        luck: 0,// random multiplier
+        chr: 0,// charisma 
+        spd: 0,// speed for for spamming multiplier
+        clvl: 1// climate level
     };
 
     //basic libraries
@@ -129,7 +129,7 @@
     var boosts = ["humorBtn", "intelBtn", "creativeBtn", "luckBtn", "charisma", "speedBtn"];//boost items lookup
     var chairs = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//chairs items lookup
     var desks = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//desks items lookup
-    var climates = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//climates items lookup
+    //var climates = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//climates items lookup
     var extra = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];//extra items lookup
     var mnth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//User sees this 
 
@@ -485,30 +485,31 @@
             if (ud) {
                 var uuu = JSON.parse(ud);
             }
+            var dvEX_0 = UI.bySel("#dvEX_0"),
+                spnBubble = UI.bySelAll(".spnBubble"),
+                nameBarSpan = UI.bySel(".nameBar div");
 
-
-            uData.siteName = uuu.siteName;
-            uData.userName = uuu.userName;
+            uData.siteName = dvEX_0.innerHTML;
+            uData.userName = nameBarSpan.innerHTML;
             uData.money = uuu.money;
             uData.gndr = uuu.gndr;
-            uData.lvl = uuu.lvl;
-            uData.hum = uuu.hum;
-            uData.int = uuu.int;
-            uData.cre = uuu.cre;
-            uData.luck = uuu.luck;
-            uData.chr = uuu.chr;
-            uData.spd = uuu.spd;
+            uData.lvl = spnBubble[0].innerHTML;
+            uData.hum = spnBubble[1].innerHTML;
+            uData.int = spnBubble[2].innerHTML;
+            uData.cre = spnBubble[3].innerHTML;
+            uData.luck = spnBubble[4].innerHTML;
+            uData.chr = spnBubble[5].innerHTML;
+            uData.spd = spnBubble[6].innerHTML;
             uData.clvl = uuu.clvl;
 
-            
-
             localStorage.setItem("uData", JSON.stringify(uData));
-
+            /*
             var x = localStorage.getItem("uData");
             if (x) {
                 var xxx = JSON.parse(x);
             }
             console.log(xxx.siteName);
+            */
         },
 
         //money page stuffs
@@ -703,8 +704,8 @@
                     elems = "<section class='moneyTab_full'>💰 <span id='moneySlot2'>" + uuu.money + "</span></section>";
                     elems += "<div class='dvResHolder'><span id='backSpnBtn'>🔼</span>";
 
-                    for (var k = 0; k < 20; k++) {
-                        elems += "<div class='dvBoxes' id='climate_" + k + "' style='background-image:url(../images/climates/" + climates[k] + ".png);'>➕</div>";
+                    for (var k = 1; k < 10; k++) {
+                        elems += "<div class='dvBoxes' id='climate_" + k + "' style='background-image:url(../images/walls/d" + k + ".jpg);'>➕</div>";
                     }
 
                     elems += "</div>";
@@ -730,7 +731,7 @@
                 var humor = UI.bySel("#boost_0");
 
                 for (var x = 0; x < dvBoxes.length; x++) {
-                    if (dvBoxes[x].style.backgroundImage === 'url("../images/boosts/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/chairs/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/desks/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/climates/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/extra/.png")') {
+                    if (dvBoxes[x].style.backgroundImage === 'url("../images/boosts/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/chairs/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/desks/.png")' || dvBoxes[x].style.backgroundImage === 'url("../images/walls/.jpg")' || dvBoxes[x].style.backgroundImage === 'url("../images/extra/.png")') {
                         dvBoxes[x].style.backgroundImage = 'url("../images/assets/locked.png")';
                     }
                     
@@ -840,15 +841,17 @@
 
                 elems += "<p>&nbsp;</p>";
 
-                elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
+                elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + (uuu.int + 5) + "' type='text' /></p>";
 
                 elems += "<p><select>";
-                for (var i = 0; i < uuu.cre; i++) {
-                    elems += "<option class='opts'value='" + memes[i] + "' >" + memesFormal[i] + "</option>";
+                for (var i = 0; i < (uuu.cre + 1); i++) {
+                    if (memes[i] != undefined) {
+                        elems += "<option class='opts'value='" + memes[i] + "' >" + memesFormal[i] + "</option>";
+                    }
                 }
                 elems += "</select></p>";
 
-                elems += "<p>Lower Text &nbsp;<input class='cls' maxLength='" + uuu.int + "' type='text' /></p>";
+                elems += "<p>Lower Text &nbsp;<input class='cls' maxLength='" + (uuu.int + 5) + "' type='text' /></p>";
 
                 elems += "<p><i>How far is our reach?</i>";
                 elems += "<select id='select1'>";
@@ -1075,8 +1078,7 @@
                 projectPanel.innerHTML = elems;
             } else {
                 if (projectPanel) {
-
-                    moneyStuffs.mpt = +mtsf.mpt + +ppp.t_level;
+                    moneyStuffs.mpt = +mtsf.mpt + +ppp.t_level + (uuu.luck + (+uuu.spd + +uuu.chr) + (uuu.cre + uuu.int)) + uuu.lvl;
                     moneyStuffs.lpt = moneyStuffs.lpt;
                     moneyStuffs.tmpt = moneyStuffs.tmpt;
                     moneyStuffs.mpy = moneyStuffs.mpy;
@@ -1319,20 +1321,19 @@
             }
 
             if (speed) {
-                if (+uuu.money >= (+uuu.spd * 100) + (+uuu.spd * 10)) {
+                speed.innerHTML = "➕ cost: " + (+uuu.spd * 100 + (+uuu.spd * 10) + 10);
+                if (+uuu.money >= +uuu.spd * 100 + (+uuu.spd * 10) + 10) {
                     speed.className = 'dvBoxes_active';
                     speed.onclick = UI.doSpdPurchase(speed, uuu);
-
                 } else {
                     speed.className = 'dvBoxes';
                     speed.onclick = null;
-
                 }
             }
         },
         doSpdPurchase: (speed, uuu) => {
             return () => {
-                uData.money = +uuu.money - +(+uuu.spd * 100) + (+uuu.spd * 10);
+                uData.money = +uuu.money - (+uuu.spd * 100 + (+uuu.spd * 10) + 10);
                 uData.spd = +uuu.spd + +1;
                 localStorage.setItem("uData", JSON.stringify(uData));
 
@@ -1374,20 +1375,19 @@
             }
 
             if (char) {
-                if (+uuu.money >= (+uuu.chr * 100) + (+uuu.chr * 10)) {
+                char.innerHTML = "➕ cost: " + (+uuu.chr * 100 + (+uuu.chr * 10) + 10);
+                if (+uuu.money >= +uuu.chr * 100 + (+uuu.chr * 10) + 10) {
                     char.className = 'dvBoxes_active';
                     char.onclick = UI.doCharPurchase(char, uuu);
-
                 } else {
                     char.className = 'dvBoxes';
                     char.onclick = null;
-
                 }
             }
         },
         doCharPurchase: (char, uuu) => {
             return () => {
-                uData.money = +uuu.money - +(+uuu.chr * 100) + +(+uuu.chr * 10);
+                uData.money = +uuu.money - (+uuu.chr * 100 + (+uuu.chr * 10) + 10);
                 uData.chr = +uuu.chr + +1;
                 localStorage.setItem("uData", JSON.stringify(uData));
 
@@ -1429,20 +1429,19 @@
             }
 
             if (luck) {
-                if (+uuu.money >= (+uuu.luck * 100) + (+uuu.luck * 10)) {
+                luck.innerHTML = "➕ cost: " + (+uuu.luck * 100 + (+uuu.luck * 10) + 10);
+                if (+uuu.money >= +uuu.luck * 100 + (+uuu.luck * 10) + 10) {
                     luck.className = 'dvBoxes_active';
                     luck.onclick = UI.doLuckPurchase(luck, uuu);
-
                 } else {
                     luck.className = 'dvBoxes';
                     luck.onclick = null;
-
                 }
             }
         },
         doLuckPurchase: (luck, uuu) => {
             return () => {
-                uData.money = +uuu.money - +(+uuu.luck * 100) + +(+uuu.luck * 10);
+                uData.money = +uuu.money - (+uuu.luck * 100 + (+uuu.luck * 10) + 10);
                 uData.luck = +uuu.luck + +1;
                 localStorage.setItem("uData", JSON.stringify(uData));
 
@@ -1484,20 +1483,19 @@
             }
 
             if (creative) {
-                if (+uuu.money >= (+uuu.cre * 100) + (+uuu.cre * 10)) {
+                creative.innerHTML = "➕ cost: " + (+uuu.cre * 100 + (+uuu.cre * 10) + 10);
+                if (+uuu.money >= +uuu.cre * 100 + (+uuu.cre * 10) + 10) {
                     creative.className = 'dvBoxes_active';
                     creative.onclick = UI.doCrePurchase(creative, uuu);
-
                 } else {
                     creative.className = 'dvBoxes';
                     creative.onclick = null;
-
                 }
             }
         },
         doCrePurchase: (creative, uuu) => {
             return () => {
-                uData.money = +uuu.money - +(+uuu.cre * 100) + (+uuu.cre * 10);
+                uData.money = +uuu.money - (+uuu.cre * 100 + (+uuu.cre * 10) + 10);
                 uData.cre = +uuu.cre + +1;
                 localStorage.setItem("uData", JSON.stringify(uData));
 
@@ -1516,7 +1514,7 @@
                     moneySlot2.innerHTML = lxx.money;
                 }
 
-                spnBubble[3].innerHTML = lxx.int;
+                spnBubble[3].innerHTML = lxx.cre;
 
                 UI.doHumorButton();
                 UI.doIntelButton();
@@ -1539,20 +1537,19 @@
             }
 
             if (intel) {
-                if (+uuu.money >= (+uuu.int * 100) + (+uuu.int * 10)) {
+                intel.innerHTML = "➕ cost: " + (+uuu.int * 100 + (+uuu.int * 10) + 10);
+                if (+uuu.money >= +uuu.int * 100 + (+uuu.int * 10) + 10) {
                     intel.className = 'dvBoxes_active';
                     intel.onclick = UI.doIntelPurchase(intel, uuu);
-
                 } else {
                     intel.className = 'dvBoxes';
                     intel.onclick = null;
-
                 }
             }
         },
         doIntelPurchase: (intel, uuu) => {
             return () => {
-                uData.money = +uuu.money - +(+uuu.int * 100) + (+uuu.int * 10);
+                uData.money = +uuu.money - (+uuu.int * 100 + (+uuu.int * 10) + 10);
                 uData.int = +uuu.int + +1;
                 localStorage.setItem("uData", JSON.stringify(uData));
 
@@ -1594,21 +1591,20 @@
             }
 
             if (humor) {
-                if (+uuu.money >= (+uuu.hum * 100) + (+uuu.hum * 10)) {
+                humor.innerHTML = "➕ cost: " + (+uuu.hum * 100 + (+uuu.hum * 10) + 10);
+                if (+uuu.money >= +uuu.hum * 100 + (+uuu.hum * 10) + 10) {
                     humor.className = 'dvBoxes_active';
                     humor.onclick = UI.doHumorPurchase(humor, uuu);
-                    
                 } else {
                     humor.className = 'dvBoxes';
                     humor.onclick = null;
-
                 }
             }
             
         },
         doHumorPurchase: (humor, uuu) => {
             return () => {
-                uData.money = +uuu.money - +(+uuu.hum * 100) + (+uuu.hum * 10);
+                uData.money = +uuu.money - (+uuu.hum * 100 + (+uuu.hum * 10) + 10);
                 uData.hum = +uuu.hum + +1;
                 localStorage.setItem("uData", JSON.stringify(uData));
 
@@ -1648,7 +1644,7 @@
             var table = UI.createEle("div");
 
             table.className = "theTable";
-            for (var i = 1; i < 9; i++) {
+            for (var i = 1; i < 10; i++) {
                 var elems = UI.createEle("div");
 
                 elems.id = "elem_" + i + "";
@@ -1660,7 +1656,13 @@
             myFrame.appendChild(table);
 
             setTimeout(() => {
-                var playerItems = UI.bySelAll(".playerItems");
+                var playerItems = UI.bySelAll(".playerItems"), myPrefix;
+
+                if (uuu.gndr === 0) {
+                    myPrefix = "Mister";
+                } else {
+                    myPrefix = "Miss";
+                }
                 playerItems[0].innerHTML = "<div id='dvEX_0'>" + uuu.siteName + "</div>";
                 playerItems[1].innerHTML = "<div id='dvEX_1'><span class='spnBar'>Level</span></div> <span class='spnBubble'>" + uuu.lvl + "</span>";
                 playerItems[2].innerHTML = "<div id='dvEX_2'><span class='spnBar'>Humor</span></div> <span class='spnBubble'>" + uuu.hum + "</span>";
@@ -1669,6 +1671,7 @@
                 playerItems[5].innerHTML = "<div id='dvEX_5'><span class='spnBar'>Luck</span></div> <span class='spnBubble'>" + uuu.luck + "</span>";
                 playerItems[6].innerHTML = "<div id='dvEX_6'><span class='spnBar'>Charisma</span></div> <span class='spnBubble'>" + uuu.chr + "</span>";
                 playerItems[7].innerHTML = "<div id='dvEX_7'><span class='spnBar'>Speed</span></div> <span class='spnBubble'>" + uuu.spd + "</span>";
+                playerItems[8].innerHTML = "<div class='nameBar'> " + myPrefix + "<div>" + uuu.userName + "</div></div>";
                 setTimeout(() => {
                     table.className = "theTable_full";
                 }, 50);
