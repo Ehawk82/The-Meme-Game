@@ -1658,7 +1658,7 @@
             setTimeout(() => {
                 var playerItems = UI.bySelAll(".playerItems"), myPrefix;
 
-                if (uuu.gndr === 0) {
+                if (uuu.gndr === "Male") {
                     myPrefix = "Mister";
                 } else {
                     myPrefix = "Miss";
@@ -2081,7 +2081,7 @@
 
     window.onload = () => {
         UI.init();
-        //console.log(localStorage);
+        console.log(localStorage);
     };
     app.start();
 
