@@ -814,7 +814,7 @@
             }
         },
 
-        //project meme maker things
+        //project meme maker thingy
         makeMemer: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings) => {
             return () => {
                 UI.mainClick();
@@ -844,7 +844,7 @@
                 elems += "<p>Upper Text &nbsp;<input class='cls' maxLength='" + (uuu.int + 5) + "' type='text' /></p>";
 
                 elems += "<p><select>";
-                for (var i = 0; i < (uuu.cre + 1); i++) {
+                for (var i = 0; i < (+uuu.cre + +1); i++) {
                     if (memes[i] != undefined) {
                         elems += "<option class='opts'value='" + memes[i] + "' >" + memesFormal[i] + "</option>";
                     }
@@ -1091,19 +1091,32 @@
             //if () { }
         },
         fixMemeBtn: (myFrame, ud) => {
-            var memePanel = UI.bySel(".memePanel_full") || UI.bySel(".memePanel");
+            var memePanel = UI.bySel(".memePanel_full") || UI.bySel(".memePanel"),
+                play = UI.bySel(".timeCtrlItems_active") || UI.bySel(".timeCtrlItems"),
+                pause = UI.bySel(".timeCtrlItems") || UI.bySel(".timeCtrlItems_active");
 
             if (memePanel) {
                 setTimeout(() => {
                     memePanel.className = "memePanel";
+                    UI.shwoopClick();
                     setTimeout(() => {
                         if (memePanel) {
+
                             memePanel.remove();
                         }
                         return UI.memesFunc(myFrame, ud);
                     }, 500);
                 }, 500);
             }
+            UI.shwoopClick();
+            localStorage.setItem("tBool", 0);
+
+            pause.className = "timeCtrlItems_active";
+
+            play.className = "timeCtrlItems";
+            play.innerHTML = "&#9658;";
+
+            play.onclick = UI.timeCheck(play, pause, ud);
 
         },
         xMemeFunc: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, page, ppp) => {
@@ -1128,6 +1141,8 @@
                 }, 1000);
             }
         },
+
+        //the settings page
         makeSettings: (myFrame, uuu, dta, newMeme, researchMeme, budgetMeme, settings, ppp) => {
             return () => {
                 UI.mainClick();
@@ -1199,6 +1214,8 @@
                 }, 1000);
             }
         },
+
+        //adjustments and algorithm doings
         memesFunc: (myFrame, ud) => {
             var dta = localStorage.getItem("myData"),
                 pD = localStorage.getItem("pData");
@@ -1311,7 +1328,7 @@
             UI.doSpdButton();
         },
 
-        //table and user data algorithms
+        //table and userData algorithms
         doSpdButton: () => {
             var speed = UI.bySel("#boost_5"),
                 ud = localStorage.getItem("uData");
@@ -1979,6 +1996,16 @@
 
             snd.play();
         },
+        shwoopClick: () => {
+            var Au = localStorage.getItem("myAu"),
+                snd = new Audio("../css/sounds/shwoop.wav");
+            if (Au) {
+                var au = JSON.parse(Au);
+            }
+            snd.volume = au.main;
+
+            snd.play();
+        },
         playClick: () => {
             var Au = localStorage.getItem("myAu"),
                 snd = new Audio("../css/sounds/play.wav");
@@ -2081,7 +2108,7 @@
 
     window.onload = () => {
         UI.init();
-        console.log(localStorage);
+        //console.log(localStorage);
     };
     app.start();
 

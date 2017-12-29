@@ -61,6 +61,7 @@
     <Content Include="css\sounds\gain.wav" />
     <Content Include="css\sounds\main.wav" />
     <Content Include="css\sounds\play.wav" />
+    <Content Include="css\sounds\shwoop.wav" />
     <Content Include="css\sounds\stop.wav" />
     <Content Include="css\sounds\token.wav" />
     <Content Include="images\assets\bubble.png" />
